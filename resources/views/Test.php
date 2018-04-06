@@ -3,7 +3,6 @@
 <html>
     <head> <link href="css/MeuCss.css" rel="stylesheet">
        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-       <script src="js/MeuJs.js"></script>
        <meta name="csrf-token" content="{{ csrf_token() }}">
        <script src="js/MeuJs.js"></script>
        

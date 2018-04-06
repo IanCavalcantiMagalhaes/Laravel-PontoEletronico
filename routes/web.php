@@ -27,6 +27,11 @@ Route::get('/InseririndoProfessor','CadastrarProfessor@InserirProfessor');
 Route::get('/TelaDeContar', function () {
     return view('PaginaContador');//Ira para RegistrarEntrada_Saida
 });
+
+Route::get('/Login', function () {
+    return view('PaginaLogin');//Ira para RegistrarEntrada_Saida
+});
+
 Route::get('/Banco', function () {
   
     return view('Lista')->with('Valor',DB::table('users')->get());
