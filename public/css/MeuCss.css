@@ -1,0 +1,33 @@
+
+
+#SeletorDePesquisa{
+    left: 15px; margin-top: 75px; position: absolute;
+        }
+         header{
+            position:relative;height: 8%;background-color: #4caf50;
+        }.AlinharETamanhoDoCampoDeTexto{
+            position: absolute;left: 200px;width:300px; 
+        }#BotaoSair{
+            background-color: #4caf50;
+            padding: 15px 32px;
+            color:white;
+            border:solid white;
+            border-radius: 10px;
+            margin-left:90%;
+        }.FonteDeTexto{
+            font-family:arial ;
+          
+        }.c{
+        text-align:center;
+        }header{
+            position:relative;height: 4%;background-color: orange;
+        }.TelaDeFundo{background-image:url(Imagens/general-night-golden-gate-bridge-hd-wallpapers-golden-gate-bridge-wallpaper.jpg);
+          background-repeat: no-repeat;background-attachment: fixed;
+        }.ImagemPosiçao{
+            position:relative;height:30px ;width:30px ;
+        }.Sessao{
+            position: relative;background-color:  gray;height: 100%;width: 1000px;
+            margin: 0 auto;
+        }select{
+            position:relative;width: 200px;
+        }
