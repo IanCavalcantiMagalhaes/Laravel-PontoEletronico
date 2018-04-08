@@ -26,7 +26,7 @@
         </div>
   </div>
 </nav>
-
+<script src="js/Pesquisar.js"></script>
         <script>
 
  function TrocarCampoDeTexto(){//alternara entre campo com mascara e campo sem mascara
@@ -49,76 +49,66 @@
 </script>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pesquisar</title>
 
-          <import href="newjavascript.js"/>
     </head>
-    <body class="TelaDeFundo">
+    <body class="TelaDeFundo" id="Tabela">
 
         <section class="Sessao">
-                   <form action="RealizarPesquisaProfessor" class="c"  id="formato">
+                   
             <!--<input type="text" name="Campo" size="15" id="Campo" style="position: absolute; right: 55%;" placeholder="Digite nome ou id"/>
             <input type="submit" value="Search" style="position: absolute;margin-left:500px;" onclick=""/>-->
-            <input type="text" placeholder="Insira um valor que queira pesquisar" name="campoPesquisa" style="position:relative;margin:0 auto;">
+            <input type="text" placeholder="Insira um valor que queira pesquisar" id="CampoPesquisa" style="position:relative;margin:0 auto;">
        
-                <button class="btn btn-default" type="submit"<i class="glyphicon glyphicon-search"></i></button>
-         
-            <select name="" onchange="TrocarCampoDeTexto()" id="Selecionar" style="color:black;position: absolute;left: 15px; margin-top: 140px; position: absolute;" class="selectpicker">
-                <option value="Selecione">Selecione</option>
-                <option value="Nome">Nome</option>
+                <input type="button" name="botao-ok" value="Pesquisar" onclick="PesquisarProfessor()">
+               <p>Pesquisar dado por:</p>
+            <select name="" onchange="TrocarCampoDeTexto()" id="PesquisarPor"  class="selectpicker">
                 <option value="Id">Id</option>
+                <option value="Nome">Nome</option>
                 <option value="CPF">CPF</option>
             </select>
-                 </form>
+                 
 
 
 
-            <p style="color:white;position: absolute;left: 15px; margin-top: 55px; position: absolute;">Filtre o cargo</p>
-                   <select name="Cargos" id="SeletorDePesquisa">
-                       <option>Selecione um cargo</option>
+            <p>Filtre o cargo</p>
+                   <select name="Cargos" id="SeletorDeCargo">
                        <option>Professor em tempo integral</option>
+                       <option>Professor em tempo parcial</option>
                        <option>Horista</option>
                    </select>
                  
+                   <p>O que deseja pesquisar</p>
+                   <select name="Cargos" id="TipoDeDado">
+                       <option>Professor</option>
+                       <option>Curso</option>
+                       <option>Periodo</option>
+                       <option>Materia</option>
+                       <option>Aluno</option>
+                   </select>
+
              <div class="table-responsive">
-             <?php  if($Nomes===null){ ?>
-             
-             <p style="position: absolute;left:350px;color: white;">Insira um valor que queira pesquisar</p>
-             <?php }else{?>
-                              <table border="1" align="center" class="table" style="position: relative;width: 600px;left: 15px;">
-                            <!-- column headers -->
-                            <tr>
+             <table cellpadding="10" border="1" style="position:relative;margin:0 auto;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th><p>Escolha</p></th>
+                    <th>Executar</th>
+                </tr>
+            </thead>
+            <tbody id="CorpoDaTable">
 
-
-                                    <th>Nome</th>
-                                    <th>Idade</th>
-                                    <th>ID</th>
-                                    <th>Opçoes</th>
-                                    <th></th>
-                            </tr>
-                            <!-- column data -->
-                            <?php foreach($Nomes as $Nomes) {  ?>
-                                     <tr>
-                                    <?php ?>
-                                    <form action="../">
-
-                                        <td> <?php echo $Nomes->Nome;?></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><select name="Escolha" id="Escolha_id">
-                                         <option>Ler</option>
-                                         <option>Editar</option>
-                                        </select></td>
-                                        <td><input type="submit" value="Visualizar" /></td>
-                                        </form>
-                               </tr>
-                     
-
-                        </table>
-             <?php }} ?>
-                        </div>  
+               
+                
+               
+            </tbody>
+        </table>
+                <p id="P"></p>             
+         
                        <!-- https://laravel.com/docs/5.6/blade#if-statements -->
                       
 </section>
    </body>
 </html>
+<script> function OLA(); </script>

@@ -3,7 +3,7 @@
  <script type="text/javascript" src="{{ URL::to('js/MeuJs.js') }}"></script>
 <html><meta charset="utf-8"/>
 <head><link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-<script src="js/MeuJs.js"></script>
+<script src="js/CadastrarProfessor.js"></script>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -103,39 +103,3 @@
 
 </body>
 </html>
-<script>      
-function AoAlterarCurso(){
-
-    $(document).ready(function(){//inserir periodos
-     // alert( $("#Curso").val());
-      $('#Periodo').empty();
-      $('#Materia').empty();
-        $.ajax({
-          type: "GET",
-          data: {IdCurso: $("#Curso").val()},
-          url:"/AjaxPeriodo",success: function(data){
-           
-          for(var i=0;i<data.Periodos.length;i++){
-
-              $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].NomePeriodo+"</option>");
-           }
-       
-        }});
-});
-      }function AoAlterarPeriodo(){//inserir materias
-        $(document).ready(function(){
-           
-            $('#idMateria').empty();
-              $.ajax({
-                type: "GET",
-                data: {Campo: $("#Periodo").val()},
-                url:"/AjaxMateria",success: function(result){
-                    for(var i=0;i<15;i++){
-                        $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].NomePeriodo+"</option>");
-           
-                   }
-        
-                }});
-        });
-    }
-</script>

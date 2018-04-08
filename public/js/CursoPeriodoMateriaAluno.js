@@ -1,0 +1,155 @@
+function CursoAjax(){
+
+    $(document).ready(function(){
+       
+          $.ajax({
+            type: "GET",
+            data:{IdCurso:$('Curso').val(),
+                  EscolhidoComando:$("input[name='EscolhidoComando']:checked"
+                  .val()),//Editar,Adicionar ou remover
+                  CampoDeTexto:$('CampoDeTexto'.val())},
+            url:"/AjaxAdicionar",//controller Curso
+            success: function($result){
+                
+        
+            }});
+        });
+
+}
+function PeriodoAjax(){//alterar,remover ou adicionar periodo.
+    $(document).ready(function(){
+       
+        $.ajax({
+          type: "GET",
+          data:{IdPeriodo:$('Periodo').val(),
+                EscolhidoComando:$("input[name='EscolhidoComando']:checked").val(),
+                CampoDeTexto:$('CampoDeTexto'.val())},
+          url:"/Ajax",//controller Periodo
+          success: function($result){
+              
+      
+          }});
+      });
+    
+}
+function MateriaAjax(){
+   
+        $(document).ready(function(){
+           
+            $.ajax({
+              type: "GET",
+              data:{IdMateria:$('Materia').val(),
+                    EscolhidoComando:$("input[name='EscolhidoComando']:checked".val()),
+                    CampoDeTexto:$('CampoDeTexto'.val())},
+              url:"/Ajax",//controller Periodo
+              success: function($result){
+                  
+          
+              }});
+          });
+        
+    
+    
+}
+function AulaAjax(){
+
+    
+}
+function MostrarEsconderCampoDeTexto(){//sera mostrado somente em editar e adicionar
+
+    $('#CampoDeTexto').empty();
+    
+    if($("input[name='EscolhidoComando']:checked").val()==='Editar'){
+        $('#CampoDeTexto').show();
+        $('#CampoDeTexto').attr("placeholder","Altere valor aqui");
+    }
+    if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
+        $('#CampoDeTexto').show();
+        $('#CampoDeTexto').attr("placeholder","Adicione novo valor aqui");
+    }
+    if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
+        $('#CampoDeTexto').hide(); 
+    }
+}
+function AlterarCursoPeriodoMateriaAula(){//Escolhera entre Curso,Periodo ou Materia
+    
+    $('#Curso').empty();
+    $('#Periodo').empty();
+    $('#Materia').empty();
+    $('#CampoDeTexto').empty();
+
+if($('#Escolhido').val()==='Selecione'){
+  
+    
+    }
+if($('#Escolhido').val()==='Curso'){
+    $('#Curso').show();
+    $('#Periodo').hide();
+    $('#Materia').hide();
+ 
+}if($('#Escolhido').val()==='Periodo'){//Podera selecionar o curso e periodo que vai alterar/adicionar/remover
+    $('#Curso').show();
+    $('#Periodo').show();
+    $('#Materia').hide();
+
+}if($('#Escolhido').val()==='Materia'){
+    $('#Curso').show();
+    $('#Periodo').show();
+    $('#Materia').show();
+}if($('#Escolhido').val()==='Aula'){
+
+}
+
+$(document).ready(function(){//inserir Cursos
+    // alert( $("#Curso").val());
+       $.ajax({
+         type: "GET",
+         url:"/CarregarCursos",success: function(data){
+          
+         for(var i=0;i<data.Cursos.length;i++){
+
+             $('#Curso').append("<option value='"+data.Cursos[i].id+"'>"+data.Cursos[i].NomeCurso+"</option>");
+          }
+      
+       }});
+});
+}
+
+
+
+//Abaixo:Opçoes de selecionar
+
+function AoAlterarCurso(){
+alert("Ola");
+    $(document).ready(function(){//inserir periodos
+     // alert( $("#Curso").val());
+      $('#Periodo').empty();
+      $('#Materia').empty();
+        $.ajax({
+          type: "GET",
+          data: {IdCurso: $("#Curso").val()},
+          url:"/AjaxPeriodo",success: function(data){
+           
+          for(var i=0;i<data.Periodos.length;i++){
+
+              $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].NomePeriodo+"</option>");
+           }
+       
+        }});
+});
+      }
+function AoAlterarPeriodo(){//inserir materias
+$(document).ready(function(){
+
+$('#Materia').empty();
+  $.ajax({
+    type: "GET",
+    data: {Campo: $("#Periodo").val()},
+    url:"/AjaxMateria",success: function($result){
+        for(var i=0;i<$result.length;i++){//
+            $('#Materia').append("<option value="+$result[i].id+">"+$result[i].Nome+"</option>");
+        }
+
+    }});
+});
+}

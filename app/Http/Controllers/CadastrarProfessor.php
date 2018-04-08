@@ -38,14 +38,9 @@ class CadastrarProfessor extends BaseController
     ->select('id','nomeCurso')
     ->get();
     
-   // return Response::json(json_encode($ID_e_NomeCursos)); 
     return view('PaginaCadastrarProfessor')->with('Cursos',$ID_e_NomeCursos);
     
     }public function AjaxPeriodo(Request $request){//inserir periodos
-      /* $Periodos=
-      Periodo::
-      where('Curso_id',$request->IdCurso)
-      ->get();*/
      $Periodos=
       DB::table('periodo')
     ->where('Curso_id',$request->IdCurso)
