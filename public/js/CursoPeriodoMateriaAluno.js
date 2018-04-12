@@ -1,3 +1,18 @@
+function ExecutarNoDadoSelecionado(){
+    if($("#Escolhido").val()='Curso'){
+        CursoAjax();
+    }
+    if($("#Escolhido").val()='Periodo'){
+        PeriodoAjax();
+    }
+    if($("#Escolhido").val()='Materia'){
+        
+    }
+    if($("#Escolhido").val()='Aula'){
+        
+    }
+
+}
 function CursoAjax(){
 
     $(document).ready(function(){
@@ -62,13 +77,16 @@ function MostrarEsconderCampoDeTexto(){//sera mostrado somente em editar e adici
     if($("input[name='EscolhidoComando']:checked").val()==='Editar'){
         $('#CampoDeTexto').show();
         $('#CampoDeTexto').attr("placeholder","Altere valor aqui");
+        $("#Botao").attr('value', 'Editar');
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         $('#CampoDeTexto').show();
         $('#CampoDeTexto').attr("placeholder","Adicione novo valor aqui");
+        $("#Botao").attr('value', 'Adicionar');
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
         $('#CampoDeTexto').hide(); 
+        $("#Botao").attr('value', 'Remover');
     }
 }
 function AlterarCursoPeriodoMateriaAula(){//Escolhera entre Curso,Periodo ou Materia
@@ -86,22 +104,28 @@ if($('#Escolhido').val()==='Curso'){
     $('#Curso').show();
     $('#Periodo').hide();
     $('#Materia').hide();
+    $('#InserirHorario').hide();
  
 }if($('#Escolhido').val()==='Periodo'){//Podera selecionar o curso e periodo que vai alterar/adicionar/remover
     $('#Curso').show();
     $('#Periodo').show();
     $('#Materia').hide();
+    $('#InserirHorario').hide();
 
 }if($('#Escolhido').val()==='Materia'){
     $('#Curso').show();
     $('#Periodo').show();
     $('#Materia').show();
+    $('#InserirHorario').hide();
+
 }if($('#Escolhido').val()==='Aula'){
+    $('#InserirHorario').show();
+    $('#InserirHorario').mask("00:00");
 
 }
 
-$(document).ready(function(){//inserir Cursos
-    // alert( $("#Curso").val());
+$(document).ready(function(){//inserir Cursos toda vez que alterar
+    $('#Curso').empty();
        $.ajax({
          type: "GET",
          url:"/CarregarCursos",success: function(data){

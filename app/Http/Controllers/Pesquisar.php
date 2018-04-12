@@ -13,7 +13,7 @@ use DB;
 class Pesquisar extends BaseController
 {
   public function Professor(Request $request){
-//if($resquest->PesquisarPor='id'){
+//if($resquest->PesquisarPor='Id'){
 $Result=DB::table('Funcionario')
      ->select('id','nome')
      ->where('id',$request->CampoPesquisa)->get();

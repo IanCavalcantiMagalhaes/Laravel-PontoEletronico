@@ -14,11 +14,16 @@ use Illuminate\Support\Facades\Input;
 
 class MostrarDados extends BaseController
 {
+public function Test(){
+
+$Professor=array([
+    'nome'=>"Ian",
+    'CPF'=>"12345"
+]
+);
+}
 public function MostrarProfessor(){
 
 }
-
-
-
 
 }

@@ -15,6 +15,8 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         $('.DiasDaSemana').show();//Mostrara radio de dias da semana
 }
 
+$("#Tabela").show(); 
+
 }
 function PesquisarProfessor(){
   OLA();
@@ -52,6 +54,11 @@ function PesquisarProfessor(){
 
     }
 
-    function OLA(){
-        alert("BOM DIA");
+    function TrocarPlaceholderDeCampo(){
+        if($("#PesquisarPor").val()='Id'){
+            $("#CampoPesquisa").atrr('placeholder','Inserir ID');
+        }
+        if($("#PesquisarPor").val()='Nome'){
+            $("#CampoPesquisa").atrr('placeholder','Inserir nome');
+        }
     }

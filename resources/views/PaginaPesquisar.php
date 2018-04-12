@@ -52,17 +52,15 @@
         <title>Pesquisar</title>
 
     </head>
-    <body class="TelaDeFundo" id="Tabela">
+    <body class="TelaDeFundo" >
 
         <section class="Sessao">
-                   
-            <!--<input type="text" name="Campo" size="15" id="Campo" style="position: absolute; right: 55%;" placeholder="Digite nome ou id"/>
-            <input type="submit" value="Search" style="position: absolute;margin-left:500px;" onclick=""/>-->
-            <input type="text" placeholder="Insira um valor que queira pesquisar" id="CampoPesquisa" style="position:relative;margin:0 auto;">
-       
-                <input type="button" name="botao-ok" value="Pesquisar" onclick="PesquisarProfessor()">
+                <div  style="position:absolute;left:30%;">
+                  <input type="text" placeholder="Insira um valor que queira pesquisar" id="CampoPesquisa" style="width:250px;">
+                  <input type="button" name="botao-ok" value="Pesquisar" onclick="PesquisarProfessor()">
+                </div>
                <p>Pesquisar dado por:</p>
-            <select name="" onchange="TrocarCampoDeTexto()" id="PesquisarPor"  class="selectpicker">
+            <select name="" onchange="TrocarPlaceholderDeCampo()" id="PesquisarPor"  class="selectpicker">
                 <option value="Id">Id</option>
                 <option value="Nome">Nome</option>
                 <option value="CPF">CPF</option>
@@ -88,12 +86,12 @@
                    </select>
 
              <div class="table-responsive">
-             <table cellpadding="10" border="1" style="position:relative;margin:0 auto;">
+             <table cellpadding="10" border="1" style="position:relative;margin:0 auto;" id="Tabela" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th><p>Escolha</p></th>
+                    <th>Escolha</th>
                     <th>Executar</th>
                 </tr>
             </thead>
@@ -109,6 +107,9 @@
                        <!-- https://laravel.com/docs/5.6/blade#if-statements -->
                       
 </section>
+<script> 
+$("#Tabela").hide(); 
+</script>
    </body>
 </html>
-<script> function OLA(); </script>
+

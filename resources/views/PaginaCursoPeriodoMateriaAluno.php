@@ -85,13 +85,11 @@
                          <option>Selecione Materia</option>
                          </select>
                     </td>
-                    <td></td>
+                    <td><input type="text" value="" id="InserirHorario"></td>
                 </tr> 
                 <tr>
                     <td></td>
-                    <td> <select id="Aula" onchange="MostrarEsconderCampoDeTexto()">
-                         <option>Selecione Aula</option>
-                         </select>
+                    <td> 
                     </td>
                     <td></td>
                 </tr>
@@ -104,8 +102,7 @@
             </tbody>
         </table>
      
-        <button type="button" class="btn btn-danger" onclick="test()">Danger</button>
-        <button type="submit" class="btn btn-success" onclick="VerificarDadosCadastraisAJax()" >Success</button>
+        <button type="submit" class="btn btn-success" id="Botao"></button>
  </form>
 
 
@@ -113,11 +110,6 @@
 
 </body>
 </html>
-<script>
- function test(){
-     alert($("input[name='EscolhidoComando']:checked").val());
- }
- </script>
  <script> 
      
 
@@ -126,4 +118,5 @@
  $('#Materia').hide();
  $('#Aula').hide();
  $('#CampoDeTexto').hide();
+ $('#InserirHorario').hide();
  </script>

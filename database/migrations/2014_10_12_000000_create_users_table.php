@@ -44,7 +44,19 @@ class CreateUsersTable extends Migration
         Schema::create('Periodo', function (Blueprint $table) {
             $table->increments('id');
             $table->string('NomePeriodo');
-            $table->string('Curso_id');
+            $table->string('Curso_id')->references('id')->on('Curso');
+            
+        });
+        Schema::create('Materia', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('Nome');
+            $table->string('Periodo_id')->references('id')->on('Perido');
+            
+        });
+        Schema::create('Aula', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('Nome');
+            $table->string('Materia_id')->references('id')->on('Materia');
             
         });
     }
