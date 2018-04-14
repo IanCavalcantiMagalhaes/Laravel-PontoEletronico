@@ -30,7 +30,9 @@
 <title>Adicionar produto a lista</title>
 
 <link href="css/MeuCss.css" rel="stylesheet">
-
+<link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
+<script src="{{ asset('assets/js/MeuJs/CadastrarProfessor.js') }}"></script>
 </head>
 <body class="TelaDeFundo">
 <section class="sessao">
@@ -52,9 +54,9 @@
                 <tr>
                     <td><p>Escolha a açao que deseja fazer</p> 
                     
-                         <input type="radio" name="EscolhidoComando" value="Editar"> Editar<br>
-                         <input type="radio" name="EscolhidoComando" value="Adicionar"> Adicionar<br>
-                         <input type="radio" name="EscolhidoComando" value="Remover"> Remover<br>  
+                         <input type="radio" name="EscolhidoComando" value="Editar" onclick="AlterarEditarAdicionarRemover()"> Editar<br>
+                         <input type="radio" name="EscolhidoComando" value="Adicionar"  onclick="AlterarEditarAdicionarRemover()"> Adicionar<br>
+                         <input type="radio" name="EscolhidoComando" value="Remover"  onclick="AlterarEditarAdicionarRemover()"> Remover<br>  
                     </td>
                     <td> <select id="Curso" onchange="AoAlterarCurso()">
                          <option>Selecione curso</option>
@@ -76,7 +78,13 @@
                          <option>Selecione Periodo</option>
                          </select>
                     </td>
-                    <td></td>
+                    <td><div id="Turno"><p>Escolha um turno</p>
+                        <select name="turno">
+                        <option value="Matutino">Matutino</option>
+                        <option value="Vespertino">Vespertino</option>
+                        <option value="Noturno">Noturno</option>
+                        </select></div>
+                   </td>
                 
                 </tr>
                 <tr>
@@ -102,7 +110,7 @@
             </tbody>
         </table>
      
-        <button type="submit" class="btn btn-success" id="Botao"></button>
+        <button type="submit" class="btn btn-success" id="Botao" value="Executar"></button>
  </form>
 
 
@@ -119,4 +127,5 @@
  $('#Aula').hide();
  $('#CampoDeTexto').hide();
  $('#InserirHorario').hide();
+ $('#Turno').hide();
  </script>

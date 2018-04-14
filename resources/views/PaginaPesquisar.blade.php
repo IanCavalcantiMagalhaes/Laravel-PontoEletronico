@@ -50,7 +50,9 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Pesquisar</title>
-
+        <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
+        <script src="{{ asset('assets/js/MeuJs/Pesquisar.js') }}"></script>
     </head>
     <body class="TelaDeFundo" >
 

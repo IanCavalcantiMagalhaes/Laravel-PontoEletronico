@@ -38,7 +38,7 @@ function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU ac
     
 }
 function AoAlterarCurso(){
-
+alert("OLA");
     $(document).ready(function(){//inserir periodos
      // alert( $("#Curso").val());
       $('#Periodo').empty();

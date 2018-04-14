@@ -17,8 +17,9 @@ class CursoPeriodoMateriaAula extends BaseController
    public function Curso(Request $request){
 
     if($request->EscolhidoComando="Editar"){
-      DB::table('Curso')
-          ->update('NomeCurso',$request->CampoDeTexto)
+      Curso::
+           update('NomeCurso',$request->CampoDeTexto)
+          ->update('turno',$request->turno)
           ->where('id',$request->IdCurso);
 
     }if($request->EscolhidoComando="Remover"){
@@ -30,9 +31,9 @@ class CursoPeriodoMateriaAula extends BaseController
 
 
    }
-   function InserirCurso(){//inserir inicialmente
+   function InserirCurso(){//inserir no select curso
     $Cursos=
-    DB::table('Curso')
+    DB::table('Cursos')
         ->get();
   
 
@@ -43,8 +44,7 @@ return Response::json(array('Cursos'=>$Cursos));
     if($request->EscolhidoComando="Editar"){
       DB::table('Periodo')
           ->update('NomePeriodo',$request->CampoDeTexto)
-          ->where('Curso_id',$request->IdCurso)
-          ->where('id',$request->IdPerido);
+          ->where('id',$request->IdPeriodo);
 
     }if($request->EscolhidoComando="Remover"){
 

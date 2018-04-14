@@ -1,3 +1,4 @@
+
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
  <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
  <script type="text/javascript" src="{{ URL::to('js/MeuJs.js') }}"></script>
@@ -29,12 +30,15 @@
 </nav>
 <title>Adicionar produto a lista</title>
 
-<link href="css/MeuCss.css" rel="stylesheet">
+
 
 <script>$("#MascaraCPF").mask("000.000.000-00");
         $("#MascaraCEP").mask("00000-000");
         $("#MascaraTelefone").mask("(00)00000-0000");
 </script>
+<link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
+<script src="{{ asset('assets/js/MeuJs/CadastrarProfessor.js') }}"></script>
 </head>
 <body class="TelaDeFundo">
 <section class="sessao">

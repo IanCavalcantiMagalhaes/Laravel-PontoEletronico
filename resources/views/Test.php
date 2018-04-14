@@ -4,7 +4,7 @@
     <head> <link href="css/MeuCss.css" rel="stylesheet">
        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
        <meta name="csrf-token" content="{{ csrf_token() }}">
-       <script src="js/MeuJs.js"></script>
+       <script src="js/Test.js"></script>
        
    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,6 +24,7 @@
 <button onclick="PegarDados()">Get External Content</button>
 
 <input type="text" name="Cam" id="Campo" value=""/>
+<input type="text" name="Cam2" id="Campo2" value=""/>
 
     </body>
 </html>

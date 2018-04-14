@@ -21,7 +21,9 @@
         }
         </style>
          
-      
+        <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
+        <script src="{{ asset('assets/js/MeuJs/Login.js') }}"></script>
     </head>
     <body class="TelaDefundo">
    

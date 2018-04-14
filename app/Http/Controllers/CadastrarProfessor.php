@@ -31,34 +31,35 @@ class CadastrarProfessor extends BaseController
     return Response::json(json_encode($request->Campo)); 
  
 
-   }public function IrParaPaginaDeCadastroProfessor(Request $request){//inserir Cursos
+   }public function AjaxPeriodo(Request $request){//inserir em periodos
 
-    $ID_e_NomeCursos=
-      DB::table('Curso')
-    ->select('id','nomeCurso')
-    ->get();
-    
-    return view('PaginaCadastrarProfessor')->with('Cursos',$ID_e_NomeCursos);
-    
-    }public function AjaxPeriodo(Request $request){//inserir periodos
      $Periodos=
       DB::table('periodo')
     ->where('Curso_id',$request->IdCurso)
     ->get();
+    /*Periodo::
+    where('Curso_id',$request->IdCurso)
+    ->get();*/
     
 
 return Response::json(array('Periodos'=>$Periodos)); 
 
 
     }public function AjaxMateria(Request $request){//inserir materias
-
-  $ID_e_NomePeriodos=
+if($request->idPeriodo!=null){
+  $ID_e_NomeMateria=
     DB::table('Materia')
   ->select('id','nome')
-  ->where('Periodo_id',$request->input('idPeriodo'))//input do select periodo
+  ->where('Periodo_id',$request->idPeriodo)//input do select periodo
   ->get();
   
+    /*Materia::
+    where('Curso_id',$request->IdCurso)
+    ->get();*/
+
   return Response::json(json_encode($ID_e_NomeMateria)); 
+}
+  
   
   }
 }
