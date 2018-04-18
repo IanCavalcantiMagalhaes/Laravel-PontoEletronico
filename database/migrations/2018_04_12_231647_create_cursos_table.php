@@ -18,14 +18,25 @@ class CreateCursosTable extends Migration
             $table->string('nomeCurso');
             $table->string('turno');
             $table->timestamps();
+
         });
        // INSERT INTO Cursos(NomeCurso,Turno) VALUES ('Direito','Matutino'),('Engenharia','Vespertino')
 //,('Sistema de informaçao','Noturno'),('Curso de magica','Matutino');
-    /*    DB::table('cursos')
-        ->insert('nomeCurso',"Direito")
-        ->insert('turno',"Matutino");
+DB::table('cursos')
+->insert(
+    array(
+        'nomeCurso' => 'Direito',
+        'turno' => 'vespertino'
+    )
+    );
+DB::table('cursos')
+->insert(
+    array(
+        'nomeCurso' => 'Sistema de informacoes',
+        'turno' => 'noturno'
+    )
+    );
 
-*/
     }
 //INSERT INTO Cursos(NomeCurso,Turno) VALUES ('Direito','Matutino'),('Engenharia','Vespertino')
 //,('Sistema de informaçao','Noturno'),('Curso de magica','Matutino');

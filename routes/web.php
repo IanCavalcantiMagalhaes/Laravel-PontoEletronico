@@ -64,9 +64,7 @@ Route::get('/Pesquisar', function () {
       Route::get('/AjaxMateria','CadastrarProfessor@AjaxMateria');
       Route::get('/CadastrarProfessor', function () {
         $ID_e_NomeCursos=
-            DB::table('cursos')
-          ->select('id','nomeCurso')
-          ->get();
+            Curso::all();
           //$ID_e_NomeCursos=Curso::all();
           
           return view('PaginaCadastrarProfessor')->with('Cursos',$ID_e_NomeCursos);
@@ -75,7 +73,11 @@ Route::get('/Pesquisar', function () {
 
  });
  Route::group(['prefix' => 'CursoPeriodoMateria'], function() {
-       Route::get('/ManipularCurso', function () {
+       
+      Route::get('/AjaxPeriodo','CadastrarProfessor@AjaxPeriodo');//
+      Route::get('/AjaxMateria','CadastrarProfessor@AjaxMateria');//
+      Route::get('/AjaxCursos','CursoPeriodoMateriaAula@InserirCurso');
+      Route::get('/ManipularCurso', function () {
   
           return view('PaginaCursoPeriodoMateriaAluno');
       });
@@ -87,7 +89,6 @@ Route::get('/AjaxInserirProfessor','CadastrarProfessor@InserirProfessor');
 
 Route::get('/Curso','CursoPeriodoMateriaAula@Curso');
 
-Route::get('/CarregarCursos','CursoPeriodoMateriaAula@InserirCurso');
 
 
 Route::get('/Periodo','CursoPeriodoMateriaAula@Periodo');
