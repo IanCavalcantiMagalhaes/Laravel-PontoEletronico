@@ -67,7 +67,7 @@
                     <td><p>Telefone</p><input type="text" name="CPF" value="" id="MascaraTelefone"/></td>
                     <td></td>
                     <td> <div id="image-holder"></div><div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
+                            <input type="file" class="custom-file-input" id="customFile" >
                             <label class="custom-file-label" for="customFile" accept="image/png, image/jpeg">Selecione imagem</label>
                           </div>
                     </td>
