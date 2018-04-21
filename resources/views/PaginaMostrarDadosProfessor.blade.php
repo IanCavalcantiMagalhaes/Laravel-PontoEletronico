@@ -1,56 +1,58 @@
 
 <!DOCTYPE html>
 <html>
-    <head><link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <head><link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Page</title>
         <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
 <script src="{{ asset('assets/js/MeuJs/CadastrarProfessor.js') }}"></script>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Cadastrar Professor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">Pesquisar Professor</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pesquisar Curso,Periodo e Materia</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Gerenciar Cursos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
+<script src="{{ asset('assets/js/MeuJs/CadastrarProfessor.js') }}"></script>
+
     </head>
     <body>
-      @if($Escolha="Editar ou remover")
-      @foreach($TodosOsDadosProfessor as $Dados)
-        <div class="row">
- <div class="form-group col-md-4">
-   <label for="campo1">Campo Um</label>
-   <input type="text" class="form-control" id="campo1">
- </div>
- 
- <div class="form-group col-md-4">
-   <label for="campo2">Campo Dois</label>
-   <input type="text" class="form-control" id="campo3">
- </div>
- 
- <div class="form-group col-md-4">
-   <label for="campo3">Campo Três</label>
-   <input type="text" class="form-control" id="campo3">
- </div>
-</div>
-@endif
-@endforeach
-
-@if($Escolha="Somente ler")
-
-      @foreach($TodosOsDadosProfessor as $Dados)
+        <section class="sessao">
         <div class="row">
   <div class="col-md-4">
     <p><strong>ID do Professor</strong></p>
-    <p>{{$Dados->id}}</p>
+ 
+   <p>1 </p>
   </div>
   <div class="col-md-4">
     <p><strong>Nome do professor</strong></p>
-    <p>{{$Dados->nome}}</p>
+   
+    <p>Nome</p>
   </div>
   <div class="col-md-4">
     <p><strong>CPF do Professor</strong></p>
-    <p>{{$Dados->cpf}}</p>
+   
+   <p>111.111.111-11</p>
   </div>
-</div> <!-- .row -->
-@endforeach
-@endif
-<form action="DadosDoProfessorEditavel" style="position:relative;top: 50px;">
-<input type="submit" value="Ir para editar clique aqui" />
-</form>
+</div> 
+</section>
     </body>
 </html>

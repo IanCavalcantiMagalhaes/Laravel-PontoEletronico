@@ -102,22 +102,34 @@ if($('#Escolhido').val()==='Selecione'){
     }
 if($('#Escolhido').val()==='Curso'){
     $('#Curso').show();
+    $('#TextoCurso').show();
     $('#Turno').show();
     $('#Periodo').hide();
     $('#Materia').hide();
     $('#InserirHorario').hide();
- 
+    if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
+        //Ao adicionar nao precisara selecionar curso
+        $('#Curso').hide();$('#TextoCurso').hide();
+    }
 }if($('#Escolhido').val()==='Periodo'){//Podera selecionar o curso e periodo que vai alterar/adicionar/remover
     $('#Curso').show();
     $('#Periodo').show();
     $('#Materia').hide();
     $('#InserirHorario').hide();
+    if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
+        //Ao adicionar nao precisara selecionar Periodo
+        $('#Periodo').hide();
+    }
 
 }if($('#Escolhido').val()==='Materia'){
     $('#Curso').show();
     $('#Periodo').show();
     $('#Materia').show();
     $('#InserirHorario').hide();
+    if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
+        //Ao adicionar nao precisara selecionar Materia
+        $('#Materia').hide();
+    }
 
 }if($('#Escolhido').val()==='Aula'){
     $('#InserirHorario').show();

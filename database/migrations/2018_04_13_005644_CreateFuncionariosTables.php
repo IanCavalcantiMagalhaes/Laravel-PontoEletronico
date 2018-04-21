@@ -16,6 +16,7 @@ class CreateFuncionariosTables extends Migration
         Schema::create('Funcionarios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->boolean('Trabalhando')->default(false);
             $table->string('CPF')->default("Vazio");//->unique();
             $table->string('Endereço')->default("Vazio");
             $table->double('CargahorariaAtual',5,3)->default(0.00);//limie de digitos,Limite de casas decimais
@@ -28,7 +29,8 @@ class CreateFuncionariosTables extends Migration
         });
          DB::table('Funcionarios')->insert(
             array(
-                'nome' => 'Ian'
+                'nome' => 'Ian',
+                'CPF' => '111.111.111-11'
             )
         );
     }

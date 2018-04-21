@@ -5,7 +5,7 @@
     <head> <link href="css/MeuCss.css" rel="stylesheet">
        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
        <meta name="csrf-token" content="{{ csrf_token() }}">
-       <script src="js/Test.js"></script>
+       <script src="{{ asset('assets/js/MeuJs/Test.js') }}"></script>
        <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
        <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

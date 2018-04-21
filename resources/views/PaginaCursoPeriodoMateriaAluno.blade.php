@@ -2,12 +2,12 @@
  <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 
 <html><meta charset="utf-8"/>
-<head><link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<head><link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="js/CursoPeriodoMateriaAluno.js"></script>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Gerenciar Cursos</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
@@ -32,7 +32,7 @@
 <link href="css/MeuCss.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
-<script src="{{ asset('assets/js/MeuJs/CadastrarProfessor.js') }}"></script>
+<script src="{{ asset('assets/js/MeuJs/CursoPeriodoMateriaAluno.js') }}"></script>
 </head>
 <body class="TelaDeFundo">
 <section class="sessao">
@@ -42,7 +42,7 @@
   
 
 
-  <table cellpadding="10">
+  <table cellpadding="15">
             <thead>
                 <tr>
                     <th></th>
@@ -54,19 +54,20 @@
                 <tr>
                     <td><p>Escolha a açao que deseja fazer</p> 
                     
-                         <input type="radio" name="EscolhidoComando" value="Editar" onclick="AlterarEditarAdicionarRemover()"> Editar<br>
-                         <input type="radio" name="EscolhidoComando" value="Adicionar"  onclick="AlterarEditarAdicionarRemover()"> Adicionar<br>
-                         <input type="radio" name="EscolhidoComando" value="Remover"  onclick="AlterarEditarAdicionarRemover()"> Remover<br>  
+                         <input type="radio" name="EscolhidoComando" value="Editar" onclick="atualizar()"> Editar<br>
+                         <input type="radio" name="EscolhidoComando" value="Adicionar"  onclick="atualizar()"> Adicionar<br>
+                         <input type="radio" name="EscolhidoComando" value="Remover"  onclick="atualizar()"> Remover<br>  
                     </td>
-                    <td> <select id="Curso" onchange="AoAlterarCurso()">
+                    <td> <p id="TextoCurso">Escolha um curso</p>
+                    <select id="Curso" onchange="AoAlterarCurso()">
                          <option>Selecione curso</option>
-                         </select>
+                         </select><div>
                     </td>
                     <td></td>
                 </tr>
                  <tr>
                     <td><p>Escolha o tipo de dado</p> 
-                    <select id="Escolhido" onchange="AlterarCursoPeriodoMateriaAula()">
+                    <select id="Escolhido" onchange="atualizar()">
                         <option>Selecione</option>
                         <option value="Curso">Curso</option>
                         <option value="Periodo">Periodo</option>
@@ -74,7 +75,8 @@
                         <option value="Aula">Aula</option>
                         </select>
                     </td>
-                    <td> <select id="Periodo" onchange="AoAlterarPeriodo()" >
+                    <td><p id="TextoPerido">Escolha um periodo</p>
+                    <select id="Periodo" onchange="AoAlterarPeriodo()" >
                          <option>Selecione Periodo</option>
                          </select>
                     </td>
@@ -89,7 +91,8 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td> <select id="Materia" onchange="MostrarEsconderCampoDeTexto()">
+                    <td><p id="TextoMateria">Escolha uma materia</p> 
+                    <select id="Materia" onchange="MostrarEsconderCampoDeTexto()">
                          <option>Selecione Materia</option>
                          </select>
                     </td>
@@ -110,7 +113,7 @@
             </tbody>
         </table>
      
-        <button type="submit" class="btn btn-success" id="Botao" value="Executar"></button>
+        <button type="submit" class="btn btn-success" id="Botao" value="Executar">Executar</button>
  </form>
 
 
@@ -120,7 +123,9 @@
 </html>
  <script> 
      
-
+$('#TextoCurso').hide();
+$('#TextoPerido').hide();
+$('#TextoMateria').hide();
  $('#Curso').hide();
  $('#Periodo').hide();
  $('#Materia').hide();

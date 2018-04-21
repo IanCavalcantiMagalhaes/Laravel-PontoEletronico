@@ -29,13 +29,14 @@
    
           <fieldset>
           <h1>Sistema de Ponto Eletronico</h1>
-          <form class="AlinharForm">
+          <form class="AlinharForm" action="{{route('Autenticar')}}" method="post">
+              {{ csrf_field() }}
             <label>Email:</label><br>
-              <input type="text" value="" placeholder="Digite seu email" class="AlinharEAumentarCampoDeTexto"/><br>
+              <input type="text" name="nome" value="" placeholder="Digite seu email" class="AlinharEAumentarCampoDeTexto"/><br>
 
             <label>Senha:</label><br>
-              <input type="text" value="" placeholder="Digite sua senha" class="AlinharEAumentarCampoDeTexto"/><br><br>
-              <button type="button" class="btn btn-primary" >Logar</button>
+              <input type="text" value="" name="senha" placeholder="Digite sua senha" class="AlinharEAumentarCampoDeTexto"/><br><br>
+              <button type="submit" class="btn btn-primary" >Logar</button>
              </form>
 
 

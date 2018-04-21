@@ -21,42 +21,42 @@ class CreatePeriodoTable extends Migration
         });    
        // INSERT INTO periodos(NomePeriodo,Curso_id) VALUES ('1ºPeriodo de Direito',1),('2ºPeriodo de Direito',1),('3ºPeriodo de Direito',1),('4ºPeriodo de Direito',1),
        // ('1ºPeriodo de Engenharia',2),('2ºPeriodo de Engenharia',2),('3ºPeriodo de Engenharia',2),('4ºPeriodo de Engenharia',2),('1°Periodo de magica',4);
-       DB::table('cursos')
+       DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '1ºPeriodo de Direito',
                'Curso_id' => '1'
            )
            );
-       DB::table('cursos')
+       DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '2ºPeriodo de Direito',
                'Curso_id' => '1'
            )
            );
-       DB::table('cursos')
+       DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '3ºPeriodo de Direito',
                'Curso_id' => '1'
            )
            );
-       DB::table('cursos')
+       DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '1ºPeriodo de Sistemas',
                'Curso_id' => '2'
            )
            );
-       DB::table('cursos')
+       DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '2ºPeriodo de Sistemas',
                'Curso_id' => '2'
            )
            );
-       DB::table('cursos')
+       DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '3ºPeriodo de Sistemas',

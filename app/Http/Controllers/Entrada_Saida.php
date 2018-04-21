@@ -7,36 +7,62 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Response;
+use DB;
 
 class Entrada_Saida extends BaseController
 {
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+   public function RetornarView(Request $request){
+     return view('MarcarPonto')
+     ->with('Resposta',$request->Resposta);
+   }
 
     public function Contador(Request $request){//ao clicar no botao da PaginaContador
-      if ($request->input('CPF')!=null) {
+    $RS=
+      DB::table('funcionarios')
+    ->select('trabalhando')
+    ->where('CPF',$request->CPF)->get();
      
-        $array = array(
-          'CPF' =>$request->input('CPF'),
-          'Tempo'=> microtime(true)
+         
 
-          );
-        $Resultado=DB::table('funcionario')->select('Trabalhando')->where('CPF',$cpf);
-           
-        if ($Resultado=false){
-           $arrayCPF[]=$array['CPF'];
-           $arrayTempoDeEntrada[]=$array['Tempo'];
-           return view('PaginaContador')->with('X','Usuario Pode Entrar'); 
-        }if ($Resultado=true) {
-          for ($i=0; $i<sizeof($arrayCPF);$i++) { 
-            if ($arrayCPF[$i]=$array['CPF']) {
-              $Tempo=(($array['Tempo']-microtime(true)/1000)/60)/60;
-              DB::table('funcionario')->Update('CargaHorariaAtual','=CargaHorariaAtual+',$Tempo);
-              return view('PaginaContador')->with('X','Usuario Pode Sair'); 
-            }
-          }
-        }
-       } 
-  } public function LevatamentoDaSemana(Request $request){   
+
+
+
+
+
+
+       return response()->json(array('RS'=>$RS));
+  }
+  public function IndentificarFuncionarioLiberado(Request $request){
+          $RS=DB::table('Funcionarios')
+          ->select('id','nome')
+          ->where('CPF',$request->CPF)->get();
+          return response()->json(array('Professor'=>$RS));
+          /*if($RS===0){
+            $RS=DB::table('Funcionarios')
+            ->update('trabalhando',1)
+            ->where('CPF',$request->CPF)->get();
+          }if($RS===1){
+            $RS=DB::table('Funcionarios')
+            ->update('trabalhando',0)
+            ->where('CPF',$request->CPF)->get();
+          }*/
+          
+  }
+  public function testContador(Request $request){
+
+      if($request->CPF=='111.111.111-11'){
+      
+        
+        return response()->json(true);
+        
+      }else{
+        return response()->json(false);
+
+      }
+  }
+  public function LevatamentoDaSemana(Request $request){   
       $Dados=DB::table('funcionario')->get() ;
 
       foreach ($Dados as $Coluna){

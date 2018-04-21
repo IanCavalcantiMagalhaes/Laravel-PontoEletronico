@@ -38,21 +38,22 @@ function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU ac
     
 }
 function AoAlterarCurso(){
-alert("OLA");
+
     $(document).ready(function(){//inserir periodos
-     // alert( $("#Curso").val());
+     
       $('#Periodo').empty();
       $('#Materia').empty();
         $.ajax({
           type: "GET",
           data: {IdCurso: $("#Curso").val()},
-          url:"/AjaxPeriodo",success: function(data){
+          url:"/CadastrarProfessor/AjaxPeriodo",
+          success: function(data){
             $('#Periodo').append("<option value=''>"+"Selecione um periodo"+"</option>");
           for(var i=0;i<data.Periodos.length;i++){
 
-              $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].NomePeriodo+"</option>");
+              $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].nomePeriodo+"</option>");
            }
-       
+        
         }});
 });
       }
@@ -63,10 +64,10 @@ $('#Materia').empty();
   $.ajax({
     type: "GET",
     data: {Campo: $("#idPeriodo").val()},
-    url:"/AjaxMateria",success: function($result){
+    url:"/CadastrarProfessor/AjaxMateria",success: function($result){
         $('#Materia').append("<option value=''>"+"Selecione uma materia"+"</option>");
         for(var i=0;i<$result.length;i++){//
-            $('#Materia').append("<option value="+$result[i].id+">"+$result[i].Nome+"</option>");
+            $('#Materia').append("<option value="+$result[i].id+">"+$result[i].nomeMateria+"</option>");
         }
 
     }});

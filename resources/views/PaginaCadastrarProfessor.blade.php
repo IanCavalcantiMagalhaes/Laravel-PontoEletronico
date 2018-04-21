@@ -13,13 +13,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#">Home <span class="sr-only">Pesquisar Professor</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="#">Pesquisar Curso,Periodo e Materia</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="#">Gerenciar Cursos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
@@ -95,7 +95,6 @@
                 </tr> 
                 <tr>
                 <td><p>Periodo</p><select id="Periodo" onchange="AoAlterarPeriodo()" class="form-control">
-                    <option>Selecione um Periodo</option>
                     </select></td>
                 </tr>
                 <tr>

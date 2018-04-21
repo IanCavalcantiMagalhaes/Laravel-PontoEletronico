@@ -10,7 +10,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Response;
 use DB;
 use Illuminate\Support\Facades\Input;
-
+use App\Models\Funcionario;
+use App\Models\Curso;
+use App\Models\Periodo;
+use App\Models\Materia;
 
 class CadastrarProfessor extends BaseController
 {
@@ -34,12 +37,8 @@ class CadastrarProfessor extends BaseController
    }public function AjaxPeriodo(Request $request){//inserir em periodos
 
      $Periodos=
-      DB::table('periodo')
-    ->where('Curso_id',$request->IdCurso)
-    ->get();
-    /*Periodo::
-    where('Curso_id',$request->IdCurso)
-    ->get();*/
+      DB::table('periodos')
+      ->where('Curso_id',$request->IdCurso)->get();
     
 
 return Response::json(array('Periodos'=>$Periodos)); 

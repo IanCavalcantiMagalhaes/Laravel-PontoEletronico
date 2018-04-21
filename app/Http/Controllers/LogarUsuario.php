@@ -8,10 +8,10 @@ class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
 {
     public function Validar(Request $request){
 
-       $RS=Usuario::
+     /*  $RS=Usuario::
        where('nome',$request->nome)
        ->where('senha',$request->senha)->get();
-
+*/
         
         if($RS=null){
            return view('Login')->with('ERRO',"Dados incorretos");
@@ -20,4 +20,17 @@ class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
            return view('Principal');
         }
     }
+    public function testValidar(Request $request){
+
+        /*  $RS=Usuario::
+          where('nome',$request->nome)
+          ->where('senha',$request->senha)->get();
+   */
+           
+           if($request->nome='Ian' && $request->senha='123456'){
+             return redirect()->route('MarcarPonto'); 
+           }else{
+            return redirect()->route('Login')->with('ERRO',"Dados incorretos");
+           }
+       }
 }
