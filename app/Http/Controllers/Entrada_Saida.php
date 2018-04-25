@@ -21,16 +21,31 @@ class Entrada_Saida extends BaseController
     public function Contador(Request $request){//ao clicar no botao da PaginaContador
     $RS=
       DB::table('funcionarios')
-    ->select('trabalhando')
+    ->select('id','trabalhando')
     ->where('CPF',$request->CPF)->get();
-     
-         
+/*
+    foreach($RS as $column){
+    
+    if($RS===0){//esta fora e quer entrar
+      DB::table('GuardadosTemporariamente')
+      ->insert('Funcionario_id',$column->id)
+      ->insert('TempoDeChegada',microtime(true));
+      return response()->json(array('RS'=>$RS));
+    }  
+    if($RS===1){//esta dentro e quer sair
+      $Tempo=DB::table('GuardadosTemporariamente')
+      ->select('TempoDeChegada')
+      ->where('Funcionario_id',$column->id)
+      ->get();
+      $TempoFeito=(((microtime(true)-$Tempo)/1000)/60)/60;
 
-
-
-
-
-
+      
+      DB::table('GuardadosTemporariamente')
+      ->where('Funcionario_id',$column->id)
+      ->remove();
+        return response()->json(array('RS'=>$RS));
+    }  
+}*/
 
        return response()->json(array('RS'=>$RS));
   }

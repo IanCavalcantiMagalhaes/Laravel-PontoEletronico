@@ -13,17 +13,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Pesquisar Professor <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{{ url('Pesquisar/Procurar') }}">Pesquisar <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cadastrar Professor</a>
+          <a class="nav-link" href="{{ url('CadastrarProfessor/CadastroProfessor') }}">Cadastrar Professor</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gerenciar Cursos</a>
+          <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Pesquisar Cursos,Periodos e Materias</a>
-        </li>
+        
       </ul>
     </div>
   </nav>

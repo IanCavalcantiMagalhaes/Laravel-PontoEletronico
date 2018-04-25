@@ -21,10 +21,13 @@ class Calculo extends Controller
     public function AjaxSoma(Request $request){
         $A=$request->Campo;
         $B=$request->Campo2;
-         $X= DB::table('funcionarios')
+         $X= DB::table('funcionarios')->select('id','nome')
               ->get();
+              foreach($X as $dados){
+                return response()->json(json_encode($dados->id));
+              }
       //return Response::json($request->Campo); 
-      return response()->json(json_encode($X));
+      
      // return Response::json(json_encode($RS));  
      // return Response::json(array('RS'=>$RS)); 
        }

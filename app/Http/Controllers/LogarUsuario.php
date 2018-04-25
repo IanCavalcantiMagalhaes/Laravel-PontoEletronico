@@ -27,10 +27,10 @@ class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
           ->where('senha',$request->senha)->get();
    */
            
-           if($request->nome='Ian' && $request->senha='123456'){
+           if($request->nome=='Ian' && $request->senha=='123456'){
              return redirect()->route('MarcarPonto'); 
            }else{
-            return redirect()->route('Login')->with('ERRO',"Dados incorretos");
+            return redirect()->route('PaginaLogar')->with('ERRO',"Dados incorretos");
            }
        }
 }

@@ -17,13 +17,13 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">Pesquisar Professor</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="#">Pesquisar Curso,Periodo e Materia</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="#">Gerenciar Cursos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
       </ul>
@@ -53,6 +53,23 @@
    <p>111.111.111-11</p>
   </div>
 </div> 
+<div class="row">
+    <div class="col-md-4">
+      <p><strong>ID do Professor</strong></p>
+   
+     <p>1 </p>
+    </div>
+    <div class="col-md-4">
+      <p><strong>Nome do professor</strong></p>
+     
+      <p>Nome</p>
+    </div>
+    <div class="col-md-4">
+      <p><strong>CPF do Professor</strong></p>
+     
+     <p>111.111.111-11</p>
+    </div>
+  </div> 
 </section>
     </body>
 </html>

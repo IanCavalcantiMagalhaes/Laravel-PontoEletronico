@@ -13,6 +13,7 @@
 use Illuminate\Support\Facades\Input;
 use App\Models\Funcionario;
 use App\Models\Curso;
+use Illuminate\Http\Request;
 Route::get('/oi', function () {
     return view('welcome');
 });
@@ -23,12 +24,7 @@ Route::get('/InserirProfessor','CadastrarProfessor@IrParaPaginaDeCadastroProfess
 
 Route::get('/InseririndoProfessor','CadastrarProfessor@InserirProfessor');
 
-Route::group(['prefix' => 'Entrar'], function() {
-  Route::get('/Login', function () {
-    return view('PaginaLogin');//Ira para RegistrarEntrada_Saida
-  });
-  Route::post('/Auntenticar','LogarUsuario@testValidar')->name('Autenticar');
-  });
+
 
 Route::get('/Somar','Calculo@AjaxSoma');
 
@@ -55,43 +51,48 @@ Route::group(['prefix' => 'MarcarPonto'], function() {
      Route::get('/Registrando','Entrada_Saida@Contador');
      Route::get('/RegistrarEntrada_Saida','Entrada_Saida@RetornarView')->name('MarcarPonto');
 });
+Route::group(['prefix' => 'Upload'], function() {
+       Route::get('/ListarUploads', function(Request $request) {
+           $file = $request->file('image');
+        return view('Upload/ListarImagens')->with('categories',$file);
 
+       }); 
+       Route::get('/FazerUpload', function(Request $request) {
+        $file = $request->file('image');
+     return view('Upload/UploadImagem');
 
-    
-
-
-
+    }); 
+    });
+Route::group(['prefix' => 'Entrar'], function() {
+  Route::get('/Login', function () {
+    return view('PaginaLogin');//Ira para RegistrarEntrada_Saida
+  })->name('PaginaLogar');
+  Route::post('/Auntenticar','LogarUsuario@testValidar')->name('Autenticar');
+  });
  //AJAX
  
  Route::group(['prefix' => 'CadastrarProfessor'], function() {
-      Route::get('/AjaxInserirProfessor','CadastrarProfessor@InserirProfessor');
+      Route::post('/AjaxInserirProfessor','CadastrarProfessor@InserirProfessor')->name('InserirProfessor');
       Route::get('/AjaxPeriodo','CadastrarProfessor@AjaxPeriodo'); 
       Route::get('/AjaxMateria','CadastrarProfessor@AjaxMateria');
-      Route::get('/CadastroProfessor', function () {
-        $ID_e_NomeCursos=
-            DB::table('cursos')
-          ->select('id','nomeCurso')
-          ->get();
-          //$ID_e_NomeCursos=Curso::all();
-          
-          return view('PaginaCadastrarProfessor')->with('Cursos',$ID_e_NomeCursos);
-          
-      });//->middleware(LoginBlock::class);
+      Route::get('/CadastroProfessor', 'CadastrarProfessor@InicializarView');//->middleware(LoginBlock::class);
       
-      
-
- });
- Route::group(['prefix' => 'PesquisarCursoPeriodoMateriaAula'], function() {
-
  });
 
- Route::group(['prefix' => 'PesquisarProfessor'], function() {
+ Route::group(['prefix' => 'Pesquisar'], function() {
        Route::get('/AjaxPesquisaProfessor','Pesquisar@Professor');
+       Route::get('/AjaxPesquisaCurso','Pesquisar@Curso');
        Route::get('/Mostrar',function(Request $request){
         //$RS=DB::table('funcionarios')->find($request->id)->get();
           return view('PaginaMostrarDadosProfessor');
          // ->with('TodosOsDadosProfessor',$RS);
    
+});
+        Route::get('/Procurar',function(Request $request){
+    //$RS=DB::table('funcionarios')->find($request->id)->get();
+            return view('PaginaPesquisar');
+     // ->with('TodosOsDadosProfessor',$RS);
+
 });
 
 });

@@ -18,17 +18,20 @@ use App\Models\Materia;
 class CadastrarProfessor extends BaseController
 {
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+  // https://cursos.alura.com.br/forum/topico-como-exibir-imagem-da-pasta-storage-laravel-50551
+   public function InserirProfessor(Request $request){
 
-   public function InserirProfessor(Request $pedido){
-
+     	
+$upload = $request->image->store('Professores');
+/*
     DB::table('Professor')
     ->insert('Nome',$pedido->Nome)
     ->insert('CPF',$pedido->CPF)
     ->insert('CEP',$pedido->CEP)
     ->insert('Telefone',$pedido->Telefone) 
     ->insert('ID_Materia',$pedido->input(''));                                                                         
-  
-  
+  */
+  return view('MarcarPonto');
    }public function AjaxTest(Request $request){
  
     return Response::json(json_encode($request->Campo)); 
@@ -60,5 +63,14 @@ if($request->idPeriodo!=null){
 }
   
   
+  }public function InicializarView(){
+ /*   $ID_e_NomeCursos=
+            DB::table('cursos')
+          ->select('id','nomeCurso')
+          ->get();*/
+          //$ID_e_NomeCursos=Curso::all();
+          
+          return view('PaginaCadastrarProfessor');//->with('Cursos',$ID_e_NomeCursos);
+          
   }
 }

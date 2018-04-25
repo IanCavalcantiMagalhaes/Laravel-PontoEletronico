@@ -4,30 +4,26 @@
 <html><meta charset="utf-8"/>
 <head><link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="js/CursoPeriodoMateriaAluno.js"></script>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Gerenciar Cursos</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="GerenciarCursos/Curso">Gerenciar Cursos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url('Pesquisar/Procurar') }}">Pesquisar Professor <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url('CadastrarProfessor/CadastroProfessor') }}">Cadastrar Professor</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Registro de ponto</a>
+        </li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
-    </ul>
-        <div class="col-sm-3 col-md-3 pull-right">
-        <form class="navbar-form" role="search">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-        </div>
-        </form>
-        </div>
-  </div>
-</nav>
-<title>Adicionar produto a lista</title>
+  </nav>
+<title>Gerencia de curso</title>
 
 <link href="css/MeuCss.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
@@ -75,7 +71,7 @@
                         <option value="Aula">Aula</option>
                         </select>
                     </td>
-                    <td><p id="TextoPerido">Escolha um periodo</p>
+                    <td><p id="TextoPeriodo">Escolha um periodo</p>
                     <select id="Periodo" onchange="AoAlterarPeriodo()" >
                          <option>Selecione Periodo</option>
                          </select>
@@ -106,7 +102,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td> <input type="text" value="" id="CampoDeTexto">
+                    <td> <input type="text" value="" id="CampoDeTexto" style="width:500px;">
                     </td>
                     <td></td>
                 </tr>
@@ -123,9 +119,7 @@
 </html>
  <script> 
      
-$('#TextoCurso').hide();
-$('#TextoPerido').hide();
-$('#TextoMateria').hide();
+
  $('#Curso').hide();
  $('#Periodo').hide();
  $('#Materia').hide();
@@ -133,4 +127,7 @@ $('#TextoMateria').hide();
  $('#CampoDeTexto').hide();
  $('#InserirHorario').hide();
  $('#Turno').hide();
+ $('#TextoCurso').hide();
+ $('#TextoPeriodo').hide();
+$('#TextoMateria').hide();
  </script>

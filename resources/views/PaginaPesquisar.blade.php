@@ -3,29 +3,30 @@
  <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 
 <!DOCTYPE html>
-<html><% ResultadoDePesquisa RP=new ResultadoDePesquisa(); ConectarBanco conecta=new ConectarBanco(); %>
-    <head>  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <head>  <link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/MeuCss.css" rel="stylesheet">
-        <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Adicionar professor</a></li>
-      <li><a href="#">Levantamento da semana</a></li>
-      <li><a href="#">Pesquisar</a></li>
-    </ul>
-        <div class="col-sm-3 col-md-3 pull-right">
-        <form class="navbar-form" role="search">
-        <div class="input-group">
-            
-        </div>
-        </form>
-        </div>
-  </div>
-</nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Pesquisar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Marcar Ponto <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ url('CadastrarProfessor/CadastroProfessor') }}">Cadastrar Professor</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link disabled" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Pesquisar</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
 <script src="js/Pesquisar.js"></script>
         <script>
 

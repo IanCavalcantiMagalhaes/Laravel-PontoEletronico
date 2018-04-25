@@ -73,3 +73,17 @@ $('#Materia').empty();
     }});
 });
 }
+function AdicionarProfessor(){
+    //inserir materias
+        $(document).ready(function(){
+        alert($("#img").val());
+        $('#Materia').empty();
+          $.ajax({
+            type: "GET",
+            data: {Imagem:$("#img").val()},
+            url:"/CadastrarProfessor/AjaxInserirProfessor",success: function($result){
+                
+
+            }});
+        });
+}

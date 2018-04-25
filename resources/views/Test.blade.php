@@ -45,6 +45,13 @@
 <input type="text" name="Cam" id="Campo" value=""/>+
 <input type="text" name="Cam2" id="Campo2" value=""/>
 
+
+    <div class="dropdown-menu">
+      ...
+    </div>
+  </div>
+  
+
     </body>
 </html>
 <script>
