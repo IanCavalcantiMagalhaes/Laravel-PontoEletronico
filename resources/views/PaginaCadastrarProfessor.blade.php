@@ -28,10 +28,7 @@
 
 
 
-<script>$("#MascaraCPF").mask("000.000.000-00");
-        $("#MascaraCEP").mask("00000-000");
-        $("#MascaraTelefone").mask("(00)00000-0000");
-</script>
+
 <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
 <script src="{{ asset('assets/js/MeuJs/CadastrarProfessor.js') }}"></script>
@@ -40,45 +37,49 @@
         height: 250px;  
 
     }
+    .LinhaVertical{
+        border-left: 6px solid green;
+    height: 500px;
+    }
 </style>
 </head>
 <body class="TelaDeFundo">
 <section class="sessao">
 
     
-    <table cellpadding="30">
+    <table cellpadding="50" border="1">
             <thead>
                 <tr>
-                    <th><h2>Cadastrar Professor </h2></th>
+                    <th><h2>Cadastro Professor </h2></th>
                     <th></th>
-                    <th></th>
+                    <th><div id="image-holder" style="border-style: groove;"></div></th>
                 </tr>
             </thead>
             
-        
+            
             
           <form  action="{{route('InserirProfessor')}}" method="post">
             <tbody>
                 <tr>
                     <td> <p>Nome</p><input class="form-control" type="text" name="Nome" value="" /></td>
-                    <td><p>CPF</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCPF"/></td>
-                    <td></br></br><div id="image-holder"></div><div class="custom-file small" >
+                    <td><p>CPF</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCPF" style="width:200px;"/></td>
+                    <td></br></br>
+                        <div class="custom-file small" >
                             <input type="file" class="custom-file-input" id="customFile" name="Imagem">
                             <label class="custom-file-label" for="customFile" accept="image/png, image/jpeg">Selecione imagem</label>
                           </div></td>
                 </tr>
                 <tr>
-                    <td><p>CEP</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCEP"/></td>
-                    <td><p>Telefone</p><input class="form-control" type="text" name="CPF" value="" id="MascaraTelefone"/></td>
-                    <td></td>
-                    <td> 
-                    </td>
+                    <td><p>CEP</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCEP" style="width:200px;"/></td>
+                    <td><p>Telefone</p><input class="form-control" type="text" name="CPF" value="" id="MascaraTelefone" style="width:200px;"/></td>
+                    
+                    
                 
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    
                 </tr> 
                 
                 <tr>
@@ -121,10 +122,10 @@
 </html>
 
 <script>
-
+       
         $("#customFile").on('change', function () {
           http://matheuspiscioneri.com.br/blog/preview-de-imagem-antes-do-upload-filereader/
-         // Matheus Piscioneri
+         // Matheus Piscioneri /Acessado:15 de abril de 2018
             if (typeof (FileReader) != "undefined") {
          
                 var image_holder = $("#image-holder");
@@ -143,6 +144,12 @@
             } else{
                 alert("Este navegador nao suporta FileReader.");
             }
+            $("html").css('height', '100%');
+            $("body").css('height', '100%');
+            
+            
         });
+
+        
 
         </script>

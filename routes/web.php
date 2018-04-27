@@ -84,7 +84,7 @@ Route::group(['prefix' => 'Entrar'], function() {
        Route::get('/AjaxPesquisaCurso','Pesquisar@Curso');
        Route::get('/Mostrar',function(Request $request){
         //$RS=DB::table('funcionarios')->find($request->id)->get();
-          return view('PaginaMostrarDadosProfessor');
+          return view('GerenciarProfessor');
          // ->with('TodosOsDadosProfessor',$RS);
    
 });
@@ -107,15 +107,11 @@ Route::get('/AjaxTestando','Calculo@AjaxTest');
 
 
 Route::group(['prefix' => 'GerenciarCursos'], function() {
-Route::get('/Curso','CursoPeriodoMateriaAula@Curso');
-
-
-Route::get('/Periodo','CursoPeriodoMateriaAula@Periodo');
-
-Route::get('/Materia','CursoPeriodoMateriaAula@Materia');
-
-Route::get('/Curso',function(){
- return view('PaginaCursoPeriodoMateriaAluno');   
+        Route::get('/Curso','CursoPeriodoMateriaAula@Curso');
+        Route::get('/Periodo','CursoPeriodoMateriaAula@Periodo');
+        Route::get('/Materia','CursoPeriodoMateriaAula@Materia');
+        Route::get('/Curso',function(){
+              return view('PaginaCursoPeriodoMateriaAluno');   
     
 });
 

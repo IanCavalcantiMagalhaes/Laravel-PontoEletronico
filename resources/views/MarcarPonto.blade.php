@@ -15,10 +15,10 @@
         <li class="nav-item active">
           <a class="nav-link" href="{{ url('Pesquisar/Procurar') }}">Pesquisar <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="{{ url('CadastrarProfessor/CadastroProfessor') }}">Cadastrar Professor</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
         </li>
         

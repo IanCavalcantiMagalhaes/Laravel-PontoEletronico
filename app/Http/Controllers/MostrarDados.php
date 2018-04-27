@@ -22,8 +22,10 @@ $Professor=array([
 ]
 );
 }
-public function MostrarProfessor(){
+public function MostrarDadosProfessor(Request $request){
+    DB::table('funcionarios')->find($request->id)->all();
 
+return redirect()->route('')->with();
 }
 
 }

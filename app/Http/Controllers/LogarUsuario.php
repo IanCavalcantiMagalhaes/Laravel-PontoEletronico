@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
 {
     public function Validar(Request $request){
-
-     /*  $RS=Usuario::
+           $request->validator([
+             'Ian'=>''
+           ]);
+     /*  
+     
+     $RS=Usuario::
        where('nome',$request->nome)
        ->where('senha',$request->senha)->get();
 */
