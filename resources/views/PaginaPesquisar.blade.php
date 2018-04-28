@@ -106,7 +106,7 @@
               {{-- @if($Tabelas!=null) --}}
               {{-- @foreach($Tabelas as $coluna) --}}
               <tr>
-                <form action="route()">{{-- form para enviar ID para controller e view de GerenciarProfessor e assim listar todos os dados --}}
+                <form action="route(Controller Pesquisar@ListarTodosOsDadosProfessor)">{{-- form para enviar ID para controller e view de GerenciarProfessor e assim listar todos os dados --}}
                 <td scope="col" id="Indentificador">1</td>
                 <td scope="col">Ian</td>
                 <td scope="col">111.111.111-11</td>

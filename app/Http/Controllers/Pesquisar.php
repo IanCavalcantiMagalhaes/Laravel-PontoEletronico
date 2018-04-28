@@ -24,10 +24,31 @@ $Result=DB::table('funcionario')
      return Response::json(array('Result'=>$Result)); 
 
 
-  }public function ListarDadosProfessor(Request $request){
-     $RS=DB::table('funcionarios')->find($request->id)->get();
+  }public function ListarTodosOsDadosProfessor(Request $request){
+     $RSFuncionario=
+     DB::table('funcionarios')//Pegar dados de funcionario
+     ->find($request->id)
+     ->get();
 
-return redirect()->route('Rota de GerenciarProfessor')->with($RS);
+     $id_materias=
+     DB::table('funcionarios_materias')//Pegar materias relacionadas com funcionario
+     ->where('id_funcionario',$request->id)
+     ->get();
+
+
+     foreach($id_materias as $ID){
+      $DadosMateria[]=
+      DB::table('materias')
+      ->find($ID->id_materia)
+      ->get();
+       
+
+     }
+
+return redirect()
+->route('Rota de GerenciarProfessor')
+->with('TabelaFuncionario',$RSFuncionario)
+->with('TabelaMateria',$DadosMateria);
 
   }
   

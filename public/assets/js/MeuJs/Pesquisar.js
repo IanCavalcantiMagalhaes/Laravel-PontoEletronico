@@ -140,18 +140,5 @@ function PesquisarProfessor(){
             $("#CampoPesquisa").atrr('placeholder','Inserir nome');
         }
     }
-    function ListarTodosOsDadosProfessor(){
 
-        $(document).ready(function(){
-            $('#CorpoDaTable').empty();
-            $('#CabeçalhoDaTable').empty();
-            $.ajax({
-              type: "GET",
-              data: {id:$('#Indentificador').val()},//PesquisarPor(id,nome)
-              url:"/AjaxPesquisaProfessor",success: function(data){
     
-           
-            }});
-    });
-    
-    }
