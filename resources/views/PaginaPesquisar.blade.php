@@ -95,7 +95,7 @@
                    
              <div class="table-responsive" style="width:50%;margin:0 auto;">
              <table cellpadding="10" border="1" style="position:relative;margin:0 auto;" id="TabelaAjax" class="table table-striped">
-            <thead>
+            <thead id="CabeçalhoDaTable">
                 <tr><th>ID</th>
                     <th>Nome</th>
                     <th>CPF</th>
@@ -106,11 +106,11 @@
               {{-- @if($Tabelas!=null) --}}
               {{-- @foreach($Tabelas as $coluna) --}}
               <tr>
-                <form action="route()">{{-- form para enviar ID para view GerenciarProfessor e assim listar todos os dados --}}
-                <td scope="col">1</td>
+                <form action="route()">{{-- form para enviar ID para controller e view de GerenciarProfessor e assim listar todos os dados --}}
+                <td scope="col" id="Indentificador">1</td>
                 <td scope="col">Ian</td>
                 <td scope="col">111.111.111-11</td>
-                <td scope="col"><button type="submit" class="btn btn-info">Abrir</button></td>
+                <td scope="col"><button type="submit" class="btn btn-info">Visualizar:Ian</button></td>
                 </form>
               </tr>
                

@@ -14,7 +14,7 @@ class Pesquisar extends BaseController
 {
   public function Professor(Request $request){
 //if($resquest->PesquisarPor='Id'){
-$Result=DB::table('Funcionario')
+$Result=DB::table('funcionario')
      ->select('id','nome')
      ->where('id',$request->CampoPesquisa)->get();
 //}
@@ -23,6 +23,11 @@ $Result=DB::table('Funcionario')
      
      return Response::json(array('Result'=>$Result)); 
 
+
+  }public function ListarDadosProfessor(Request $request){
+     $RS=DB::table('funcionarios')->find($request->id)->get();
+
+return redirect()->route('Rota de GerenciarProfessor')->with($RS);
 
   }
   

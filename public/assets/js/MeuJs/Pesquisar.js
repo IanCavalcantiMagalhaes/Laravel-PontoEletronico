@@ -23,6 +23,7 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         '<option value="Id">Id</option>'+
         '<option value="Nome">Nome</option>'
          ); 
+         $('#CampoPesquisa').attr('readonly', false);
    }
    if($('#TipoDeDado').val()==='Periodo'){
     $('#PesquisarPor').append(
@@ -30,6 +31,7 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         '<option value="Id">Id</option>'+
         '<option value="Nome">Nome</option>'
          ); 
+         $('#CampoPesquisa').attr('readonly', false);
    }
    if($('#TipoDeDado').val()==='Materia'){
     $('#PesquisarPor').append(
@@ -37,6 +39,7 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         '<option value="Id">Id</option>'+
         '<option value="Nome">Nome</option>'
          ); 
+         $('#CampoPesquisa').attr('readonly', false);
    }
    if($('#TipoDeDado').val()==='Aula'){
     $('#PesquisarPor').append(
@@ -44,8 +47,9 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         '<option value="Id">Id</option>'+
         '<option value="Nome">Nome</option>'
          ); 
+         $('#CampoPesquisa').attr('readonly', false);
    }  
-   if($('#TipoDeDado').val()==='Selecione'){
+   if($('#TipoDeDado').val()==='Escolha'){
     $('#PesquisarPor').append(
         '<option>Escolha</option>'+
         '<option value="Id">Id</option>'+        
@@ -61,7 +65,7 @@ $("#Tabela").show();
     
     $('#CampoPesquisa').val('');
     $('#CampoPesquisa').unmask();
-    if($('#PesquisarPor').val()==='Selecione'){
+    if($('#PesquisarPor').val()==='Escolha'){
     $('#CampoPesquisa').attr('placeholder','Primeiro preencha as caixas de seleçoes');
     $('#CampoPesquisa').attr('readonly', true);
     
@@ -87,19 +91,29 @@ function PesquisarProfessor(){
  
     $(document).ready(function(){
         $('#CorpoDaTable').empty();
+        $('#CabeçalhoDaTable').empty();
         $.ajax({
           type: "GET",
           data: {CampoPesquisa: $("#CampoPesquisa").val(),
                  PesquisarPor:$('#PesquisarPor').val()},//PesquisarPor(id,nome)
           url:"/AjaxPesquisaProfessor",success: function(data){
-           
+
+            $('#CabeçalhoDaTable').append(
+              '<tr><th>ID</th>'
+             +'<th>Nome</th>'
+             +'<th>CPF</th>'
+             +'<th>Selecionar</th>'
+             +'</tr>');
+             
          for(var i=0;i<data.Result.length;i++){
              alert(data.Result[i].nome );
+            
              $('#CorpoDaTable').append(
                   '<tr><form action="Mostrar">'
                 + '<td><input type="text" name="IdSelecionado" value="'+data.Result[i].id+'" readonly="readonly"/>'+'</td>' 
                 + '<td>'+data.Result[i].nome+ '</td>' 
-                + '<td><select name="Escolha"><option>Editar ou remover</option><option>Somente ler<option></select></td></form></tr>');
+                + '<td scope="col">111.111.111-11</td>'
+                + '<td scope="col"><button type="submit" class="btn btn-info">Visualizar:'+data.Result[i].nome+'</button></td></form></tr>');
 
          
           }
@@ -125,4 +139,19 @@ function PesquisarProfessor(){
         if($("#PesquisarPor").val()='Nome'){
             $("#CampoPesquisa").atrr('placeholder','Inserir nome');
         }
+    }
+    function ListarTodosOsDadosProfessor(){
+
+        $(document).ready(function(){
+            $('#CorpoDaTable').empty();
+            $('#CabeçalhoDaTable').empty();
+            $.ajax({
+              type: "GET",
+              data: {id:$('#Indentificador').val()},//PesquisarPor(id,nome)
+              url:"/AjaxPesquisaProfessor",success: function(data){
+    
+           
+            }});
+    });
+    
     }
