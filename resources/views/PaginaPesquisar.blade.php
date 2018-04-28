@@ -21,9 +21,7 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
                 </li>
-                <li class="nav-item active">
-                  <a class="nav-link disabled" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Pesquisar</a>
-                </li>
+                
               </ul>
             </div>
           </nav>
@@ -56,31 +54,16 @@
         <script src="{{ asset('assets/js/MeuJs/Pesquisar.js') }}"></script>
     </head>
     <body class="TelaDeFundo" >
-
+        
         <section class="Sessao">
+          
                 <div  style="position:absolute;left:30%;">
-                  <input type="text" placeholder="Insira um valor que queira pesquisar" id="CampoPesquisa" style="width:250px;">
-                  <input type="button" name="botao-ok" value="Pesquisar" onclick="PesquisarProfessor()">
+                  <input type="text" placeholder="Primeiro preencha as caixas de seleçoes" id="CampoPesquisa" style="width:450px;" readonly>
+                  <button type="button" class="btn btn-success" onclick="PesquisarProfessor()">Procurar</button>
                 </div>
-               <p>Pesquisar dado por:</p>
-            <select name="" onchange="TrocarPlaceholderDeCampo()" id="PesquisarPor"  class="selectpicker">
-                <option value="Id">Id</option>
-                <option value="Nome">Nome</option>
-                <option value="CPF">CPF</option>
-            </select>
-                 
-
-
-
-            <p>Filtre o cargo</p>
-                   <select name="Cargos" id="SeletorDeCargo">
-                       <option>Professor em tempo integral</option>
-                       <option>Professor em tempo parcial</option>
-                       <option>Horista</option>
-                   </select>
-                 
-                   <p>O que deseja pesquisar</p>
-                   <select name="Cargos" id="TipoDeDado">
+                <p>O que deseja pesquisar</p>
+                   <select name="Tipo" id="TipoDeDado" onchange="pesquisarQueTipoDeDado()">
+                       <option>Escolha</option>
                        <option>Professor</option>
                        <option>Curso</option>
                        <option>Periodo</option>
@@ -88,20 +71,48 @@
                        <option>Aluno</option>
                    </select>
 
-             <div class="table-responsive">
-             <table cellpadding="10" border="1" style="position:relative;margin:0 auto;" id="Tabela" class="table">
+
+               <p>Pesquisar dado por:</p>
+            <select id="PesquisarPor" onchange="pesquisarPor()">
+                <option>Escolha</option>
+                <option value="Id">Id</option>
+                <option value="Nome">Nome</option>
+                <div id="PermitirCPF">
+                
+                </div>
+            </select>
+                 
+            <div id="Cargo">
+            <p>Filtre o cargo</p>
+                   <select name="Cargos" id="SeletorDeCargo">
+                       <option>Escolha</option>
+                       <option>Professor em tempo integral</option>
+                       <option>Professor em tempo parcial</option>
+                       <option>Horista</option>
+                   </select>
+                  </div>
+                 
+                   
+             <div class="table-responsive" style="width:50%;margin:0 auto;">
+             <table cellpadding="10" border="1" style="position:relative;margin:0 auto;" id="TabelaAjax" class="table table-striped">
             <thead>
-                <tr>
-                    <th>ID</th>
+                <tr><th>ID</th>
                     <th>Nome</th>
-                    <th>Escolha</th>
-                    <th>Executar</th>
+                    <th>CPF</th>
+                    <th>Selecionar</th>
                 </tr>
             </thead>
             <tbody id="CorpoDaTable">
-
-               
-                
+              {{-- @if($Tabelas!=null) --}}
+              {{-- @foreach($Tabelas as $coluna) --}}
+              <tr>
+                <form action="route()">{{-- form para enviar ID para view GerenciarProfessor e assim listar todos os dados --}}
+                <td scope="col">1</td>
+                <td scope="col">Ian</td>
+                <td scope="col">111.111.111-11</td>
+                <td scope="col"><button type="submit" class="btn btn-info">Abrir</button></td>
+                </form>
+              </tr>
                
             </tbody>
         </table>
@@ -111,7 +122,8 @@
                       
 </section>
 <script> 
-$("#Tabela").hide(); 
+{{-- $("#Tabela").hide();   --}}
+$("#Cargo").hide(); 
 </script>
    </body>
 </html>

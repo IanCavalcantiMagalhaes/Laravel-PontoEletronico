@@ -29,11 +29,23 @@
 <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
 <script src="{{ asset('assets/js/MeuJs/CursoPeriodoMateriaAluno.js') }}"></script>
+<style>
+   
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+</style>
 </head>
 <body class="TelaDeFundo">
 <section class="sessao">
 
-    <form action="Inexistente">
+
  
   
 
@@ -109,17 +121,17 @@
             </tbody>
         </table>
      
-        <button type="submit" class="btn btn-success" id="Botao" value="Executar">Executar</button>
- </form>
-
-
+        <button type="submit" class="btn btn-success" id="Botao" value="" style="position:absolute;left:50%;"><div id="TextoBotao"></div></button>
+    </br></br></br></br>
+ <div class="loader" id="Carregando" style="position:absolute;left:50%;"></div>
 </section>
 
 </body>
 </html>
  <script> 
      
-
+ $('#Carregando').hide();
+ //$('#Botao').hide();
  $('#Curso').hide();
  $('#Periodo').hide();
  $('#Materia').hide();

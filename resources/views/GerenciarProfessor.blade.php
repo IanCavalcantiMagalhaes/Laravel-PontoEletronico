@@ -10,7 +10,7 @@
 <script src="{{ asset('assets/js/MeuJs/.js') }}"></script>
 
   <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
-  
+  <link rel="stylesheet" href="{{ asset('assets/js/MeuJs/GerenciarProfessor.js') }}">
     </head>
     <body class="TelaDeFundo"><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Cadastrar Professor</a>
@@ -59,12 +59,13 @@
                                   </div></td>
                         </tr>
                         <tr>
-                            <td><p>CEP</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCEP" style="width:200px;"/></td>
+                            <td><p>CEP</p><input class="form-control" type="text" name="CEP" value="" id="MascaraCEP" style="width:200px;"/></td>
                             <td><p>Telefone</p><input class="form-control" type="text" name="CPF" value="" id="MascaraTelefone" style="width:200px;"/></td>
                             <td><h4>Listar Materias do professor</h4>
-                            <div id="ListaDeMaterias"></div>
+                           
                             <table class="table table-dark">
-                                    <thead>
+                                    <thead> 
+                                        
                                       <tr>
                                         <th scope="col">Materia_id</th>
                                         <th scope="col">Nome materia</th>
@@ -73,13 +74,16 @@
                                       </tr>
                                     </thead>
                                     <tbody>
-                                     @foreach()
+                                     <div id="ListaDeMaterias"></div>
                                       <tr>
+                                      
                                         <th scope="row">1</th>
                                         <td>Mark</td>
                                         <td>Otto</td>
                                         <td>@mdo</td>
+                                      
                                       </tr>
+                                    </div>
                                     </tbody>
                                   </table>
                             </td>
@@ -91,16 +95,14 @@
                             <td></td>
                             
                         </tr> 
-                        
+
+                        <div id="EdiçaoMateria">
                         <tr>
                         <td>
                             <h4>Adicionar materias</h4>
                             <p>Cursos da materia que deseja adicionar</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control">
                             <option value="Selecionar">Selecione um curso</option>
-                            {{--  
-                                @foreach ($Cursos as $Curso){ 
-                               <option value="{{ $Curso->id }} "> "{{ $Curso->nomeCurso }}" </option>
-                                @endforeach --}}
+                           
                             </select></td>
                             <td><h4>Modificar cargo(Cargo atual:X)</h4>
                                 <p>Alterar Cargo do professor</p><select id="Cargo" class="form-control">
@@ -117,20 +119,21 @@
                         </tr>
                         <tr>
                         <td><p>Adicionar Materia ao professor</p>
-                          <select id="Materia" class="form-control">
+                          <select id="MateriaAdicionar" class="form-control">
                             <option>Selecione uma Materia</option>
                             </select><button type="button" class="btn btn-success" 
                             onclick="AdicionarMateria()">Adicionar materia</button>
                           </td>
-                          <td><h4>Remover materia</h4>
+                          <td>
+                              <h4>Remover materia</h4>
                               <p>Remover Materia(s) que professor possui</p>
-                            <select id="Materia" class="form-control">
+                            <select id="MateriaRemover" class="form-control">
                               <option>Selecione uma Materia</option>
                               </select><button type="button" class="btn btn-danger" 
                               onclick="RemoverMateria()">Remover materia</button>
                             </td>
                         </tr>
-                       
+                    </div>
                        
                     </tbody>
                 </table>
@@ -170,7 +173,8 @@
             
             
         });
-        $('#campoNome').attr('readonly', true);
-        $('#campoCEP').attr('readonly', true);
-        $('#campoCPF').attr('readonly', true);
+        $('#Nome').attr('readonly', true);
+        $('#CEP').attr('readonly', true);
+        $('#CPF').attr('readonly', true);
+        $('#EdiçaoMateria').hide();
         </script>
