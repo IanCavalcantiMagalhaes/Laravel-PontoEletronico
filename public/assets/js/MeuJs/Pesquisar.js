@@ -1,4 +1,6 @@
-function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
+function pesquisarQueTipoDeDado(){
+    
+    //redirecionar para outra funçao
     $('#CampoPesquisa').val('');
     $('#CampoPesquisa').attr('readonly', true);
    
@@ -23,7 +25,6 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         '<option value="Id">Id</option>'+
         '<option value="Nome">Nome</option>'
          ); 
-         $('#CampoPesquisa').attr('readonly', false);
    }
    if($('#TipoDeDado').val()==='Periodo'){
     $('#PesquisarPor').append(
@@ -31,7 +32,6 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         '<option value="Id">Id</option>'+
         '<option value="Nome">Nome</option>'
          ); 
-         $('#CampoPesquisa').attr('readonly', false);
    }
    if($('#TipoDeDado').val()==='Materia'){
     $('#PesquisarPor').append(
@@ -39,7 +39,6 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         '<option value="Id">Id</option>'+
         '<option value="Nome">Nome</option>'
          ); 
-         $('#CampoPesquisa').attr('readonly', false);
    }
    if($('#TipoDeDado').val()==='Aula'){
     $('#PesquisarPor').append(
@@ -47,7 +46,6 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
         '<option value="Id">Id</option>'+
         '<option value="Nome">Nome</option>'
          ); 
-         $('#CampoPesquisa').attr('readonly', false);
    }  
    if($('#TipoDeDado').val()==='Escolha'){
     $('#PesquisarPor').append(
@@ -58,34 +56,39 @@ function pesquisarQueTipoDeDado(){//redirecionar para outra funçao
    }
    
 
-   
-$("#Tabela").show(); 
-
+   HabilitarBusca();
 }function pesquisarPor(){
+    
     
     $('#CampoPesquisa').val('');
     $('#CampoPesquisa').unmask();
-    if($('#PesquisarPor').val()==='Escolha'){
-    $('#CampoPesquisa').attr('placeholder','Primeiro preencha as caixas de seleçoes');
-    $('#CampoPesquisa').attr('readonly', true);
-    
-   }
    if($('#PesquisarPor').val()==='Id'){
     $('#CampoPesquisa').attr('placeholder','Insira id');
-    alert("ID");
-    $('#CampoPesquisa').attr('readonly', false);
    }
    if($('#PesquisarPor').val()==='Nome'){
     $('#CampoPesquisa').attr('placeholder','Insira nome');
-    $('#CampoPesquisa').attr('readonly', false);
    }
    if($('#PesquisarPor').val()==='CPF'){
     $('#CampoPesquisa').attr('placeholder','Insira CPF');
-    $('#CampoPesquisa').attr('readonly', false);
     $('#CampoPesquisa').mask('000.000.000-00');
    }
+HabilitarBusca();
+}
+function HabilitarBusca(){//ira verificar se todos dados foram esolhidos
+
+if($('#PesquisarPor').val()==='Escolha' || $('#TipoDeDado').val()==='Escolha'){
+    $('#CampoPesquisa').attr('readonly', true);
+    $("#Botao").hide(); 
+    $('#CampoPesquisa').attr('placeholder','Primeiro preencha as caixas de seleçoes');
+}else{
+    $('#CampoPesquisa').attr('readonly', false);
+    $("#Botao").show(); 
+}
 
 }
+
+
+
 function PesquisarProfessor(){
   OLA();
  

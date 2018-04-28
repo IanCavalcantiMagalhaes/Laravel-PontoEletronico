@@ -59,7 +59,7 @@
           
                 <div  style="position:absolute;left:30%;">
                   <input type="text" placeholder="Primeiro preencha as caixas de seleçoes" id="CampoPesquisa" style="width:450px;" readonly>
-                  <button type="button" class="btn btn-success" onclick="PesquisarProfessor()">Procurar</button>
+                  <button type="button" class="btn btn-success" onclick="PesquisarProfessor()" id="Botao">Procurar</button>
                 </div>
                 <p>O que deseja pesquisar</p>
                    <select name="Tipo" id="TipoDeDado" onchange="pesquisarQueTipoDeDado()">
@@ -110,7 +110,7 @@
                 <td scope="col" id="Indentificador">1</td>
                 <td scope="col">Ian</td>
                 <td scope="col">111.111.111-11</td>
-                <td scope="col"><button type="submit" class="btn btn-info">Visualizar:Ian</button></td>
+                <td scope="col"><button type="submit" class="btn btn-info" >Visualizar:Ian</button></td>
                 </form>
               </tr>
                
@@ -124,6 +124,7 @@
 <script> 
 {{-- $("#Tabela").hide();   --}}
 $("#Cargo").hide(); 
+$("#Botao").hide(); 
 </script>
    </body>
 </html>
