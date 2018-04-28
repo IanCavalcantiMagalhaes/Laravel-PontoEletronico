@@ -56,7 +56,7 @@ function pesquisarQueTipoDeDado(){
    }
    
 
-   HabilitarBusca();
+   HabilitarBusca();//colocado no final para indentificar alteraçao feita pelo append()
 }function pesquisarPor(){
     
     
@@ -74,7 +74,7 @@ function pesquisarQueTipoDeDado(){
    }
 HabilitarBusca();
 }
-function HabilitarBusca(){//ira verificar se todos dados foram esolhidos
+function HabilitarBusca(){//ira verificar se todos dados foram escolhidos
 
 if($('#PesquisarPor').val()==='Escolha' || $('#TipoDeDado').val()==='Escolha'){
     $('#CampoPesquisa').attr('readonly', true);

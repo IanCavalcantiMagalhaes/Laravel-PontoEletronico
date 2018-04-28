@@ -30,13 +30,13 @@ $Result=DB::table('funcionario')
      ->find($request->id)
      ->get();
 
-     $id_materias=
+     $RSid_materias=
      DB::table('funcionarios_materias')//Pegar materias relacionadas com funcionario
      ->where('id_funcionario',$request->id)
      ->get();
 
 
-     foreach($id_materias as $ID){
+     foreach($RSid_materias as $ID){
       $DadosMateria[]=
       DB::table('materias')
       ->find($ID->id_materia)
