@@ -9,6 +9,12 @@
 
   <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
   <script src="{{ asset('assets/js/MeuJs/GerenciarProfessor.js') }}"></script>
+  <style>
+        img{
+            width: 250px;
+            height: 250px;  
+        }
+  </style>
     </head>
     <body class="TelaDeFundo">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -40,7 +46,7 @@
                             <th><h4>Gerenciar dados de Professor </h4></th>
                             <th><button type="button" class="glyphicon glyphicon-edit" 
                               onclick="LiberarEdiçaoOuFecharEdiçao()">Habilitar ediçao</button></th>
-                            <th><div id="image-holder"></div></th>
+                            <th><div id="image-holder" style="border-style: groove;width: 250px;height: 250px; margin-left:250px;"></div></th>
                         </tr>
                     </thead>
                     
@@ -57,7 +63,7 @@
                                     <label class="custom-file-label" for="customFile" accept="image/png, image/jpeg">Selecione imagem</label>
                                   </div></td>
                         </tr>
-                        
+                        <tr>
                             <td><p>CEP</p><input class="form-control" type="text" name="CEP" value="" id="MascaraCEP" style="width:200px;"/></td>
                             <td><p>Telefone</p><input class="form-control" type="text" name="CPF" value="" id="MascaraTelefone" style="width:200px;"/></td>
                             <td><h4 style="margin-left:50px;">Listar Materias do professor:</h4>
@@ -126,8 +132,12 @@
                                   </table>
                                 </div>
                             </td>
-                            <tr>
-                            </tr>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Carteira de trabalho</p>
+                                <input class="form-control" type="text" name="CarteiraDeTrabalho" value="" id="CarteiraDeTrabalho" style="width:200px;"/>
+                            </td>
                         </tr>
                         <tr>
                             <td><div id="ModificarCargo" >
@@ -159,7 +169,7 @@
                     </tr>
                      </tbody>
                 </table> 
-                        <div id="AdiçaoMateria" style="position:absolute;margin-right:50px;background-color:grey;top:1100px;">
+                        <div id="AdiçaoMateria" style="position:absolute;margin-right:50px;background-color:grey;top:1300px;">
                         
                             <h5>Adicionar materias</h5>
                             <p>Cursos da materia que deseja adicionar</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control">
@@ -175,7 +185,7 @@
                             onclick="AdicionarMateria()">Adicionar materia</button>
                         </div>
              
-                          <div id="Remover" style="position:absolute;left:31%;top:1325px;background-color:grey;">
+                          <div id="Remover" style="position:absolute;left:31%;top:1525px;background-color:grey;">
                               <h5>Remover materia</h5>
                               <p>Remover Materia(s) que professor possui</p>
                             <select id="MateriaRemover" class="form-control">
@@ -193,6 +203,7 @@
     $("#MascaraCPF").mask("000.000.000-00");
     $("#MascaraCEP").mask("00000-000");
     $("#MascaraTelefone").mask("(00)00000-0000");
+    $("#CarteiraDeTrabalho").mask("000.000.000-00");
         $("#customFile").on('change', function () {
           http://matheuspiscioneri.com.br/blog/preview-de-imagem-antes-do-upload-filereader/
          // Matheus Piscioneri /Acessado:15 de abril de 2018
