@@ -60,7 +60,17 @@
                 <div  style="position:absolute;left:30%;">
                   <input type="text" placeholder="Primeiro preencha as caixas de seleçoes" id="CampoPesquisa" style="width:450px;" readonly>
                   <button type="button" class="btn btn-success" onclick="PesquisarProfessor()" id="Botao">Procurar</button>
+                  <div class="alert alert-warning" role="alert" id="Aviso" style="position:relative;top:5px;">
+                    <strong>AVISO:</strong></br>Para procurar dados será necessario
+                    </br>especificar o que deseja pesquisar
+                    </br>na caixas de seleçoes á esquerda
+                  </div>
                 </div>
+                <div class="alert alert-info" role="alert" style="margin-left: 1100px;font-size:20;">
+                  OBSERVAÇÃO:</br>Para Gerenciar professor (Ler,Alterar ou remover dados de professor)
+                  sera necessario procurar ele nesta pagina 
+                </div>
+                <div style="position:absolute;top:0px;">
                 <p>O que deseja pesquisar</p>
                    <select name="Tipo" id="TipoDeDado" onchange="pesquisarQueTipoDeDado()">
                        <option>Escolha</option>
@@ -77,11 +87,9 @@
                 <option>Escolha</option>
                 <option value="Id">Id</option>
                 <option value="Nome">Nome</option>
-                <div id="PermitirCPF">
-                
-                </div>
+               
             </select>
-                 
+          </div>
             <div id="Cargo">
             <p>Filtre o cargo</p>
                    <select name="Cargos" id="SeletorDeCargo">
@@ -93,7 +101,7 @@
                   </div>
                  
                    
-             <div class="table-responsive" style="width:50%;margin:0 auto;">
+             <div class="table-responsive" style="position:relative;width:50%;margin:0 auto;top:100px;">
              <table cellpadding="10" border="1" style="position:relative;margin:0 auto;" id="TabelaAjax" class="table table-striped">
             <thead id="CabeçalhoDaTable">
                 <tr><th>ID</th>
@@ -106,7 +114,7 @@
               {{-- @if($Tabelas!=null) --}}
               {{-- @foreach($Tabelas as $coluna) --}}
               <tr>
-                <form action="route(Controller Pesquisar@ListarTodosOsDadosProfessor)">{{-- form para enviar ID para controller e view de GerenciarProfessor e assim listar todos os dados --}}
+                <form action="{{ route('GerenciarProfessor') }}">{{-- form para enviar ID para controller e view de GerenciarProfessor e assim listar todos os dados --}}
                 <td scope="col" id="Indentificador">1</td>
                 <td scope="col">Ian</td>
                 <td scope="col">111.111.111-11</td>

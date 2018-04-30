@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Response;
 use DB;
 
+
 class Entrada_Saida extends BaseController
 {
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -66,17 +67,25 @@ class Entrada_Saida extends BaseController
           
   }
   public function testContador(Request $request){
-
+  /*$request->validate([
+      'CPF' => 'required|min:14'
+  ]);
+       if($errors->any()){
+         $Resposta=false;
+         }
+           */
       if($request->CPF=='111.111.111-11'){
       
         
-        return response()->json(true);
+        $Resposta=true;
         
       }else{
-        return response()->json(false);
-
+        
+        $Resposta=false;
       }
-  }
+      return response()->json($Resposta);
+    }
+  
   public function LevatamentoDaSemana(Request $request){   
       $Dados=DB::table('funcionario')->get() ;
 

@@ -16,7 +16,7 @@ class CreatePeriodoTable extends Migration
         Schema::create('periodos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nomePeriodo');
-            $table->string('Curso_id')->references('id')->on('Curso');
+            $table->string('curso_id')->references('id')->on('Curso');
             
         });    
        // INSERT INTO periodos(NomePeriodo,Curso_id) VALUES ('1ºPeriodo de Direito',1),('2ºPeriodo de Direito',1),('3ºPeriodo de Direito',1),('4ºPeriodo de Direito',1),
@@ -25,42 +25,42 @@ class CreatePeriodoTable extends Migration
        ->insert(
            array(
                'nomePeriodo' => '1ºPeriodo de Direito',
-               'Curso_id' => '1'
+               'curso_id' => '1'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '2ºPeriodo de Direito',
-               'Curso_id' => '1'
+               'curso_id' => '1'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '3ºPeriodo de Direito',
-               'Curso_id' => '1'
+               'curso_id' => '1'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '1ºPeriodo de Sistemas',
-               'Curso_id' => '2'
+               'curso_id' => '2'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '2ºPeriodo de Sistemas',
-               'Curso_id' => '2'
+               'curso_id' => '2'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
                'nomePeriodo' => '3ºPeriodo de Sistemas',
-               'Curso_id' => '2'
+               'curso_id' => '2'
            )
            );
        

@@ -6,7 +6,7 @@
 <head><link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <script src="js/CadastrarProfessor.js"></script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Registro de ponto</a>
+    <a class="navbar-brand" href="#">Marcar ponto</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -76,6 +76,7 @@
   <p class="mb-0">Somente pelo banco ira indentificar professores(INEXISTENTE BANCO DE DADOS POR ENQUANTO)</p>
 </div>
 
+
 </section>
 
 </body>
@@ -83,6 +84,7 @@
 <script>
 $("#cpf").mask("000.000.000-00");
 $("#Erro").hide();
+
 $("#Saida").hide();
 $("#Entrada").hide();
 </script>

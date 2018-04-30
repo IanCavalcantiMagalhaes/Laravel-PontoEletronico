@@ -13,7 +13,7 @@
                     {{ csrf_field() }}
                  <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile" name="image">
-                    <label class="custom-file-label" for="customFile" accept="image/png, image/jpeg">Selecione imagem</label>
+                    <label class="custom-file-label" for="customFile" accept="image/png, image/jpeg,image/jpg">Selecione imagem</label>
                   </div> 
                   <button type="submit" class="btn btn-success" id="img">Success</button>
                 </form>

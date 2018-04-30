@@ -39,16 +39,31 @@ $Result=DB::table('funcionario')
      foreach($RSid_materias as $ID){
       $DadosMateria[]=
       DB::table('materias')
-      ->find($ID->id_materia)
-      ->get();
-       
+      ->find($ID->id_materia)//id(materia)=id_materia(funcionarios_materias)
+      ->get();//para pegar id e nome da materia
 
+         foreach($DadosMateria as $ColunasMat){
+          $DadosPeriodo[]=
+          DB::table('periodos')
+          ->find($ColunasPer->periodo_id)//id(periodos)=periodo_id(materias)
+          ->get();//para pegar id e nome do periodo
+
+              foreach($DadosPeriodo as $ColunasPer){
+                $DadosCurso[]=
+                DB::table('cursos')
+                ->find($ColunasCur->curso_id)//id(curso)=curso_id(periodos)
+                ->get();//para pegar id e nome do periodo
+      
+              }
+         }
      }
 
 return redirect()
 ->route('Rota de GerenciarProfessor')
 ->with('TabelaFuncionario',$RSFuncionario)
-->with('TabelaMateria',$DadosMateria);
+->with('TabelaMateria',$DadosMateria)
+->with('TabelaMateria',$DadosPeriodo)
+->with('TabelaMateria',$DadosCurso);
 
   }
   

@@ -21,8 +21,7 @@ class CadastrarProfessor extends BaseController
   // https://cursos.alura.com.br/forum/topico-como-exibir-imagem-da-pasta-storage-laravel-50551
    public function InserirProfessor(Request $request){
 
-     	
-$upload = $request->image->store('Professores');
+    $file = $request->file('image')->store('Img');
 /*
     DB::table('Professor')
     ->insert('Nome',$pedido->Nome)
@@ -31,7 +30,7 @@ $upload = $request->image->store('Professores');
     ->insert('Telefone',$pedido->Telefone) 
     ->insert('ID_Materia',$pedido->input(''));                                                                         
   */
-  return view('MarcarPonto');
+  return redirect()->route('MarcarPonto');
    }public function AjaxTest(Request $request){
  
     return Response::json(json_encode($request->Campo)); 

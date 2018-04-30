@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('assets/js/MeuJs/GerenciarProfessor.js') }}">
     </head>
     <body class="TelaDeFundo"><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Cadastrar Professor</a>
+    <a class="navbar-brand" href="#">Gerenciar Professor</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,7 +23,7 @@
           <a class="nav-link" href="{{ url('Pesquisar/Procurar') }}">Pesquisar <span class="sr-only">Pesquisar</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">MarcarPonto</a>
+          <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Marcar Ponto</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
@@ -78,9 +78,9 @@
                                       <tr>
                                       
                                         <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <td>Nome da materia</td>
+                                        <td>5º Periodo</td>
+                                        <td>S.I.</td>
                                       
                                       </tr>
                                     </div>

@@ -37,4 +37,7 @@ class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
             return redirect()->route('PaginaLogar')->with('ERRO',"Dados incorretos");
            }
        }
+       public function RetornarView(Request $request){
+        return view('PaginaLogin');
+       }
 }

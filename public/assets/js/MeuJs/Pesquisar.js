@@ -80,9 +80,11 @@ if($('#PesquisarPor').val()==='Escolha' || $('#TipoDeDado').val()==='Escolha'){
     $('#CampoPesquisa').attr('readonly', true);
     $("#Botao").hide(); 
     $('#CampoPesquisa').attr('placeholder','Primeiro preencha as caixas de seleçoes');
+    $("#Aviso").show(); 
 }else{
     $('#CampoPesquisa').attr('readonly', false);
     $("#Botao").show(); 
+    $("#Aviso").hide(); 
 }
 
 }

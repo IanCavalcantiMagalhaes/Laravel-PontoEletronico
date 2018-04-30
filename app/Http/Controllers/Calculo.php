@@ -24,8 +24,10 @@ class Calculo extends Controller
          $X= DB::table('funcionarios')->select('id','nome')
               ->get();
               foreach($X as $dados){
-                return response()->json(json_encode($dados->id));
+                $Array[]=$dados->id;
+                $Array[]=$dados->nome;
               }
+              return response()->json(json_encode($Array));
       //return Response::json($request->Campo); 
       
      // return Response::json(json_encode($RS));  

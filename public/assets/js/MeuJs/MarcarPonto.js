@@ -9,10 +9,10 @@ $("#Entrada").hide();
             data: {CPF: $("#cpf").val()},
             url:"/MarcarPonto/RegistrandoTest",
             success: function(data){
-            
+            alert("");
           if(data===true){
              $("#Saida").show();
-          }else{
+          }if(data===false){
             $("#Erro").show();
           }
           }});

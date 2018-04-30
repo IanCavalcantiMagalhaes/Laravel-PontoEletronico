@@ -1,5 +1,6 @@
 function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU aceitar e inserir
-    var alerta;
+   alert("Professor cadastrado com sucesso");
+    /* var alerta;
     alerta="Conteudos abaixo estao inseridos de forma incorreta:\n";
     if($("#Nome").val()===null){
         alerta+="Nome\n";
@@ -35,7 +36,7 @@ function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU ac
       }});
 
     }
-    
+    */
 }
 function AoAlterarCurso(){
 

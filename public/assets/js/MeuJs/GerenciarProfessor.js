@@ -4,7 +4,7 @@ function HabilitarEdiçao(){
     $('#CPF').attr('readonly', false);
     $('#EdiçaoMateria').show();
 }
-function AdicionarMateria(){
+function AdicionarMateria(){//Vai ir e voltar do controller:MostrarDados@AdicionarMateriaAoProfessor
 //comando ajax abaixo:Adicionar id de funcionario e materia em uma table(id_funcionario_materia) e atualizar select
 
 }

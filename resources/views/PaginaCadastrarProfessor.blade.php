@@ -15,7 +15,7 @@
           <a class="nav-link" href="{{ url('Pesquisar/Procurar') }}">Pesquisar <span class="sr-only">Pesquisar</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">MarcarPonto</a>
+          <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Marcar Ponto</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
@@ -44,40 +44,42 @@
 </style>
 </head>
 <body class="TelaDeFundo">
-<section class="sessao">
+<section class="Sessao">
 
-    
-    <table cellpadding="50" border="1">
+        <form action="{{route('InserirProfessor')}}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+    <table cellpadding="15">
             <thead>
                 <tr>
                     <th><h2>Cadastro Professor </h2></th>
                     <th></th>
-                    <th><div id="image-holder" style="border-style: groove;"></div></th>
+                    <th><div id="image-holder" style="border-style: groove;width: 250px;
+                        height: 250px; "></div></th>
                 </tr>
             </thead>
             
             
             
-          <form  action="{{route('InserirProfessor')}}" method="post">
+         
             <tbody>
                 <tr>
                     <td> <p>Nome</p><input class="form-control" type="text" name="Nome" value="" /></td>
                     <td><p>CPF</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCPF" style="width:200px;"/></td>
                     <td></br></br>
                         <div class="custom-file small" >
-                            <input type="file" class="custom-file-input" id="customFile" name="Imagem">
-                            <label class="custom-file-label" for="customFile" accept="image/png, image/jpeg">Selecione imagem</label>
+                            <input type="file" class="custom-file-input" id="customFile"accept="image/png, image/jpeg" name="image">
+                            <label class="custom-file-label" for="customFile" >Selecione imagem</label>
                           </div></td>
                 </tr>
                 <tr>
-                    <td><p>CEP</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCEP" style="width:200px;"/></td>
-                    <td><p>Telefone</p><input class="form-control" type="text" name="CPF" value="" id="MascaraTelefone" style="width:200px;"/></td>
+                    <td><p>CEP</p><input class="form-control" type="text" name="CEP" value="" id="CEP" style="width:200px;"/></td>
+                    <td><p>Telefone</p><input class="form-control" type="text" name="Telefone" value="" id="Telefone" style="width:200px;"/></td>
                     
                     
                 
                 </tr>
                 <tr>
-                    <td></td>
+                    <td><p>Carteira de trabalho</p><input class="form-control" type="text" name="CarteiraDeTrabalho" value="" id="CarteiraDeTrabalho" style="width:200px;"/></td>
                     <td></td>
                     
                 </tr> 
@@ -112,7 +114,7 @@
         </table>
      
        
-       <button type="submit" class="btn btn-success" onclick="VerificarDadosCadastraisAJax()">Success</button>
+       <button type="submit" class="btn btn-success" onclick="VerificarDadosCadastraisAJax()">Cadastrar</button>
  </form>
 
 
@@ -149,7 +151,8 @@
             
             
         });
-
-        
-
+        $("#CEP").mask("99.999-999");
+        $('#CPF').mask('000.000.000-00');
+        $('#Telefone').mask('(00) 0000-00000');
+        $('#CarteiraDeTrabalho').mask('000.000.000-00');
         </script>
