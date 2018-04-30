@@ -6,13 +6,12 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Page</title>
-        
-<script src="{{ asset('assets/js/MeuJs/.js') }}"></script>
 
   <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/js/MeuJs/GerenciarProfessor.js') }}">
+  <script src="{{ asset('assets/js/MeuJs/GerenciarProfessor.js') }}"></script>
     </head>
-    <body class="TelaDeFundo"><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <body class="TelaDeFundo">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Gerenciar Professor</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -33,9 +32,9 @@
     </div>
   </nav>
         <section class="Sessao">
-
+<div>
     
-            <table cellpadding="50" border="1">
+            <table cellpadding="15">
                     <thead>
                         <tr>
                             <th><h4>Gerenciar dados de Professor </h4></th>
@@ -58,12 +57,13 @@
                                     <label class="custom-file-label" for="customFile" accept="image/png, image/jpeg">Selecione imagem</label>
                                   </div></td>
                         </tr>
-                        <tr>
+                        
                             <td><p>CEP</p><input class="form-control" type="text" name="CEP" value="" id="MascaraCEP" style="width:200px;"/></td>
                             <td><p>Telefone</p><input class="form-control" type="text" name="CPF" value="" id="MascaraTelefone" style="width:200px;"/></td>
-                            <td><h4>Listar Materias do professor</h4>
-                           
-                            <table class="table table-dark">
+                            <td><h4 style="margin-left:50px;">Listar Materias do professor:</h4>
+                                <div style="height:200px;overflow: auto;margin-left:50px;">
+                                    
+                            <table class="table table-striped" style="font-size:25px; ">
                                     <thead> 
                                         
                                       <tr>
@@ -72,9 +72,10 @@
                                         <th scope="col">Nome periodo</th>
                                         <th scope="col">Nome curso</th>
                                       </tr>
+                                      
                                     </thead>
                                     <tbody>
-                                     <div id="ListaDeMaterias"></div>
+                                     <div id="ListaDeMaterias">
                                       <tr>
                                       
                                         <th scope="row">1</th>
@@ -83,62 +84,107 @@
                                         <td>S.I.</td>
                                       
                                       </tr>
+                                      <tr>
+                                      
+                                            <th scope="row">1</th>
+                                            <td>Nome da materia</td>
+                                            <td>5º Periodo</td>
+                                            <td>S.I.</td>
+                                          
+                                          </tr><tr>
+                                      
+                                                <th scope="row">1</th>
+                                                <td>Nome da materia</td>
+                                                <td>5º Periodo</td>
+                                                <td>S.I.</td>
+                                              
+                                              </tr><tr>
+                                      
+                                                    <th scope="row">1</th>
+                                                    <td>Nome da materia</td>
+                                                    <td>5º Periodo</td>
+                                                    <td>S.I.</td>
+                                                  
+                                                  </tr><tr>
+                                      
+                                                        <th scope="row">1</th>
+                                                        <td>Nome da materia</td>
+                                                        <td>5º Periodo</td>
+                                                        <td>S.I.</td>
+                                                      
+                                                      </tr><tr>
+                                      
+                                                            <th scope="row">1</th>
+                                                            <td>Nome da materia</td>
+                                                            <td>5º Periodo</td>
+                                                            <td>S.I.</td>
+                                                          
+                                                          </tr>
+                                      
                                     </div>
                                     </tbody>
                                   </table>
+                                </div>
                             </td>
-                            
-                        
+                            <tr>
+                            </tr>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
+                            <td><div id="ModificarCargo" >
+                                    <h5>Modificar cargo(Cargo atual:X)</h5>
+                                        <p>Alterar Cargo do professor</p>
+                                        <select id="Cargo" onchange="TrocarCargo()" class="form-control" >
+                                            <option>Tempo Parcial</option>
+                                            <option>Tempo Integral</option>]
+                                            <option>Horista</option>
+                                            </select>
+                               
+                                        </div>
+                                    </td>
                             
                         </tr> 
-
-                        <div id="EdiçaoMateria">
                         <tr>
+                        <td><div id="DivLucroHora" >
+                            <p>Ganho por hora de trabalho</p>
+                            <input class="form-control" type="text" name="Horas" value="" id="CampoHorasLucro" style="width:200px;"/></td>
+                        </div>
                         <td>
-                            <h4>Adicionar materias</h4>
+                        </td>
+                        
+                    </tr> 
+                    <tr>
+                        <td></td>
+                        <td><button type="button" class="btn btn-success" 
+                            onclick="VerificarDados()">Atualizar</button></td>
+                    </tr>
+                     </tbody>
+                </table> 
+                        <div id="AdiçaoMateria" style="position:absolute;margin-right:50px;background-color:grey;top:1100px;">
+                        
+                            <h5>Adicionar materias</h5>
                             <p>Cursos da materia que deseja adicionar</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control">
-                            <option value="Selecionar">Selecione um curso</option>
-                           
-                            </select></td>
-                            <td><h4>Modificar cargo(Cargo atual:X)</h4>
-                                <p>Alterar Cargo do professor</p><select id="Cargo" class="form-control">
-                                    <option>Selecione algum cargo</option>
-                                    <option>Horista</option>
-                                    <option>Tempo Parcial</option>
-                                    <option>Tempo Integral</option>
-                                    </select></td>
-                        </tr> 
-
-                        <tr>
-                        <td><p>Periodo da materia que deseja adicionar</p><select id="Periodo" onchange="AoAlterarPeriodo()" class="form-control">
-                            </select></td>
-                        </tr>
-                        <tr>
-                        <td><p>Adicionar Materia ao professor</p>
-                          <select id="MateriaAdicionar" class="form-control">
+                            <option value="Curso">Selecione um curso</option>
+                            </select>
+                            <p>Periodo da materia que deseja adicionar</p>
+                            <select id="Periodo" onchange="AoAlterarPeriodo()" class="form-control">
+                            </select> 
+                            <p>Adicionar Materia ao professor</p>
+                            <select id="MateriaAdicionar" class="form-control">
                             <option>Selecione uma Materia</option>
                             </select><button type="button" class="btn btn-success" 
                             onclick="AdicionarMateria()">Adicionar materia</button>
-                          </td>
-                          <td>
-                              <h4>Remover materia</h4>
+                        </div>
+             
+                          <div id="Remover" style="position:absolute;left:31%;top:1325px;background-color:grey;">
+                              <h5>Remover materia</h5>
                               <p>Remover Materia(s) que professor possui</p>
                             <select id="MateriaRemover" class="form-control">
                               <option>Selecione uma Materia</option>
                               </select><button type="button" class="btn btn-danger" 
                               onclick="RemoverMateria()">Remover materia</button>
-                            </td>
-                        </tr>
+                        
                     </div>
-                       
-                    </tbody>
-                </table>
-             
-        
+                </div>
         </section>
     </body>
 </html>
@@ -176,5 +222,9 @@
         $('#Nome').attr('readonly', true);
         $('#CEP').attr('readonly', true);
         $('#CPF').attr('readonly', true);
-        $('#EdiçaoMateria').hide();
+        //$('#ModificarCargo').hide();
+        //$('#Remover').hide();
+        //$('#AdiçaoMateria').hide();
+        $('#DivLucroHora').hide();
+
         </script>

@@ -1,3 +1,11 @@
+function TrocarCargo(){
+    if($('#Cargo').val()==='Horista'){
+        $('#DivLucroHora').show();
+    }else{
+        $('#DivLucroHora').hide();
+    }
+}
+
 function HabilitarEdiçao(){
     $('#Nome').attr('readonly', false);
     $('#CEP').attr('readonly', false);
@@ -8,6 +16,47 @@ function AdicionarMateria(){//Vai ir e voltar do controller:MostrarDados@Adicion
 //comando ajax abaixo:Adicionar id de funcionario e materia em uma table(id_funcionario_materia) e atualizar select
 
 }
+function VerificarDados(){//Proibir acesso por erro de dados OU aceitar e inserir
+    alert("Professor re-cadastrado com sucesso");
+     /* var alerta;
+     alerta="Conteudos abaixo estao inseridos de forma incorreta:\n";
+     if($("#Nome").val()===null){
+         alerta+="Nome\n";
+         $("#Nome").css("border-color","red");
+         
+     }
+     if($("#CPF").val()===null){
+         alerta+="CPF\n";
+         $("#CPF").css("border-color","red");               
+     }
+     if( $("#CEP").val()===null){
+         alerta+="CEP\n";
+         $("#CEP").css("border-color","red");               
+     }
+     if($("#Telefone").val()===null){
+         alerta+="Telefone\n";
+         $("#Telefone").css("border-color","red");               
+     }
+     if($("#Materia").val()===null){
+         alerta+="Materia Selecionada\n";
+         $("#Telefone").css("border-color","red");               
+     }
+     if($("#Nome").val()===null || $("#CPF").val()===null || $("#CEP").val()===null){//Ouve erro
+       alert(alerta);
+     }else{//Todos os dados corretos
+     $.ajax({
+         type: "GET",
+         data:{Nome: $("#Nome").val(),CPF: $("#CPF").val()},
+         url:"/AjaxInserirProfessor",success: function(data){
+     
+              window.location.replace("http://127.0.0.1:8000/PaginaPrincipal");
+        
+       }});
+ 
+     }
+     */
+ }
+
 function RemoverMateria(){
 //comando ajax abaixo:Remover id de funcionario e materia em uma table(id_funcionario_materia) e atualizar select
 

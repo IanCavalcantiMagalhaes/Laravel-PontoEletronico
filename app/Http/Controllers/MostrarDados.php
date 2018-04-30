@@ -27,17 +27,21 @@ public function AdicionarMateriaAoProfessor(Request $request){
     DB::table('funcionarios_materias')
     ->insert('id_funcionario',$request->id_Funcionario)
     ->insert('id_materia',$request->id_Materia);
-     return redirect()->route();
+     return redirect()->route('GerenciarProfessor');
 }
-public function RemoverMateriaDoProfessor(){
+public function RemoverMateriaDoProfessor(Request $request){
     DB::table('funcionarios_materias')
     ->where('id_funcionario',$request->id_Funcionario)
     ->where('id_materia',$request->id_Materia)
     ->delete();
-     return redirect()->route();
+     return redirect()->route('GerenciarProfessor');
 }
 
 public function ListarTodosOsDadosProfessor(Request $request){
+    return view('GerenciarProfessor');
+
+
+
     $RSFuncionario=
      DB::table('funcionarios')//Pegar dados de funcionario
      ->find($request->id)
@@ -71,7 +75,7 @@ public function ListarTodosOsDadosProfessor(Request $request){
          }
      }
 
-return redirect()
+return view('GerenciarProfessor')
 ->route('Rota de GerenciarProfessor')
 ->with('TabelaFuncionario',$RSFuncionario)
 ->with('TabelaMateria',$DadosMateria)

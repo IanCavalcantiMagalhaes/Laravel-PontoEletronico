@@ -57,12 +57,7 @@ Route::group(['prefix' => 'Entrar'], function() {
  Route::group(['prefix' => 'Pesquisar'], function() {
        Route::get('/AjaxPesquisaProfessor','Pesquisar@Professor');
        Route::get('/AjaxPesquisaCurso','Pesquisar@Curso');
-       Route::get('/Mostrar',function(Request $request){//controller:ListarTodosOsDadosProfessor
-        //$RS=DB::table('funcionarios')->find($request->id)->get();
-          return view('GerenciarProfessor');
-         // ->with('TodosOsDadosProfessor',$RS);
-   
-    })->name('GerenciarProfessor');
+       
         Route::get('/Procurar',function(Request $request){
     //$RS=DB::table('funcionarios')->find($request->id)->get();
             return view('PaginaPesquisar');
@@ -71,7 +66,16 @@ Route::group(['prefix' => 'Entrar'], function() {
 });
 
 });
+Route::group(['prefix' => 'GerenciarProfessor'], function() {
+    Route::get('/Mostrar',function(Request $request){//controller:MostrarDadosListarTodosOsDadosProfessor
+        //$RS=DB::table('funcionarios')->find($request->id)->get();
+          return view('GerenciarProfessor');
+         // ->with('TodosOsDadosProfessor',$RS);
+   
+    })->name('GerenciarProfessor');
+    Route::get('/Adicionar','CursoPeriodoMateriaAula@Curso');
 
+});
 
 Route::group(['prefix' => 'GerenciarCursos'], function() {
         Route::get('/Curso','CursoPeriodoMateriaAula@Curso');
@@ -113,10 +117,6 @@ Route::get('/InseririndoProfessor','CadastrarProfessor@InserirProfessor');
 
 Route::get('/Somar','Calculo@AjaxSoma');
 
-Route::get('/Testando',function(){
-
-    return view('Test');
-});
 
 
 
@@ -128,4 +128,8 @@ Route::get('/Pesquisar', function () {
 Route::get('/ManipularCurso', function () {
   
     return view('PaginaCursoPeriodoMateriaAluno');
+});
+Route::get('/Testando',function(){
+
+    return view('Test');
 });
