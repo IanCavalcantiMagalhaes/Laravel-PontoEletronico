@@ -55,8 +55,8 @@
                  
                     <tbody>
                         <tr>
-                            <td> <p>Nome</p><input class="form-control" type="text" name="Nome" value="" /></td>
-                            <td><p>CPF</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCPF" style="width:200px;"/></td>
+                            <td> <p>Nome</p><input class="form-control" type="text" name="Nome" value="Ian" id="Nome"/></td>
+                            <td><p>CPF</p><input class="form-control" type="text" name="CPF" value="111.111.111-11" id="CPF" style="width:200px;"/></td>
                             <td></br></br>
                                 <div class="custom-file small" >
                                     <input type="file" class="custom-file-input" id="customFile" name="Imagem">
@@ -64,9 +64,9 @@
                                   </div></td>
                         </tr>
                         <tr>
-                            <td><p>CEP</p><input class="form-control" type="text" name="CEP" value="" id="MascaraCEP" style="width:200px;"/></td>
-                            <td><p>Telefone</p><input class="form-control" type="text" name="CPF" value="" id="MascaraTelefone" style="width:200px;"/></td>
-                            <td><h4 style="margin-left:50px;">Listar Materias do professor:</h4>
+                            <td><p>CEP</p><input class="form-control" type="text" name="CEP" value="11111-111" id="CEP" style="width:200px;"/></td>
+                            <td><p>Telefone</p><input class="form-control" type="text" name="telefone" value="(00)0000-00000" id="Telefone" style="width:200px;"/></td>
+                            <td><h4 style="margin-left:50px;">Lista de materias do professor:</h4>
                                 <div style="height:200px;overflow: auto;margin-left:50px;">
                                     
                             <table class="table table-striped" style="font-size:25px; ">
@@ -177,6 +177,7 @@
                             </select>
                             <p>Periodo da materia que deseja adicionar</p>
                             <select id="Periodo" onchange="AoAlterarPeriodo()" class="form-control">
+                            <option>Selecione um Periodo</option>
                             </select> 
                             <p>Adicionar Materia ao professor</p>
                             <select id="MateriaAdicionar" class="form-control">
@@ -202,7 +203,7 @@
 <script>
     $("#MascaraCPF").mask("000.000.000-00");
     $("#MascaraCEP").mask("00000-000");
-    $("#MascaraTelefone").mask("(00)00000-0000");
+    $("#Telefone").mask("(00)00000-0000");
     $("#CarteiraDeTrabalho").mask("000.000.000-00");
         $("#customFile").on('change', function () {
           http://matheuspiscioneri.com.br/blog/preview-de-imagem-antes-do-upload-filereader/
@@ -230,9 +231,12 @@
             
             
         });
+        $('#CarteiraDeTrabalho').attr('readonly', true);
         $('#Nome').attr('readonly', true);
         $('#CEP').attr('readonly', true);
         $('#CPF').attr('readonly', true);
+        $('#Telefone').attr('readonly', true);
+
         //$('#ModificarCargo').hide();
         //$('#Remover').hide();
         //$('#AdiçaoMateria').hide();

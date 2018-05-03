@@ -1,6 +1,6 @@
-function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU aceitar e inserir
-   alert("Professor cadastrado com sucesso");
-    /* var alerta;
+/*function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU aceitar e inserir
+  // alert("Professor cadastrado com sucesso");
+     var alerta;
     alerta="Conteudos abaixo estao inseridos de forma incorreta:\n";
     if($("#Nome").val()===null){
         alerta+="Nome\n";
@@ -36,10 +36,10 @@ function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU ac
       }});
 
     }
-    */
+    
 }
 function AoAlterarCurso(){
-
+alert("Ola");
     $(document).ready(function(){//inserir periodos
      
       $('#Periodo').empty();
@@ -88,3 +88,4 @@ function AdicionarProfessor(){
             }});
         });
 }
+*/

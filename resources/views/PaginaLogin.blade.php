@@ -35,17 +35,22 @@
               <input type="text" name="nome" value="" placeholder="Digite seu nome de usuario" class="AlinharEAumentarCampoDeTexto"/><br>
 
             <label>Senha:</label><br>
-              <input type="text" value="" name="senha" placeholder="Digite sua senha" class="AlinharEAumentarCampoDeTexto"/><br><br>
+              <input type="password" value="" name="senha" placeholder="Digite sua senha" class="AlinharEAumentarCampoDeTexto"/><br><br>
               <button type="submit" class="btn btn-primary" >Logar</button>
+
+      
              </form>
 
           <p>Usuario:Ian/Senha:123456</p>
 
-          @if(session('ERRO'))
+          
+        </fieldset>
+        <fieldset>
+        @if(session('ERRO'))
             <div class="alert alert-danger" style="botton:500px;">
               <strong>Erro!</strong> {{session('ERRO')}}
               {{session('ERRO')}}
               @endif
-        </fieldset>
+            </fieldset>
          </body>
 </html>

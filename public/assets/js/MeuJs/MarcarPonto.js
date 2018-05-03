@@ -9,7 +9,6 @@ $("#Entrada").hide();
             data: {CPF: $("#cpf").val()},
             url:"/MarcarPonto/RegistrandoTest",
             success: function(data){
-            alert("");
           if(data===true){
              $("#Saida").show();
           }if(data===false){
@@ -27,8 +26,6 @@ function AnaliseSairOuEntrar(){
           data: {CPF: $("#cpf").val()},
           url:"/MarcarPonto/Registrando",
           success: function(data){
-            alert($("#cpf").val());
-          
           for(var i=0;i<data.RS.length;i++){
            
         if(data.RS[i].trabalhando===1){

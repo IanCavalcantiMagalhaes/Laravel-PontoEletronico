@@ -20,8 +20,20 @@ class CadastrarProfessor extends BaseController
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
   // https://cursos.alura.com.br/forum/topico-como-exibir-imagem-da-pasta-storage-laravel-50551
    public function InserirProfessor(Request $request){
+    $this->validate($request,[
+      'nome'=>'required',
+      'cpf'=>'required',
+      'cep'=>'required',
+      'curso' => 'required|not_in:1',
+      'periodo' => 'required|not_in:1',
+      'materia' => 'required|not_in:1'
+    ]);
 
-    $file = $request->file('image')->store('Img');
+   if($request->file('image')!=null){
+$file = $request->file('image')->store('Img');
+   }
+    
+
 /*
     DB::table('Professor')
     ->insert('Nome',$pedido->Nome)

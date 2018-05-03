@@ -1,7 +1,6 @@
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
  <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
- <script type="text/javascript" src="{{ URL::to('js/MeuJs.js') }}"></script>
 <html><meta charset="utf-8"/>
 <head><link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -46,9 +45,19 @@
 <body class="TelaDeFundo">
 <section class="Sessao">
 
-        <form action="{{route('InserirProfessor')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('InserirProfessor')}}" method="post" enctype="multipart/form-data" >
             {{ csrf_field() }}
-    <table cellpadding="15">
+                  @if ($errors->any())
+    </br>
+<div class="alert alert-danger">
+  <ul>
+      @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+      @endforeach
+  </ul>
+</div>
+@endif
+    <table cellpadding="15" style="margin:0 auto;">
             <thead>
                 <tr>
                     <th><h2>Cadastro Professor </h2></th>
@@ -63,8 +72,8 @@
          
             <tbody>
                 <tr>
-                    <td> <p>Nome</p><input class="form-control" type="text" name="Nome" value="" /></td>
-                    <td><p>CPF</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCPF" style="width:200px;"/></td>
+                    <td> <p>Nome</p><input class="form-control" type="text" name="nome" value="" /></td>
+                    <td><p>CPF</p><input class="form-control" type="text" name="cpf" value="" id="CPF" style="width:200px;"/></td>
                     <td></br></br>
                         <div class="custom-file small" >
                             <input type="file" class="custom-file-input" id="customFile"accept="image/png, image/jpeg" name="image">
@@ -72,21 +81,23 @@
                           </div></td>
                 </tr>
                 <tr>
-                    <td><p>CEP</p><input class="form-control" type="text" name="CEP" value="" id="CEP" style="width:200px;"/></td>
-                    <td><p>Telefone</p><input class="form-control" type="text" name="Telefone" value="" id="Telefone" style="width:200px;"/></td>
+                    <td><p>CEP</p><input class="form-control" type="text" name="cep" value="" id="CEP" style="width:200px;"/></td>
+                    <td><p>Telefone(Opcional)</p><input class="form-control" type="text" name="Telefone" value="" id="Telefone" style="width:200px;"/></td>
                     
                     
                 
                 </tr>
                 <tr>
-                    <td><p>Carteira de trabalho</p><input class="form-control" type="text" name="CarteiraDeTrabalho" value="" id="CarteiraDeTrabalho" style="width:200px;"/></td>
+                    <td><p>Carteira de trabalho(Opcional)</p><input class="form-control" type="text" name="CarteiraDeTrabalho" value="" id="CarteiraDeTrabalho" style="width:200px;"/></td>
                     <td></td>
                     
                 </tr> 
                 
                 <tr>
-                <td><p>Cursos</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control">
+                <td><p>Cursos</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control" name="curso">
                     <option value="Selecionar">Selecione um curso</option>
+                    <option>S.I.</option>
+
                     {{--  
                         @foreach ($Cursos as $Curso){ 
                        <option value="{{ $Curso->id }} "> "{{ $Curso->nomeCurso }}" </option>
@@ -100,21 +111,30 @@
                             </select></td>
                 </tr> 
                 <tr>
-                <td><p>Periodo</p><select id="Periodo" onchange="AoAlterarPeriodo()" class="form-control">
+                <td><p>Periodo</p><select id="Periodo" name="periodo" onchange="AoAlterarPeriodo()" class="form-control">
+                        <option>Selecione um periodo</option>
+                        <option>1º periodo</option>
                     </select></td>
                 </tr>
                 <tr>
-                <td><p>Materia</p><select id="Materia" class="form-control">
+                <td><p>Materia</p><select id="Materia" name="materia" class="form-control">
                     <option>Selecione uma Materia</option>
-                    </select></td>
-                </tr>
-               
-               
+                    <option>Programaçao</option>
+                    </select></td> 
+                    </tr>
+
+                    <tr>
+                            <td></td>         
+               <td><button type="submit" class="btn btn-success" onclick="VerificarDadosCadastraisAJax()">Cadastrar</button></td>  
+                <td></td>  
+               </tr>
             </tbody>
         </table>
-     
-       
-       <button type="submit" class="btn btn-success" onclick="VerificarDadosCadastraisAJax()">Cadastrar</button>
+  
+
+       {{--@if($errors->any())
+       @endif--}}
+      
  </form>
 
 

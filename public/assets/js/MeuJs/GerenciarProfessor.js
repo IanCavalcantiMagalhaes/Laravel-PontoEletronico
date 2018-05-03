@@ -17,7 +17,7 @@ function AdicionarMateria(){//Vai ir e voltar do controller:MostrarDados@Adicion
 
 }
 function VerificarDados(){//Proibir acesso por erro de dados OU aceitar e inserir
-    alert("Professor re-cadastrado com sucesso");
+  //  alert("Professor re-cadastrado com sucesso");
      /* var alerta;
      alerta="Conteudos abaixo estao inseridos de forma incorreta:\n";
      if($("#Nome").val()===null){

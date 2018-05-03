@@ -40,8 +40,8 @@ Route::group(['prefix' => 'Upload'], function() {
     }); 
     });
 
-Route::group(['prefix' => 'Entrar'], function() {
-     Route::get('/Login','LogarUsuario@RetornarView')->name('PaginaLogar');
+Route::group(['' => 'Entrar'], function() {
+     Route::get('/','LogarUsuario@RetornarView')->name('PaginaLogar');
      Route::post('/Auntenticar','LogarUsuario@testValidar')->name('Autenticar');
     });
 

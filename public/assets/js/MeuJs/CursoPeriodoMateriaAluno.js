@@ -280,7 +280,7 @@ if($('#Escolhido').val()==='Selecione'){
 //Abaixo:Opçoes de selecionar
 
 function AoAlterarCurso(){
-alert("Ola");
+//alert("Ola");
     $(document).ready(function(){//inserir periodos
      // alert( $("#Curso").val());
       $('#Periodo').empty();

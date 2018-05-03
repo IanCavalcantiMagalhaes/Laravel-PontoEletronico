@@ -27,6 +27,7 @@ class Calculo extends Controller
                 $Array[]=$dados->id;
                 $Array[]=$dados->nome;
               }
+              
               return response()->json(json_encode($Array));
       //return Response::json($request->Campo); 
       

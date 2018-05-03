@@ -61,8 +61,9 @@
                   <input type="text" placeholder="Primeiro preencha as caixas de seleçoes" id="CampoPesquisa" style="width:450px;" readonly>
                   <button type="button" class="btn btn-success" onclick="PesquisarProfessor()" id="Botao">Procurar</button>
                   <div class="alert alert-warning" role="alert" id="Aviso" style="position:relative;top:5px;">
-                    <strong>AVISO:</strong></br>Para procurar dados será necessario
-                    </br>especificar o que deseja pesquisar
+                    <strong>AVISO:</strong>
+                    </br>Para procurar dados será necessario
+                    </br>selecionar informaçoes de pesquisa
                     </br>na caixas de seleçoes á esquerda
                   </div>
                 </div>
@@ -71,8 +72,8 @@
                   sera necessario procurar ele nesta pagina 
                 </div>
                 <div style="position:absolute;top:0px;">
-                <p>O que deseja pesquisar</p>
-                   <select name="Tipo" id="TipoDeDado" onchange="pesquisarQueTipoDeDado()">
+                <p>O que deseja pesquisar:</p>
+                   <select name="Tipo" id="TipoDeDado" onchange="pesquisarQueTipoDeDado()" class="form-control">
                        <option>Escolha</option>
                        <option>Professor</option>
                        <option>Curso</option>
@@ -83,7 +84,7 @@
 
 
                <p>Pesquisar dado por:</p>
-            <select id="PesquisarPor" onchange="pesquisarPor()">
+            <select id="PesquisarPor" onchange="pesquisarPor()" class="form-control">
                 <option>Escolha</option>
                 <option value="Id">Id</option>
                 <option value="Nome">Nome</option>
