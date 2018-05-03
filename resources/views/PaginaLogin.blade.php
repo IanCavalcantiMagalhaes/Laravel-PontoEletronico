@@ -31,6 +31,17 @@
           <h1>Sistema de Ponto Eletronico</h1>
           <form class="AlinharForm" action="{{route('Autenticar')}}" method="post">
               {{ csrf_field() }}
+
+              @if ($errors->any())
+            </br>
+        <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+        </div>
+        @endif
             <label>Nome do usuario:</label><br>
               <input type="text" name="nome" value="" placeholder="Digite seu nome de usuario" class="AlinharEAumentarCampoDeTexto"/><br>
 
