@@ -77,13 +77,13 @@ function AlterarEditarAdicionarRemover(){//sera mostrado somente em editar e adi
 
     if($("input[name='EscolhidoComando']:checked").val()==='Editar'){
         $('#CampoDeTexto').show();
-        $('#CampoDeTexto').attr("placeholder","Altere valor aqui");
+        $('#CampoDeTexto').attr("placeholder","Altere nome aqui");
         $("#Botao").attr('value', 'Editar');
         
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         $('#CampoDeTexto').show();
-        $('#CampoDeTexto').attr("placeholder","Adicione novo valor aqui");
+        $('#CampoDeTexto').attr("placeholder","Adicione novo nome aqui");
         $("#Botao").attr('value', 'Adicionar');
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
@@ -92,92 +92,29 @@ function AlterarEditarAdicionarRemover(){//sera mostrado somente em editar e adi
     }
 
 }
-function AlterarCursoPeriodoMateriaAula(){//Escolhera entre Curso,Periodo ou Materia
-  //  AlterarEditarAdicionarRemover();
-    $('#Curso').empty();
-    $('#Periodo').empty();
-    $('#Materia').empty();
-    $('#CampoDeTexto').empty();
-    $('#Turno').hide();
-if($('#Escolhido').val()==='Selecione'){
-  
-    
-    }
-if($('#Escolhido').val()==='Curso'){
-    $('#Curso').show();
-    $('#TextoCurso').show();
-    $('#Turno').show();
-    $('#Periodo').hide();
-    $('#Materia').hide();
-    $('#InserirHorario').hide();
-    if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
-        //ao adicionar nao precisara selecionar curso
-        $('#Curso').hide();$('#TextoCurso').hide();$('#Turno').hide();
-    }
- 
-}if($('#Escolhido').val()==='Periodo'){//Podera selecionar o curso e periodo que vai alterar/adicionar/remover
-    $('#Curso').show();
-    $('#Periodo').show();
-    $('#Materia').hide();
-    $('#InserirHorario').hide();
-    if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
-        //ao adicionar nao precisara selecionar periodo
-        $('#Periodo').hide();
-    }
-}if($('#Escolhido').val()==='Materia'){
-    $('#Curso').show();
-    $('#Periodo').show();
-    $('#Materia').show();
-    $('#InserirHorario').hide();
-    if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
-        //ao adicionar nao precisara selecionar materia
-        $('#Materia').hide();
-    }
 
-}if($('#Escolhido').val()==='Aula'){
-    $('#Curso').show();
-    $('#Periodo').show();
-    $('#Materia').show();
-    $('#InserirHorario').show();
-    $('#InserirHorario').mask("00:00");
-
-}
-AlterarCursoPeriodoMateriaAula();
-$(document).ready(function(){//inserir Cursos toda vez que modificar
-    $('#Curso').empty();
-       $.ajax({
-         type: "GET",
-         url:"/CarregarCursos",success: function(data){
-          
-         for(var i=0;i<data.Cursos.length;i++){
- 
-            $('#Curso').append("<option value='"+data.Cursos[i].id+"'>"+data.Cursos[i].nomeCurso+"</option>");
-          }
-      
-       }});
-});
-}
 
 function atualizar(){
-//Adicionar,editar e remove
 $('#Carregando').show();
+//Adicionar,editar e remover
+
     $('#CampoDeTexto').empty();
     $("#TextoBotao").empty();
 
     
     if($("input[name='EscolhidoComando']:checked").val()==='Editar'){
         $('#CampoDeTexto').show();
-        $('#CampoDeTexto').attr("placeholder","Altere valor aqui");
+        $('#CampoDeTexto').attr("placeholder","Altere nome aqui");
         $("#TextoBotao").append('Editar');
         
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         $('#CampoDeTexto').show();
-        $('#CampoDeTexto').attr("placeholder","Adicione novo valor aqui");
+        $('#CampoDeTexto').attr("placeholder","Adicione novo nome aqui");
         $("#TextoBotao").append('Adicionar');
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
-        $('#CampoDeTexto').hide(); 
+        $('#CampoDeTexto').hide(); //nao é necessario adicionar nada no campo de texto
         $("#TextoBotao").append('Remover');
     }
 
@@ -191,6 +128,8 @@ $('#Carregando').show();
     $('#TextoMateria').hide();
     $('#CampoDeTexto').attr('readonly',false);
     $('#DivInserirHorario').hide();
+
+
 if($('#Escolhido').val()==='Curso'){
     $('#Curso').show();
     $('#TextoCurso').show();
@@ -208,7 +147,7 @@ if($('#Escolhido').val()==='Curso'){
         $('#Turno').show();//alert("Ola");
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
-       $('#Turno').hide();//nao precisa selecionar turno
+       $('#Turno').hide();//nao precisare selecionar turno
     }
 
 }if($('#Escolhido').val()==='Periodo'){//Podera selecionar o curso e periodo que vai alterar/adicionar/remover
@@ -216,13 +155,17 @@ if($('#Escolhido').val()==='Curso'){
     $('#TextoCurso').show();
     $('#Periodo').show();
     $('#TextoPeriodo').show();
+    $('#Materia').hide();
+    $('#TextoMateria').hide();
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         //ao adicionar nao precisara selecionar periodo
         $('#Periodo').hide();
         $('#TextoPeriodo').hide();
         
     }
-
+    if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
+        $('#Turno').hide();//nao precisara selecionar turno
+     }
 }if($('#Escolhido').val()==='Materia'){
     $('#Curso').show();
     $('#TextoCurso').show();
@@ -250,7 +193,7 @@ if($('#Escolhido').val()==='Curso'){
      }
 
 }/*
-$(document).ready(function(){////inserir Cursos toda vez que modificar
+$(document).ready(function(){//re-inserir Cursos toda vez que modificar
     $('#Curso').empty();
        $.ajax({
          type: "GET",

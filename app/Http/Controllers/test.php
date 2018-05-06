@@ -10,7 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use DB;
 
-class Calculo extends Controller
+class test extends Controller
 {
     public function AjaxTest(Request $request){
  
@@ -28,10 +28,9 @@ class Calculo extends Controller
                 $Array[]=$dados->nome;
               }
               
+             // return redirect()->action('Entrada_Saida@RetornarView');
+              //return redirect()->route('MarcarPonto');
               return response()->json(json_encode($Array));
-      //return Response::json($request->Campo); 
-      
-     // return Response::json(json_encode($RS));  
-     // return Response::json(array('RS'=>$RS)); 
        }
+      
 }

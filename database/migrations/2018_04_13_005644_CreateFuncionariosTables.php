@@ -13,7 +13,9 @@ class CreateFuncionariosTables extends Migration
      */
     public function up()
     {
-        Schema::create('Funcionarios', function (Blueprint $table) {
+        Schema::create('funcionarios', function (Blueprint $table) {
+          
+            
             $table->increments('id');
             $table->string('nome');
             $table->boolean('Trabalhando')->default(false);
@@ -27,7 +29,7 @@ class CreateFuncionariosTables extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-         DB::table('Funcionarios')->insert(
+        DB::table('Funcionarios')->insert(
             array(
                 'nome' => 'Ian',
                 'CPF' => '111.111.111-11'

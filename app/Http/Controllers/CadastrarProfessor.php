@@ -26,7 +26,8 @@ class CadastrarProfessor extends BaseController
       'cep'=>'required',
       'curso' => 'required|not_in:1',
       'periodo' => 'required|not_in:1',
-      'materia' => 'required|not_in:1'
+      'materia' => 'required|not_in:1',
+      'image'=> 'image'
     ]);
 
    if($request->file('image')!=null){
@@ -81,7 +82,8 @@ if($request->idPeriodo!=null){
           ->get();*/
           //$ID_e_NomeCursos=Curso::all();
           
-          return view('PaginaCadastrarProfessor');//->with('Cursos',$ID_e_NomeCursos);
+          return view('PaginaCadastrarProfessor')
+          ->with('navbar','Cadastrar Professor');//->with('Cursos',$ID_e_NomeCursos);
           
   }
 }

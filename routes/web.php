@@ -22,23 +22,11 @@ Route::get('/oi', function () {
 
 
 Route::group(['prefix' => 'MarcarPonto'], function() {
-    Route::get('/VisualizarFuncionario','Entrada_Saida@IndentificarFuncionarioLiberado');
+     Route::get('/VisualizarFuncionario','Entrada_Saida@IndentificarFuncionarioLiberado');
      Route::get('/RegistrandoTest','Entrada_Saida@testContador');
      Route::get('/Registrando','Entrada_Saida@Contador');
      Route::get('/RegistrarEntrada_Saida','Entrada_Saida@RetornarView')->name('MarcarPonto');
 });
-Route::group(['prefix' => 'Upload'], function() {
-       Route::get('/ListarUploads', function(Request $request) {
-           $file = $request->file('image');
-        return view('Upload/ListarImagens')->with('categories',$file);
-
-       }); 
-       Route::get('/FazerUpload', function(Request $request) {
-        $file = $request->file('image');
-     return view('Upload/UploadImagem');
-
-    }); 
-    });
 
 Route::group(['' => 'Entrar'], function() {
      Route::get('/','LogarUsuario@RetornarView')->name('PaginaLogar');
@@ -60,19 +48,14 @@ Route::group(['' => 'Entrar'], function() {
        
         Route::get('/Procurar',function(Request $request){
     //$RS=DB::table('funcionarios')->find($request->id)->get();
-            return view('PaginaPesquisar');
+            return view('PaginaPesquisar')->with('navbar','Pesquisar');
      // ->with('TodosOsDadosProfessor',$RS);
 
 });
 
 });
 Route::group(['prefix' => 'GerenciarProfessor'], function() {
-    Route::get('/Mostrar',function(Request $request){//controller:MostrarDadosListarTodosOsDadosProfessor
-        //$RS=DB::table('funcionarios')->find($request->id)->get();
-          return view('GerenciarProfessor');
-         // ->with('TodosOsDadosProfessor',$RS);
-   
-    })->name('GerenciarProfessor');
+    Route::get('/Mostrar','MostrarDados@ListarTodosOsDadosProfessor')->name('GerenciarProfessor');
     Route::get('/Adicionar','CursoPeriodoMateriaAula@Curso');
 
 });
@@ -108,14 +91,14 @@ Route::get('/AjaxPeriodo','CadastrarProfessor@AjaxPeriodo');
 
 Route::get('/AjaxMateria','CadastrarProfessor@AjaxMateria');
 
-Route::get('/AjaxTestando','Calculo@AjaxTest');
+
 Route::get('/InserirProfessor','CadastrarProfessor@IrParaPaginaDeCadastroProfessor');
 
 Route::get('/InseririndoProfessor','CadastrarProfessor@InserirProfessor');
 
 
 
-Route::get('/Somar','Calculo@AjaxSoma');
+
 
 
 
@@ -130,6 +113,14 @@ Route::get('/ManipularCurso', function () {
     return view('PaginaCursoPeriodoMateriaAluno');
 });
 Route::get('/Testando',function(){
-
-    return view('Test');
+    $X= DB::table('funcionarios')->select('id','nome')
+    ->get();
+    foreach($X as $dados){
+      $Array[]=$dados->id;
+      $Array[]=$dados->nome;
+     
+    }
+ 
+    return view('Test')->with('Arranjo',$Array);
 });
+Route::get('/Somar','test@AjaxSoma');Route::get('/AjaxTestando','test@AjaxTest');

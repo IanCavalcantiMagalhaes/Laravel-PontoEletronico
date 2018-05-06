@@ -16,7 +16,8 @@ class Entrada_Saida extends BaseController
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
    public function RetornarView(Request $request){
      return view('MarcarPonto')
-     ->with('Resposta',$request->Resposta);
+     ->with('Resposta',$request->Resposta)
+     ->with('navbar','Marcar Ponto');
    }
 
     public function Contador(Request $request){//ao clicar no botao da PaginaContador
@@ -24,47 +25,55 @@ class Entrada_Saida extends BaseController
       DB::table('funcionarios')
     ->select('id','trabalhando')
     ->where('CPF',$request->CPF)->get();
-/*
+
     foreach($RS as $column){
     
-    if($RS===0){//esta fora e quer entrar
-      DB::table('GuardadosTemporariamente')
+    if($column->trabalhando===0){//esta fora e quer entrar
+
+      DB::table('Funcionarios')//inverter valor de 'trabalhando'
+      ->update('trabalhando',1)
+      ->where('CPF',$request->CPF)->get();
+
+      DB::table('GuardadosTemporariamente')//Guardar em tabela e pegar quando for sair
       ->insert('Funcionario_id',$column->id)
       ->insert('TempoDeChegada',microtime(true));
+
       return response()->json(array('RS'=>$RS));
     }  
-    if($RS===1){//esta dentro e quer sair
+    if($column->trabalhando===1){//esta dentro e quer sair
+
+      DB::table('Funcionarios')//inverter valor de 'trabalhando'
+      ->update('trabalhando',0)
+      ->where('CPF',$request->CPF)->get();
+
       $Tempo=DB::table('GuardadosTemporariamente')
       ->select('TempoDeChegada')
       ->where('Funcionario_id',$column->id)
       ->get();
-      $TempoFeito=(((microtime(true)-$Tempo)/1000)/60)/60;
-
       
-      DB::table('GuardadosTemporariamente')
+      $TempoFeito=(((microtime(true)-$Tempo)/1000)/60)/60;
+      
+      DB::table('GuardadosTemporariamente')//limpar da tabela
       ->where('Funcionario_id',$column->id)
       ->remove();
-        return response()->json(array('RS'=>$RS));
-    }  
-}*/
 
-       return response()->json(array('RS'=>$RS));
+      
+    }  
+}
+
+
+       return response()->json(array('RS'=>$RS));//respondera um boolean
   }
+  public function InverterStatusDeTrabalho(){
+  
+}
   public function IndentificarFuncionarioLiberado(Request $request){
-          $RS=DB::table('Funcionarios')
+          $RS=
+          DB::table('Funcionarios')
           ->select('id','nome')
           ->where('CPF',$request->CPF)->get();
+
           return response()->json(array('Professor'=>$RS));
-          /*if($RS===0){
-            $RS=DB::table('Funcionarios')
-            ->update('trabalhando',1)
-            ->where('CPF',$request->CPF)->get();
-          }if($RS===1){
-            $RS=DB::table('Funcionarios')
-            ->update('trabalhando',0)
-            ->where('CPF',$request->CPF)->get();
-          }*/
-          
   }
   public function testContador(Request $request){
   /*$request->validate([
@@ -87,7 +96,7 @@ class Entrada_Saida extends BaseController
     }
   
   public function LevatamentoDaSemana(Request $request){   
-      $Dados=DB::table('funcionario')->get() ;
+      $Dados=DB::table('funcionarios')->get() ;
 
       foreach ($Dados as $Coluna){
         $ID=$Coluna->id;
@@ -95,54 +104,58 @@ class Entrada_Saida extends BaseController
         $Fixa=$Coluna->CargaHorariaFixa;
         if ($Coluna->CargaHorariaAtual < $Coluna->CargaHorariaFixa){//Nao superou o horario devido
         $HorasDevendo=$Fixa-$Atual;
-        DB::table('Funcionario')
+        DB::table('funcionarios')
         ->where(id,$ID)
         ->increment('HorasDevendo',$HorasDevendo)
         ->update('Devendo',true);
 
         }if ($Coluna->CargaHorariaAtual > $Coluna->CargaHorariaFixa){//Superou o horario devido
-          $HorasAMais=$Atual-$Fixa;//valor a cima do devido a ser feito por semana
-          $HorasDevendo=DB::table('funcionario')->select('HorasDevendo')->where('id',$ID);
-          $HorasExtras=DB::table('funcionario')->select('HorasExtras')->where('id',$ID);//Horas extras que devem ser feitas
+          $HorasAMais=$Atual-$Fixa;//valor acima do devido a ser feito por semana
+          $HorasDevendo=DB::table('funcionarios')->select('HorasDevendo')->where('id',$ID);
+          $HorasExtras=DB::table('funcionarios')->select('HorasExtras')->where('id',$ID);//Horas extras que devem ser feitas
           
         if ($Coluna->Devendo=true && $Coluna->Extra=true) { 
  
             if($HorasDevendo-$HorasAMais>0){//se horas a mais nao superou a divida
-            DB::table('funcionario')
-       ->where(id,$ID)->decrement('HorasDevendo',$HorasAMais)->update('Devendo',true);//ira diminuir horas devendo
+            DB::table('funcionarios')
+            ->where(id,$ID)->decrement('HorasDevendo',$HorasAMais)->update('Devendo',true);//ira diminuir horas devendo
             
             }
-          if($HorasDevendo-$HorasAMais<=0){//se horas a mais superou a divida
+            if($HorasDevendo-$HorasAMais<=0){//se horas a mais superou a divida
               //ira para horas extras
-           if($HorasExtras+($HorasDevendo-$HorasAMais)<=0){ //o '+' por causa do valor negativo
-            DB::table('funcionario')
+            if($HorasExtras+($HorasDevendo-$HorasAMais)<=0){ //o '+' por causa do valor negativo que vai ter entre parenteses
+
+            DB::table('funcionarios')
             ->where(id,$ID)->update('HorasDevendo',0)->update('Devendo',false)//ira zerar divida
             ->update('HorasExtras',0)->update('Extra',false);//ira zerar horas extras
 
-          } if($HorasExtras+($HorasDevendo-$HorasAMais)>0){
-           DB::table('funcionario')
+          } if($HorasExtras+($HorasDevendo-$HorasAMais)>0){//se o resto da superaçao da divida nao for suficiente para zerar
+           
+           DB::table('funcionarios')
            ->where(id,$ID)->update('HorasDevendo',0)->update('Devendo',false)//ira zerar divida
            ->decrement('HorasExtras',$HorasAMais)->update('Extra',true);//ira diminuir horas extras
 
           }
        }
         }if ($Coluna->Devendo=true && $Coluna->Extra=false){
+
           if($HorasAMais>0){
-               DB::table('funcionario')
-          ->where(id,$ID)->decrement('HorasDevendo',$HorasAMais)->update('Devendo',true);
+               DB::table('funcionarios')
+               ->where(id,$ID)->decrement('HorasDevendo',$HorasAMais)->update('Devendo',true);
             }if($HorasAMais<=0){
-              DB::table('funcionario')
+              DB::table('funcionarios')
               ->where(id,$ID)->update('HorasDevendo',0)->update('Devendo',false);
           }
  
         }if ($Coluna->Devendo=false && $Coluna->Extra=true) {
+
           if($HorasExtras-$HorasAMais<=0){//se excedeu horas extras
-            DB::table('funcionario')
+            DB::table('funcionarios')
             ->where(id,$ID)
             ->update('HorasExtras',0)//ira zerar horas extras
             ->update('Extra',false);
           }if($HorasExtras-$HorasAMais>0){//se nao excedeu horas extras
-           DB::table('funcionario')
+           DB::table('funcionarios')
            ->where(id,$ID)
            ->decrement('HorasExtras',$HorasAMais)//ira diminuir horas extras
            ->update('Extra',true);

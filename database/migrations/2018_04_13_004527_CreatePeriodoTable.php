@@ -15,8 +15,9 @@ class CreatePeriodoTable extends Migration
     {
         Schema::create('periodos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nomePeriodo');
+            $table->string('nome_periodo');
             $table->string('curso_id')->references('id')->on('Curso');
+            $table->string('sala');
             
         });    
        // INSERT INTO periodos(NomePeriodo,Curso_id) VALUES ('1ºPeriodo de Direito',1),('2ºPeriodo de Direito',1),('3ºPeriodo de Direito',1),('4ºPeriodo de Direito',1),
@@ -24,43 +25,49 @@ class CreatePeriodoTable extends Migration
        DB::table('periodos')
        ->insert(
            array(
-               'nomePeriodo' => '1ºPeriodo de Direito',
-               'curso_id' => '1'
+               'nome_periodo' => '1ºPeriodo de Direito',
+               'curso_id' => '1',
+               'sala' => '101'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
-               'nomePeriodo' => '2ºPeriodo de Direito',
-               'curso_id' => '1'
+               'nome_periodo' => '2ºPeriodo de Direito',
+               'curso_id' => '1',
+               'sala' => '102'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
-               'nomePeriodo' => '3ºPeriodo de Direito',
-               'curso_id' => '1'
+               'nome_periodo' => '3ºPeriodo de Direito',
+               'curso_id' => '1',
+               'sala' =>'302'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
-               'nomePeriodo' => '1ºPeriodo de Sistemas',
-               'curso_id' => '2'
+               'nome_periodo' => '1ºPeriodo de Sistemas',
+               'curso_id' => '2',
+               'sala' =>'304'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
-               'nomePeriodo' => '2ºPeriodo de Sistemas',
-               'curso_id' => '2'
+               'nome_periodo' => '2ºPeriodo de Sistemas',
+               'curso_id' => '2',
+               'sala' =>'702'
            )
            );
        DB::table('periodos')
        ->insert(
            array(
-               'nomePeriodo' => '3ºPeriodo de Sistemas',
-               'curso_id' => '2'
+               'nome_periodo' => '3ºPeriodo de Sistemas',
+               'curso_id' => '2',
+               'sala' =>'602'
            )
            );
        

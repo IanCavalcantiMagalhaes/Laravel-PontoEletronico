@@ -50,8 +50,11 @@
       ...
     </div>
   </div>
-  
-
+  @if($Arranjo!='vazio')
+  @foreach($Arranjo as $Coluna)
+<p>{{ $Coluna }}</p>
+  @endforeach
+@endif
     </body>
 </html>
 <script>

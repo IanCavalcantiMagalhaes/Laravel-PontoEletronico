@@ -82,50 +82,18 @@
                                     </thead>
                                     <tbody>
                                      <div id="ListaDeMaterias">
+                                         @for($i=0;$i<sizeOf($TabelaIDMateria);$i++)
                                       <tr>
-                                      
-                                        <th scope="row">1</th>
-                                        <td>Nome da materia</td>
+                                           
+                                        <th scope="row"> {{ $TabelaIDMateria[$i]->materia_id }}</th>
+                                        
+                                        <td>NomeMateria</td>
+                                        
                                         <td>5º Periodo</td>
                                         <td>S.I.</td>
-                                      
+                                        
                                       </tr>
-                                      <tr>
-                                      
-                                            <th scope="row">1</th>
-                                            <td>Nome da materia</td>
-                                            <td>5º Periodo</td>
-                                            <td>S.I.</td>
-                                          
-                                          </tr><tr>
-                                      
-                                                <th scope="row">1</th>
-                                                <td>Nome da materia</td>
-                                                <td>5º Periodo</td>
-                                                <td>S.I.</td>
-                                              
-                                              </tr><tr>
-                                      
-                                                    <th scope="row">1</th>
-                                                    <td>Nome da materia</td>
-                                                    <td>5º Periodo</td>
-                                                    <td>S.I.</td>
-                                                  
-                                                  </tr><tr>
-                                      
-                                                        <th scope="row">1</th>
-                                                        <td>Nome da materia</td>
-                                                        <td>5º Periodo</td>
-                                                        <td>S.I.</td>
-                                                      
-                                                      </tr><tr>
-                                      
-                                                            <th scope="row">1</th>
-                                                            <td>Nome da materia</td>
-                                                            <td>5º Periodo</td>
-                                                            <td>S.I.</td>
-                                                          
-                                                          </tr>
+                                      @endfor
                                       
                                     </div>
                                     </tbody>
@@ -169,7 +137,7 @@
                     </tr>
                      </tbody>
                 </table> 
-                        <div id="AdiçaoMateria" style="position:absolute;margin-right:50px;background-color:grey;top:1300px;">
+                        <div id="AdiçaoMateria" style="position:absolute;margin-right:50px;top:1300px;">
                         
                             <h5>Adicionar materias</h5>
                             <p>Cursos da materia que deseja adicionar</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control">
@@ -186,7 +154,7 @@
                             onclick="AdicionarMateria()">Adicionar materia</button>
                         </div>
              
-                          <div id="Remover" style="position:absolute;left:31%;top:1525px;background-color:grey;">
+                          <div id="Remover" style="position:absolute;left:31%;top:1475px;">
                               <h5>Remover materia</h5>
                               <p>Remover Materia(s) que professor possui</p>
                             <select id="MateriaRemover" class="form-control">

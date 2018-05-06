@@ -12,7 +12,7 @@ use DB;
 use Illuminate\Support\Facades\Input;
 
 
-class MostrarDados extends BaseController
+class GerenciarProfessor extends BaseController
 {
 public function Test(){
 
@@ -38,39 +38,41 @@ public function RemoverMateriaDoProfessor(Request $request){
 }
 
 public function ListarTodosOsDadosProfessor(Request $request){
-    return view('GerenciarProfessor');
 
-
+    $DadosFuncionario=
+    DB::table('funcionarios')//Pegar dados de funcionario
+    ->find($request->id)
+    ->get();
 
     $DadosFuncionario=
      DB::table('funcionarios')//Pegar dados de funcionario
-     ->find($request->id)
-     ->get();
+     ->find(1);
 
-     $RSid_materias=
+     $RSid_materia=
      DB::table('funcionarios_materias')//Pegar materias relacionadas com funcionario
-     ->select('id_materias')
-     ->where('id_funcionario',$request->id)
+     ->select('materia_id')
+     ->where('funcionario_id','1')
      ->get();
 
 
      foreach($RSid_materias as $ID){
       $DadosMateria[]=
       DB::table('materias')
-      ->find($ID->id_materia)//id(materia)=id_materia(funcionarios_materias)
+      ->select('')
+      ->find($ID->materia_id)//id(materia)=id_materia(funcionarios_materias)
       ->get();//para pegar id e nome da materia
 
          foreach($DadosMateria as $ColunasMat){
           $DadosPeriodo[]=
           DB::table('periodos')
-          ->select('nomePerido')
+          ->select('nome_periodo')
           ->find($ColunasPer->periodo_id)//id(periodos)=periodo_id(materias)
           ->get();//para pegar id e nome do periodo
 
               foreach($DadosPeriodo as $ColunasPer){
                 $DadosCurso[]=
                 DB::table('cursos')
-                ->select('nomeCurso')
+                ->select('nome_curso')
                 ->find($ColunasCur->curso_id)//id(curso)=curso_id(periodos)
                 ->get();//para pegar id e nome do periodo
       
@@ -79,11 +81,10 @@ public function ListarTodosOsDadosProfessor(Request $request){
      }
 
 return view('GerenciarProfessor')
-->route('Rota de GerenciarProfessor')
 ->with('TabelaFuncionario',$DadosFuncionario)
-->with('TabelaMateria',$DadosMateria)
-->with('TabelaMateria',$DadosPeriodo)
-->with('TabelaMateria',$DadosCurso);
+->with('TabelaIDMateria',$Dadosid_materia)
+->with('TabelaPeriodo',$DadosPeriodo)
+->with('TabelaCurso',$DadosCurso);
 
   }
 }
