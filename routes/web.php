@@ -55,7 +55,7 @@ Route::group(['' => 'Entrar'], function() {
 
 });
 Route::group(['prefix' => 'GerenciarProfessor'], function() {
-    Route::get('/Mostrar','MostrarDados@ListarTodosOsDadosProfessor')->name('GerenciarProfessor');
+    Route::get('/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessor')->name('GerenciarProfessor');
     Route::get('/Adicionar','CursoPeriodoMateriaAula@Curso');
 
 });
@@ -65,7 +65,7 @@ Route::group(['prefix' => 'GerenciarCursos'], function() {
         Route::get('/Periodo','CursoPeriodoMateriaAula@Periodo');
         Route::get('/Materia','CursoPeriodoMateriaAula@Materia');
         Route::get('/Curso',function(){
-              return view('PaginaCursoPeriodoMateriaAluno');   
+              return view('PaginaCursoPeriodoMateriaAluno')->with('navbar','Gerenciar Cursos');
     
 })->name('GerenciarCursos');
 
@@ -113,8 +113,7 @@ Route::get('/ManipularCurso', function () {
     return view('PaginaCursoPeriodoMateriaAluno');
 });
 Route::get('/Testando',function(){
-    $X= DB::table('funcionarios')->select('id','nome')
-    ->get();
+    $X= Funcionario::get();
     foreach($X as $dados){
       $Array[]=$dados->id;
       $Array[]=$dados->nome;

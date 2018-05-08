@@ -13,18 +13,22 @@ use DB;
 class Pesquisar extends BaseController
 {
   public function Professor(Request $request){
-//if($resquest->PesquisarPor='Id'){
-$Result=DB::table('funcionario')
-     ->select('id','nome')
+if($request->PesquisarPor==="Id"){
+$Result=DB::table('funcionarios')
      ->where('id',$request->CampoPesquisa)->get();
-//}
+}
 
     
      
      return Response::json(array('Result'=>$Result)); 
 
 
-  }public function ListarTodosOsDadosProfessor(Request $request){
+  }
+  public function Curso(Request $request){
+
+  }
+  
+  public function ListarTodosOsDadosProfessor(Request $request){
      $RSFuncionario=
      DB::table('funcionarios')//Pegar dados de funcionario
      ->find($request->id)

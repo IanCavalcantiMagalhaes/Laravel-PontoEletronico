@@ -21,8 +21,10 @@ class test extends Controller
     public function AjaxSoma(Request $request){
         $A=$request->Campo;
         $B=$request->Campo2;
-         $X= DB::table('funcionarios')->select('id','nome')
-              ->get();
+         $X= DB::table('funcionarios')
+         ->select('id','nome')
+         ->get();
+        /* $X= Funcionario::get();*/
               foreach($X as $dados){
                 $Array[]=$dados->id;
                 $Array[]=$dados->nome;

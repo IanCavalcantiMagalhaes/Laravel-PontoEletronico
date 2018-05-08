@@ -19,6 +19,18 @@ class CreateMateriasTables extends Migration
             $table->integer('periodo_id')->references('id')->on('periodos');
             $table->timestamps();
         });
+        DB::table('materias')->insert(
+            array(
+                'nome_materia' => 'Materia 1 S.I.',
+                'periodo_id' => '4'
+            )
+        );
+        DB::table('materias')->insert(
+            array(
+                'nome_materia' => 'Materia 2 S.I.',
+                'periodo_id' => '5'
+            )
+        );
     }
 
     /**

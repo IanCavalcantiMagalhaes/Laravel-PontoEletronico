@@ -1,53 +1,10 @@
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
- <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+@extends('Templates/TemplateNavbar')
 
-<html><meta charset="utf-8"/>
-<head><link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-<script src="js/CursoPeriodoMateriaAluno.js"></script>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="GerenciarCursos/Curso">Gerenciar Cursos</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('Pesquisar/Procurar') }}">Pesquisar<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('CadastrarProfessor/CadastroProfessor') }}">Cadastrar Professor</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Marcar Ponto</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-<title>Gerencia de curso</title>
+@push('DiretoriosJS')
+<script src="{{ asset('assets/js/MeuJs/Pesquisar.js') }}"></script>
+@endpush
 
-<link href="css/MeuCss.css" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
-<script src="{{ asset('assets/js/MeuJs/CursoPeriodoMateriaAluno.js') }}"></script>
-<style>
-   
-        @-webkit-keyframes spin {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
-          }
-          
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-</style>
-</head>
-<body class="TelaDeFundo">
-<section class="sessao">
-
-
- 
-  
+@section('conteudo')
 
 
                     <div>
@@ -129,10 +86,7 @@
                     
                     
  <div class="loader" id="Carregando" style="position:absolute;left:50%;"></div>
-</section>
 
-</body>
-</html>
  <script> 
  $('#CampoHorario').mask("00:00");
  $('#Carregando').hide();
@@ -148,3 +102,4 @@
  $('#TextoPeriodo').hide();
 $('#TextoMateria').hide();
  </script>
+ @endsection

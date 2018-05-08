@@ -88,11 +88,16 @@ if($('#PesquisarPor').val()==='Escolha' || $('#TipoDeDado').val()==='Escolha'){
 }
 
 }
-
+function PesquisarOQue(){
+    if($('#TipoDeDado').val()==='Professor'){
+        PesquisarProfessor();
+    }
+}
 
 
 function PesquisarProfessor(){
-  OLA();
+  alert($("#CampoPesquisa").val());
+  alert($('#PesquisarPor').val());
  
     $(document).ready(function(){
         $('#CorpoDaTable').empty();
@@ -100,9 +105,9 @@ function PesquisarProfessor(){
         $.ajax({
           type: "GET",
           data: {CampoPesquisa: $("#CampoPesquisa").val(),
-                 PesquisarPor:$('#PesquisarPor').val()},//PesquisarPor(id,nome)
-          url:"/AjaxPesquisaProfessor",success: function(data){
-
+                 PesquisarPor:$('#PesquisarPor').val()},//PesquisarPor(id,nome,cpf)
+          url:"/Pesquisar/AjaxPesquisaProfessor",success: function(data){
+            alert("Certo");
             $('#CabeçalhoDaTable').append(
               '<tr><th>ID</th>'
              +'<th>Nome</th>'
@@ -128,7 +133,38 @@ function PesquisarProfessor(){
 });
 
     }function PesquisarCurso(){
-
+        $(document).ready(function(){
+            $('#CorpoDaTable').empty();
+            $('#CabeçalhoDaTable').empty();
+            $.ajax({
+              type: "GET",
+              data: {CampoPesquisa: $("#CampoPesquisa").val(),
+                     PesquisarPor:$('#PesquisarPor').val()},//PesquisarPor(id,nome,cpf)
+              url:"/Pesquisar/AjaxPesquisaCurso",success: function(data){
+                alert("Certo");
+                $('#CabeçalhoDaTable').append(
+                  '<tr><th>ID</th>'
+                 +'<th>Nome</th>'
+                 +'<th>CPF</th>'
+                 +'<th>Selecionar</th>'
+                 +'</tr>');
+                 
+             for(var i=0;i<data.Result.length;i++){
+                 alert(data.Result[i].nome );
+                
+                 $('#CorpoDaTable').append(
+                      '<tr><form action="Mostrar">'
+                    + '<td><input type="text" name="IdSelecionado" value="'+data.Result[i].id+'" readonly="readonly"/>'+'</td>' 
+                    + '<td>'+data.Result[i].nome+ '</td>' 
+                    + '<td scope="col">111.111.111-11</td>'
+                    + '<td scope="col"><button type="submit" class="btn btn-info">Visualizar:'+data.Result[i].nome+'</button></td></form></tr>');
+    
+             
+              }
+           
+           
+            }});
+    });
     }function PesquisarPeriodo(){
 
     }function PesquisarMateria(){

@@ -25,7 +25,7 @@ class CreatePeriodoTable extends Migration
        DB::table('periodos')
        ->insert(
            array(
-               'nome_periodo' => '1ºPeriodo de Direito',
+               'nome_periodo' => '1 Periodo de Direito',
                'curso_id' => '1',
                'sala' => '101'
            )
@@ -33,7 +33,7 @@ class CreatePeriodoTable extends Migration
        DB::table('periodos')
        ->insert(
            array(
-               'nome_periodo' => '2ºPeriodo de Direito',
+               'nome_periodo' => '2 Periodo de Direito',
                'curso_id' => '1',
                'sala' => '102'
            )
@@ -41,7 +41,7 @@ class CreatePeriodoTable extends Migration
        DB::table('periodos')
        ->insert(
            array(
-               'nome_periodo' => '3ºPeriodo de Direito',
+               'nome_periodo' => '3 Periodo de Direito',
                'curso_id' => '1',
                'sala' =>'302'
            )
@@ -49,7 +49,7 @@ class CreatePeriodoTable extends Migration
        DB::table('periodos')
        ->insert(
            array(
-               'nome_periodo' => '1ºPeriodo de Sistemas',
+               'nome_periodo' => '1 Periodo de Sistemas',
                'curso_id' => '2',
                'sala' =>'304'
            )
@@ -57,7 +57,7 @@ class CreatePeriodoTable extends Migration
        DB::table('periodos')
        ->insert(
            array(
-               'nome_periodo' => '2ºPeriodo de Sistemas',
+               'nome_periodo' => '2 Periodo de Sistemas',
                'curso_id' => '2',
                'sala' =>'702'
            )
@@ -65,7 +65,7 @@ class CreatePeriodoTable extends Migration
        DB::table('periodos')
        ->insert(
            array(
-               'nome_periodo' => '3ºPeriodo de Sistemas',
+               'nome_periodo' => '3 Periodo de Sistemas',
                'curso_id' => '2',
                'sala' =>'602'
            )

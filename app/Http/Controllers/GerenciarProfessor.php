@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Response;
 use DB;
 use Illuminate\Support\Facades\Input;
+use json;
 
 
 class GerenciarProfessor extends BaseController
@@ -39,52 +40,70 @@ public function RemoverMateriaDoProfessor(Request $request){
 
 public function ListarTodosOsDadosProfessor(Request $request){
 
-    $DadosFuncionario=
+    /*$DadosFuncionario=
     DB::table('funcionarios')//Pegar dados de funcionario
     ->find($request->id)
-    ->get();
+    ->get();*/
 
     $DadosFuncionario=
      DB::table('funcionarios')//Pegar dados de funcionario
      ->find(1);
 
-     $RSid_materia=
+     $Dadosid_materia=
      DB::table('funcionarios_materias')//Pegar materias relacionadas com funcionario
      ->select('materia_id')
      ->where('funcionario_id','1')
      ->get();
 
-
-     foreach($RSid_materias as $ID){
-      $DadosMateria[]=
+   
+//foreach($Dadosid_materia as $Dadosid_materia){
+   for($i=0;$i<sizeOf($Dadosid_materia);$i++){
+       
+      $NomeMateria[]=//Lembrete:Json_decode provavelmente
+      
       DB::table('materias')
-      ->select('')
-      ->find($ID->materia_id)//id(materia)=id_materia(funcionarios_materias)
-      ->get();//para pegar id e nome da materia
+      ->select('nome_materia')
+      ->where('id',$Dadosid_materia[$i]->materia_id)//id(materia)=id_materia(funcionarios_materias)
+      ->pluck('nome_materia')//para pegar nome da materia
+      ;
 
-         foreach($DadosMateria as $ColunasMat){
-          $DadosPeriodo[]=
+      $Periodo_id[$i]=
+      DB::table('materias')
+      ->select('periodo_id')
+      ->where('id',$Dadosid_materia[$i]->materia_id)//id(materia)=id_materia(funcionarios_materias)
+      ->pluck('periodo_id');//para pegar chave estrageira de materia(para saber em que periodo esta)
+      //$NomeMateria[$i]=json_decode($NomeMateria[$i],true);
+   }
+
+      for($i=0;$i<sizeOf($Periodo_id);$i++){
+          $NomePeriodo[$i]=
           DB::table('periodos')
           ->select('nome_periodo')
-          ->find($ColunasPer->periodo_id)//id(periodos)=periodo_id(materias)
-          ->get();//para pegar id e nome do periodo
+          ->where('id',$Periodo_id[$i])//id(periodos)=periodo_id(materias)
+          ->pluck('nome_periodo');//para pegar nome do periodo
 
-              foreach($DadosPeriodo as $ColunasPer){
-                $DadosCurso[]=
+          $Curso_id[$i]=
+          DB::table('periodos')
+          ->select('curso_id')
+          ->where('id',$Periodo_id[$i])//id(periodos)=periodo_id(materias)
+          ->pluck('curso_id');//para pegar nome do periodo
+      }
+          for($i=0;$i<sizeOf($Dadosid_materia);$i++){
+                $NomeCurso[]=
                 DB::table('cursos')
                 ->select('nome_curso')
-                ->find($ColunasCur->curso_id)//id(curso)=curso_id(periodos)
-                ->get();//para pegar id e nome do periodo
-      
-              }
-         }
-     }
-
+                ->where('id',$Curso_id[$i])//id(curso)=curso_id(periodos)
+                ->pluck('nome_curso');//para pegar id e nome do periodo
+               }/**/
+           
 return view('GerenciarProfessor')
 ->with('TabelaFuncionario',$DadosFuncionario)
 ->with('TabelaIDMateria',$Dadosid_materia)
-->with('TabelaPeriodo',$DadosPeriodo)
-->with('TabelaCurso',$DadosCurso);
+->with('TabelaNomeMateria',$NomeMateria)
+->with('TabelaPeriodo',$NomePeriodo)
+->with('TabelaCurso',$NomeCurso)
+->with('navbar','Gerenciar Professor');
+  
 
   }
 }

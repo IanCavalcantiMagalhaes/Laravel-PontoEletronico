@@ -1,45 +1,7 @@
+@extends('Templates/TemplateNavBar')
 
-<!DOCTYPE html>
-<html>
-    <head><script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Page</title>
 
-  <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
-  <script src="{{ asset('assets/js/MeuJs/GerenciarProfessor.js') }}"></script>
-  <style>
-        img{
-            width: 250px;
-            height: 250px;  
-        }
-  </style>
-    </head>
-    <body class="TelaDeFundo">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Gerenciar Professor</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('Pesquisar/Procurar') }}">Pesquisar <span class="sr-only">Pesquisar</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Marcar Ponto</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
-        </li>
-       
-      </ul>
-    </div>
-  </nav>
-        <section class="Sessao">
-<div>
-    
+@section('conteudo')
             <table cellpadding="15">
                     <thead>
                         <tr>
@@ -86,11 +48,11 @@
                                       <tr>
                                            
                                         <th scope="row"> {{ $TabelaIDMateria[$i]->materia_id }}</th>
+                                    
+                                        <td>{{ $TabelaNomeMateria[$i][0] }}</td>
                                         
-                                        <td>NomeMateria</td>
-                                        
-                                        <td>5º Periodo</td>
-                                        <td>S.I.</td>
+                                        <td>{{ $TabelaPeriodo[$i][0] }}</td>
+                                        <td>{{ $TabelaCurso[$i][0] }}</td>
                                         
                                       </tr>
                                       @endfor
@@ -164,10 +126,6 @@
                         
                     </div>
                 </div>
-        </section>
-    </body>
-</html>
-
 <script>
     $("#MascaraCPF").mask("000.000.000-00");
     $("#MascaraCEP").mask("00000-000");
@@ -211,3 +169,5 @@
         $('#DivLucroHora').hide();
 
         </script>
+
+        @endsection

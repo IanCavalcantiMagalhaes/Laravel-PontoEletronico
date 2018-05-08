@@ -46,7 +46,7 @@
 <input type="text" name="Cam2" id="Campo2" value=""/>
 
 
-    <div class="dropdown-menu">
+    <div class="dropdown-menu" id="DIV">
       ...
     </div>
   </div>
