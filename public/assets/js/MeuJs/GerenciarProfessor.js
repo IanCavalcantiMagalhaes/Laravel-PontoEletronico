@@ -71,7 +71,7 @@ function AtualizarSelectDeMateriasPossuidas(){
     //comando ajax abaixo:apagar e inserir novamente lista
 
 }
-function VerificarSeValorAdicionadoEstaRepetido(){
+function VerificarSeValorAdicionadoJaEstavaAdicionado(){
     $(document).ready(function(){
 
         $('#Materia').empty();
@@ -100,4 +100,6 @@ function VerificarSeValorAdicionadoEstaRepetido(){
     response::json(PermitirAdiçao);
     
     */ 
+}function VerificarSeAlgumProfessorPossuiEstaMateria(){
+    
 }

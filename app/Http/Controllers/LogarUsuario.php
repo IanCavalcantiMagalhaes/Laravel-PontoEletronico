@@ -12,20 +12,21 @@ class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
              'nome'=>'required',
              'senha'=>'required'
            ]);
+         
      /*  
-     
      $RS=Usuario::
        where('nome',$request->nome)
        ->where('senha',$request->senha)->get();
 */
         
-        if($RS=null){
+        if($RS=null || ($request->nome=='Ian' && $request->senha=='123456')){
            return view('Login')->with('ERRO',"Dados incorretos");
         }else{
             
            return view('Principal');
         }
     }
+
     public function testValidar(Request $request){
 
         /*  $RS=Usuario::
@@ -38,14 +39,24 @@ class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
   ]);
  
   if($request->nome=='Ian' && $request->senha=='123456'){
+    session([
+      'nome'=>$request->nome
+    ]);
     return redirect()->route('MarcarPonto'); 
   }else{
+
    return redirect()->route('PaginaLogar')->with('ERRO',"Dados incorretos");
   }
           
     
   }
        public function RetornarView(Request $request){
-        return view('PaginaLogin');
+        return view('Login');
        }
+       public function Logout(){
+         session()->flush();
+        return redirect()->route('PaginaLogar');
+
+       } 
 }
+

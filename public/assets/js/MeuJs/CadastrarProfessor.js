@@ -1,4 +1,4 @@
-/*function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU aceitar e inserir
+function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU aceitar e inserir
   // alert("Professor cadastrado com sucesso");
      var alerta;
     alerta="Conteudos abaixo estao inseridos de forma incorreta:\n";
@@ -47,12 +47,12 @@ alert("Ola");
         $.ajax({
           type: "GET",
           data: {IdCurso: $("#Curso").val()},
-          url:"/CadastrarProfessor/AjaxPeriodo",
+          url:"/AjaxPeriodo",
           success: function(data){
-            $('#Periodo').append("<option value=''>"+"Selecione um periodo"+"</option>");
+            $('#Periodo').append("<option value=''>"+""+"</option>");
           for(var i=0;i<data.Periodos.length;i++){
 
-              $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].nomePeriodo+"</option>");
+              $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].nome_periodo+"</option>");
            }
         
         }});
@@ -60,15 +60,16 @@ alert("Ola");
       }
 function AoAlterarPeriodo(){//inserir materias
 $(document).ready(function(){
-
+    alert($("#Periodo").val());
 $('#Materia').empty();
   $.ajax({
     type: "GET",
-    data: {Campo: $("#idPeriodo").val()},
-    url:"/CadastrarProfessor/AjaxMateria",success: function($result){
-        $('#Materia').append("<option value=''>"+"Selecione uma materia"+"</option>");
-        for(var i=0;i<$result.length;i++){//
-            $('#Materia').append("<option value="+$result[i].id+">"+$result[i].nomeMateria+"</option>");
+    data: {IdPeriodo: $("#Periodo").val()},
+    url:"/AjaxMateria",success: function(result){
+        alert(result);
+       // $('#Materia').append("<option value=''>"+""+"</option>");
+        for(var i=0;i<result.Materias.length;i++){//
+            $('#Materia').append("<option value="+result.Materias[i].id+">"+result.Materias[i].nome_materia+"</option>");
         }
 
     }});
@@ -88,4 +89,3 @@ function AdicionarProfessor(){
             }});
         });
 }
-*/

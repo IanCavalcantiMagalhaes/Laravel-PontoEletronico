@@ -39,7 +39,9 @@
             <li class="nav-item active">
               <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
             </li>
-            
+            <li class="nav-item active" >
+              <a class="nav-link" href="{{ url('Logout') }}" style="position:absolute;left:90%;">Logout({{ $sessao }})</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -66,7 +68,9 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
                 </li>
-                
+                <li class="nav-item active" >
+                  <a class="nav-link" href="{{ url('Logout') }}" style="position:absolute;left:95%;">Logout</a>
+                </li>
               </ul>
             </div>
           </nav>
@@ -95,7 +99,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
         </li>
-       
+        <li class="nav-item active" >
+          <a class="nav-link" href="{{ url('/Logout') }}" style="position:absolute;left:95%;">Logout</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -121,6 +127,9 @@
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Marcar Ponto</a>
+      </li>
+      <li class="nav-item active" >
+        <a class="nav-link" href="{{ url('/Logout') }}" style="position:absolute;left:95%;">Logout</a>
       </li>
     </ul>
   </div>
@@ -148,7 +157,9 @@
     <li class="nav-item active">
       <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
     </li>
-   
+    <li class="nav-item active" >
+      <a class="nav-link" href="{{ url('/Logout') }}" style="position:absolute;left:95%;">Logout</a>
+    </li>
   </ul>
 </div>
 </nav>

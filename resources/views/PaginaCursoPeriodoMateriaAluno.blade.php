@@ -27,21 +27,18 @@
                      <div id="DivCurso">
                     <p id="TextoCurso">Escolha um curso</p>
                     <select id="Curso" onchange="AoAlterarCurso()">
-                         <option>Selecione curso</option>
                          </select>
                       </div>
 
                       <div id="DivPeriodo">
                <p id="TextoPeriodo">Escolha um periodo</p>
                     <select id="Periodo" onchange="AoAlterarPeriodo()" >
-                         <option>Selecione Periodo</option>
                          </select>
                         </div>
 
                         <div id="DivMateria">
                          <p id="TextoMateria">Escolha uma materia</p> 
                     <select id="Materia" onchange="MostrarEsconderCampoDeTexto()">
-                         <option>Selecione Materia</option>
                          </select>
                         </div>
                         </br></br>
@@ -50,7 +47,7 @@
                      style="position:absolute;width:400px;left:-100px;"></br></br>
                      <form action="{{route('GerenciarCursos')}}" method="get">
                       {{ csrf_field() }}
-                     <button type="submit" class="btn btn-success" id="Botao" value="" style="position:absolute;margin:0 auto;">
+                     <button type="submit" class="btn btn-success" id="Botao" onclick="BotaoExecutarClicado" value="" style="position:absolute;margin:0 auto;">
                        <div id="TextoBotao"></div>
                      </button>
                     </form>
@@ -78,7 +75,10 @@
                         <option value="Sexta">Sexta</option>
                         </select>
                       </div>
-
+                      <div id="DivSala" style="position:absolute;margin-left:480px;top:0px;">
+                      <p>Diga o numero da sala</p>
+                      <input type="text" value="" id="Sala">
+                      </div>
                       <div class="alert alert-info" role="alert" style="position:relative;margin-left:400px;top:200px;">
                           <strong>OBSERVAÇÃO:</strong></br>Para Gerenciar professor (Ler,Alterar ou remover dados de professor)
                           será primeiro necessario procurar ele na pagina <a href="{{ url('Pesquisar/Procurar') }}">"Pesquisar"</a>
@@ -90,6 +90,7 @@
  <script> 
  $('#CampoHorario').mask("00:00");
  $('#Carregando').hide();
+ $('#DivSala').hide();
  $('#Botao').hide();
  $('#Curso').hide();
  $('#Periodo').hide();

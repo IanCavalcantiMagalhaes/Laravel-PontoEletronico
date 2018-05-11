@@ -54,12 +54,10 @@
                 <tr>
                 <td><p>Cursos</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control" name="curso">
                     <option value="Selecionar">Selecione um curso</option>
-                    <option>S.I.</option>
-
-                    {{--  
+              
                         @foreach ($Cursos as $Curso){ 
-                       <option value="{{ $Curso->id }} "> "{{ $Curso->nomeCurso }}" </option>
-                        @endforeach --}}
+                       <option value={{ $Curso->id }} > {{ $Curso->nome_curso }} </option>
+                        @endforeach 
                     </select></td>
                     <td><p>Cargos</p><select id="Cargo" class="form-control">
                             <option>Selecione algum cargo</option>
@@ -69,7 +67,8 @@
                             </select></td>
                 </tr> 
                 <tr>
-                <td><p>Periodo</p><select id="Periodo" name="periodo" onchange="AoAlterarPeriodo()" class="form-control">
+                <td><p>Periodo</p>
+                    <select id="Periodo" name="periodo" onchange="AoAlterarPeriodo()" class="form-control">
                         <option>Selecione um periodo</option>
                         <option>1º periodo</option>
                     </select></td>

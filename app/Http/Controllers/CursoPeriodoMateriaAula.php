@@ -10,48 +10,64 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Response;
 use DB;
 use Illuminate\Support\Facades\Input;
-
+use App\Models\Curso;
+use App\Models\Periodo;
 
 class CursoPeriodoMateriaAula extends BaseController
-{
-   public function Curso(Request $request){
-
-    if($request->EscolhidoComando="Editar"){
-      Curso::
-           update('NomeCurso',$request->CampoDeTexto)
-          ->update('turno',$request->turno)
-          ->where('id',$request->IdCurso);
-
-    }if($request->EscolhidoComando="Remover"){
-      
-
-    }if($request->EscolhidoComando="Adicionar"){
-      DB::table('Curso')->insert('NomeCurso',$request->CampoDeTexto);
-    }
-
-
-   }
-   function InserirCurso(){//inserir no select curso
+{   
+    function CarregarCursos(){//inserir no select curso
     $Cursos=
-    DB::table('Cursos')
-        ->get();
+    Curso::get();
   
 
 return Response::json(array('Cursos'=>$Cursos)); 
    }
+
+   function CarregarSala(Request $request){
+    $Sala= 
+    Periodo::select('sala')->where('id',$request->IdPeriodo)->get();
+
+    return Response::json(array('Sala'=>$Sala)); 
+   }
+  
+   public function Curso(Request $request){
+
+    if($request->EscolhidoComando="Editar"){
+      Curso::
+      update('nome_curso',$request->CampoDeTexto)
+      ->update('turno',$request->turno)
+      ->where('id',$request->IdCurso);
+
+    }if($request->EscolhidoComando="Remover"){
+      Curso::
+      where('id',$request->IdCurso)
+      ->remove();
+
+    }if($request->EscolhidoComando="Adicionar"){
+      Curso::
+      insert('nome_curso',$request->CampoDeTexto)
+      ->insert('turno',$request->Turno);
+    }
+
+
+   }
+
+   
    public function Periodo(Request $request){//Necessario pegar de ajax id de periodo,Comando escolhido e Campo de texto
 
     if($request->EscolhidoComando="Editar"){
-      DB::table('Periodo')
-          ->update('NomePeriodo',$request->CampoDeTexto)
-          ->where('id',$request->IdPeriodo);
+      Periodo::
+      update('nome_periodo',$request->CampoDeTexto)
+      ->update('turno',$request->Sala)
+      ->where('id',$request->IdPeriodo);
 
     }if($request->EscolhidoComando="Remover"){
 
 
     }if($request->EscolhidoComando="Adicionar"){
-       DB::table('Periodo')
-        ->insert('NomePeriodo',$request->CampoDeTexto);
+      Periodo::
+      insert('nome_periodo',$request->CampoDeTexto)
+      ->insert('turno',$request->Sala);
         
     }
 

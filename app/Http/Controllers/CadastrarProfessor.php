@@ -50,30 +50,31 @@ $file = $request->file('image')->store('Img');
  
 
    }public function AjaxPeriodo(Request $request){//inserir em periodos
-
+    if($request->IdCurso){
      $Periodos=
       DB::table('periodos')
-      ->where('Curso_id',$request->IdCurso)->get();
+      ->select('id','nome_periodo')
+      ->where('curso_id',$request->IdCurso)->get();
     
 
 return Response::json(array('Periodos'=>$Periodos)); 
-
+    }
 
     }public function AjaxMateria(Request $request){//inserir materias
-if($request->idPeriodo!=null){
+if($request->IdPeriodo!=null){
   $ID_e_NomeMateria=
-    DB::table('Materia')
-  ->select('id','nome')
-  ->where('Periodo_id',$request->idPeriodo)//input do select periodo
+    DB::table('materias')
+  ->select('id','nome_materia')
+  ->where('periodo_id',$request->IdPeriodo)
   ->get();
   
     /*Materia::
     where('Curso_id',$request->IdCurso)
     ->get();*/
 
-  return Response::json(json_encode($ID_e_NomeMateria)); 
+  return Response::json(array('Materias'=>$ID_e_NomeMateria)); 
+
 }
-  
   
   }public function InicializarView(){
  /*   $ID_e_NomeCursos=
@@ -81,9 +82,9 @@ if($request->idPeriodo!=null){
           ->select('id','nomeCurso')
           ->get();*/
           //$ID_e_NomeCursos=Curso::all();
-          
+          $ID_e_NomeCursos= Curso::get();
           return view('PaginaCadastrarProfessor')
-          ->with('navbar','Cadastrar Professor');//->with('Cursos',$ID_e_NomeCursos);
+          ->with('navbar','Cadastrar Professor')->with('Cursos',$ID_e_NomeCursos);
           
   }
 }

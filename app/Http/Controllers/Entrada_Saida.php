@@ -15,9 +15,12 @@ class Entrada_Saida extends BaseController
 {
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
    public function RetornarView(Request $request){
+     
+     $sessao = $request->session()->get('nome');
      return view('MarcarPonto')
      ->with('Resposta',$request->Resposta)
-     ->with('navbar','Marcar Ponto');
+     ->with('navbar','Marcar Ponto')
+     ->with('sessao',$sessao);
    }
 
     public function Contador(Request $request){//ao clicar no botao da PaginaContador
@@ -64,9 +67,7 @@ class Entrada_Saida extends BaseController
 
        return response()->json(array('RS'=>$RS));//respondera um boolean
   }
-  public function InverterStatusDeTrabalho(){
-  
-}
+ 
   public function IndentificarFuncionarioLiberado(Request $request){
           $RS=
           DB::table('Funcionarios')
