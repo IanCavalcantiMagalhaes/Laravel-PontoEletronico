@@ -38,7 +38,7 @@ class CreateFuncionariosTables extends Migration
         DB::table('Funcionarios')->insert(
             array(
                 'nome' => 'Jose',
-                'CPF' => '111.111.111-11'
+                'CPF' => '222.222.222-22'
             )
         );
     }

@@ -29,6 +29,19 @@ class CadastrarProfessor extends BaseController
       'materia' => 'required|not_in:1',
       'image'=> 'image'
     ]);
+$Funcionario= new Funcionario;
+$Funcionario->nome=$request->nome;
+$Funcionario->CPF=$request->cpf;
+$Funcionario->CEP=$request->cep;
+$Funcionario->save();
+
+$AdicionadoAnteriormente=Funcionario::latest()->first();//pegar valor adicionado recentemente na linha 32 ate 36(latest=ultimo)
+
+$Funcionario_Materia= new Funcionario_Materia;
+$Funcionario_Materia->id_funcionario=$AdicionadoAnteriormente->id;
+$Funcionario_Materia->id_materia=$request->materia;//sera pego do select o id de uma materia
+$Funcionario_Materia->save();
+
 
    if($request->file('image')!=null){
 $file = $request->file('image')->store('Img');
@@ -50,7 +63,10 @@ $file = $request->file('image')->store('Img');
  
 
    }public function AjaxPeriodo(Request $request){//inserir em periodos
-    if($request->IdCurso){
+
+    if(!$request->IdCurso){
+      return Response::json(false); 
+    }else{
      $Periodos=
       DB::table('periodos')
       ->select('id','nome_periodo')
@@ -61,7 +77,11 @@ return Response::json(array('Periodos'=>$Periodos));
     }
 
     }public function AjaxMateria(Request $request){//inserir materias
-if($request->IdPeriodo!=null){
+      if(!$request->IdPeriodo){//deixara vazio por que escolheu a opçao 'selecione um periodo' em que nao existe id
+        return Response::json(false); 
+
+      }else{
+        
   $ID_e_NomeMateria=
     DB::table('materias')
   ->select('id','nome_materia')
@@ -73,7 +93,7 @@ if($request->IdPeriodo!=null){
     ->get();*/
 
   return Response::json(array('Materias'=>$ID_e_NomeMateria)); 
-
+      
 }
   
   }public function InicializarView(){

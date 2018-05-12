@@ -18,31 +18,32 @@ $("#Entrada").hide();
   });
 }
 function AnaliseSairOuEntrar(){
-  $("#Sair").hide();$("#Entrar").hide();$("#Erro").hide();
+  $("#Saida").hide();$("#Entrada").hide();$("#Erro").hide();
+  alert($("#cpf").val());
   $(document).ready(function(){//inserir periodos
-    
         $.ajax({
           type: "GET",
           data: {CPF: $("#cpf").val()},
           url:"/MarcarPonto/Registrando",
           success: function(data){
-          for(var i=0;i<data.RS.length;i++){
-           
-        if(data.RS[i].trabalhando===1){
+           alert(data.RS.nome);
+        if(data.RS.Trabalhando===1){
            $("#Saida").show();
-           MostrarNomeDoFuncionarioLiberado();
+           //MostrarNomeDoFuncionario();
         }
-        if(data.RS[i].trabalhando===0){
+        if(data.RS.Trabalhando===0){
           $("#Entrada").show();
-          MostrarNomeDoFuncionarioLiberado();
-        }else{
+         // MostrarNomeDoFuncionario();
+        }if(data='erro'){
           $("#Erro").show();
         }
-      }
+          
+        
+      
         }});
 });
 }
-function MostrarNomeDoFuncionarioLiberado(){
+function MostrarNomeDoFuncionario(){
   $(document).ready(function(){
   $.ajax({
     type: "GET",

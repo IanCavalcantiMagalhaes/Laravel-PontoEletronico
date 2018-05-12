@@ -53,7 +53,7 @@
                     </form>
                         
                          
-                    <div id="Turno" style="position:absolute;margin-left:500px;top:0px;">
+                    <div id="DivTurno" style="position:absolute;margin-left:500px;top:0px;">
                       <p>Escolha um turno</p>
                         <select name="turno">
                         <option value="Matutino">Matutino</option>
@@ -90,17 +90,23 @@
  <script> 
  $('#CampoHorario').mask("00:00");
  $('#Carregando').hide();
- $('#DivSala').hide();
+
  $('#Botao').hide();
- $('#Curso').hide();
- $('#Periodo').hide();
- $('#Materia').hide();
  $('#Aula').hide();
  $('#CampoDeTexto').hide();
- $('#DivInserirHorario').hide();
- $('#Turno').hide();
- $('#TextoCurso').hide();
- $('#TextoPeriodo').hide();
-$('#TextoMateria').hide();
+ 
+
+$('#DivCurso').hide();
+$('#DivTurno').hide();
+
+$('#DivPeriodo').hide();
+$('#DivSala').hide();
+$('#Sala').val('');
+
+$('#DivMateria').hide();
+
+$('#DivAula').hide();
+$('#DivInserirHorario').hide();
+
  </script>
  @endsection

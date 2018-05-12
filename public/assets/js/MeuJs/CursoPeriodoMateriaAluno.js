@@ -59,7 +59,7 @@ $('#Carregando').show();
 
     $('#CampoDeTexto').empty();
     $("#TextoBotao").empty();
-
+//$('#CampoDeTexto').attr('readonly',false);
     
     if($("input[name='EscolhidoComando']:checked").val()==='Editar'){
         $('#CampoDeTexto').show();
@@ -84,46 +84,41 @@ $('#Carregando').show();
     $('#Curso').empty();
     $('#Periodo').empty();
     $('#Materia').empty();
-    $('#CampoDeTexto').empty();
-    $('#Turno').hide();
-    $('#TextoMateria').hide();
-    $('#CampoDeTexto').attr('readonly',false);
-    $('#DivInserirHorario').hide();
 
+    
 
-if($('#Escolhido').val()==='Curso'){
-    $('#DivCurso').show();
-    $('#Turno').show();
+    $('#DivCurso').hide();
+    $('#DivTurno').hide();
 
     $('#DivPeriodo').hide();
-    $('#TextoPeriodo').hide();
 
     $('#DivPeriodo').hide();
     $('#DivSala').hide();
+    $('#Sala').val('');
 
     $('#DivMateria').hide();
-   
+    
+    $('#DivAula').hide();
+    $('#DivInserirHorario').hide();
+
+if($('#Escolhido').val()==='Curso'){
+    $('#DivCurso').show();
+    $('#DivTurno').show();
 
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         //ao adicionar nao precisara selecionar curso
         
         $('#Curso').hide();
         $('#TextoCurso').hide();
-        $('#Turno').show();
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
-       $('#Turno').hide();//nao precisare selecionar turno
+       $('#DivTurno').hide();//nao precisare selecionar turno
     }
 
 }if($('#Escolhido').val()==='Periodo'){//Podera selecionar o curso e periodo que vai alterar/adicionar/remover
-    $('#Curso').show();
-    $('#TextoCurso').show();
-    $('#Periodo').show();
-    $('#TextoPeriodo').show();
+    $('#DivCurso').show();
     $('#DivPeriodo').show();
     $('#DivSala').show();
-    $('#Materia').hide();
-    $('#TextoMateria').hide();
     
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         //ao adicionar nao precisara selecionar periodo
@@ -132,29 +127,25 @@ if($('#Escolhido').val()==='Curso'){
         
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
-        $('#Turno').hide();//nao precisara selecionar turno
-        $('#DivSala').hide();
+        
+        $('#DivSala').hide();//nao precisara dizer sala
      }
+
 }if($('#Escolhido').val()==='Materia'){
-    $('#Curso').show();
-    $('#TextoCurso').show();
-    $('#Periodo').show();
-    $('#TextoPeriodo').show();
-    $('#Materia').show();
-    $('#TextoMateria').show();
+    $('#DivCurso').show();
+    $('#DivPeriodo').show();
+    $('#DivMateria').show();
+
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         //ao adicionar nao precisara selecionar materia
-        $('#Materia').hide(); $('#TextoMateria').hide();
+        $('#DivMateria').hide();
     }
     
 
 }if($('#Escolhido').val()==='Aula'){
-    $('#Curso').show();
-    $('#Periodo').show();
-    $('#TextoCurso').show();
-    $('#TextoPeriodo').show();
-    $('#Materia').show();
-    $('#TextoMateria').show();
+    $('#DivCurso').show();
+    $('#DivPeriodo').show();
+    $('#DivMateria').show();
     $('#DivInserirHorario').show();
     
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
@@ -168,7 +159,7 @@ $(document).ready(function(){//re-inserir Cursos toda vez que modificar
          type: "GET",
          url:"/GerenciarCursos/CarregarCursos",
          success: function(data){
-            //$('#Curso').append("<option value=''>"+"Selecione um curso"+"</option>");
+            $('#Curso').append("<option value=''>"+"Selecione um curso"+"</option>");
          for(var i=0;i<data.Cursos.length;i++){
  
             $('#Curso').append("<option value='"+data.Cursos[i].id+"'>"+data.Cursos[i].nome_curso+"</option>");
@@ -194,6 +185,7 @@ if($('#Escolhido').val()==='Selecione'){
 //Abaixo:Opçoes de selecionar
 
 function AoAlterarCurso(){
+    $('#Periodo').empty();
     $(document).ready(function(){//inserir periodos em select
       $('#Periodo').empty();
       $('#Materia').empty();
@@ -201,37 +193,49 @@ function AoAlterarCurso(){
           type: "GET",
           data: {IdCurso: $("#Curso").val()},
           url:"/AjaxPeriodo",success: function(data){
-            //$('#Periodo').append("<option value=''>"+"Selecione um periodo"+"</option>");
+              if(data===false){
+                $('#Periodo').empty();//deixara vazio por que escolheu a opçao 'selecione um curso' em que nao existe id
+              }else{
+
+            $('#Periodo').append("<option value=''>"+"Selecione um periodo"+"</option>");
           for(var i=0;i<data.Periodos.length;i++){
 
               $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].nome_periodo+"</option>");
            }
-       
+       }
         }});
 });
       }
 function AoAlterarPeriodo(){//inserir materias em select e campo de texto sala
+
+    $('#Materia').empty();
+    $('#Sala').val('');
     $(document).ready(function(){
     $('#Materia').empty();
       $.ajax({
         type: "GET",
         data: {IdPeriodo: $("#Periodo").val()},
         url:"/AjaxMateria",success: function(result){
-           // $('#Materia').append("<option value=''>"+"Selecione uma materia"+"</option>");
+
+            if(result===false){
+                $('#Materia').empty();//deixara vazio por que escolheu a opçao 'selecione um periodo' em que nao existe id
+              }else{
+
+            $('#Materia').append("<option value=''>"+"Selecione uma materia"+"</option>");
             for(var i=0;i<result.Materias.length;i++){//
                 $('#Materia').append("<option value="+result.Materias[i].id+">"+result.Materias[i].nome_materia+"</option>");
             }
-    
+        }
         }});
     });
     $(document).ready(function(){
-        $('#Sala').empty();
+        
            $.ajax({
              type: "GET",
              url:"/GerenciarCursos/CarregarSala",
              data: {IdPeriodo: $("#Periodo").val()},
              success: function(data){
-                 alert('Sucesso');
+
                 for(var i=0;i<data.Sala.length;i++){
                 $('#Sala').val(data.Sala[i].sala);
                 }

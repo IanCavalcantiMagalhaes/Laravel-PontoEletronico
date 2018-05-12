@@ -9,13 +9,23 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Response;
 use DB;
+use App\Models\Funcionario;
 
 class Pesquisar extends BaseController
 {
   public function Professor(Request $request){
+
 if($request->PesquisarPor==="Id"){
-$Result=DB::table('funcionarios')
-     ->where('id',$request->CampoPesquisa)->get();
+$Result=
+     Funcionario::
+     where('id',$request->CampoPesquisa)
+     ->get();
+}if($request->PesquisarPor==="Nome"){
+
+
+}if($request->PesquisarPor==="CPF"){
+
+
 }
 
     

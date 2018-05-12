@@ -22,6 +22,7 @@
 
 <div><h2>Let jQuery AJAX Change This Text</h2></div>
 <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+<div id="div2"></div>
 <div class="input-group mb-3">
     <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01">Options</label>
@@ -49,6 +50,10 @@
     <div class="dropdown-menu" id="DIV">
       ...
     </div>
+    <select id="Materia" name="materia" class="form-control" onchange="Alert()">
+                    <option value="1">Selecione uma Materia</option>
+                    <option value="2">Programaçao</option>
+                    </select>
   </div>
   @if($Arranjo!='vazio')
   @foreach($Arranjo as $Coluna)

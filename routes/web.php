@@ -116,13 +116,13 @@ Route::get('/ManipularCurso', function () {
     return view('PaginaCursoPeriodoMateriaAluno');
 });
 Route::get('/Testando',function(){
-    $X= Funcionario::get();
+    $X= Funcionario::get();//find(1);
     foreach($X as $dados){
-      $Array[]=$dados->id;
-      $Array[]=$dados->nome;
+      //$Array[]=$dados->id;
+      //$Array[]=$dados->nome;
      
     }
  
-    return view('Test')->with('Arranjo',$Array);
+    return view('Test')->with('Arranjo',$X);
 });
 Route::get('/Somar','test@AjaxSoma');Route::get('/AjaxTestando','test@AjaxTest');

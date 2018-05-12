@@ -39,41 +39,48 @@ function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU ac
     
 }
 function AoAlterarCurso(){
-alert("Ola");
-    $(document).ready(function(){//inserir periodos
-     
+    $('#Periodo').empty();
+    $(document).ready(function(){//inserir periodos em select
       $('#Periodo').empty();
       $('#Materia').empty();
         $.ajax({
           type: "GET",
           data: {IdCurso: $("#Curso").val()},
-          url:"/AjaxPeriodo",
-          success: function(data){
-            $('#Periodo').append("<option value=''>"+""+"</option>");
-          for(var i=0;i<data.Periodos.length;i++){
+          url:"/AjaxPeriodo",success: function(data){
+              if(data===false){
+                $('#Periodo').empty();//deixara vazio por que escolheu a opçao 'selecione um curso' em que nao existe id
+              }else{
 
+            $('#Periodo').append("<option value=''>"+"Selecione um periodo"+"</option>");
+          for(var i=0;i<data.Periodos.length;i++){
               $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].nome_periodo+"</option>");
            }
-        
+       }
         }});
 });
       }
 function AoAlterarPeriodo(){//inserir materias
-$(document).ready(function(){
-    alert($("#Periodo").val());
-$('#Materia').empty();
-  $.ajax({
-    type: "GET",
-    data: {IdPeriodo: $("#Periodo").val()},
-    url:"/AjaxMateria",success: function(result){
-        alert(result);
-       // $('#Materia').append("<option value=''>"+""+"</option>");
-        for(var i=0;i<result.Materias.length;i++){//
-            $('#Materia').append("<option value="+result.Materias[i].id+">"+result.Materias[i].nome_materia+"</option>");
-        }
 
-    }});
-});
+    $('#Materia').empty();
+
+    $(document).ready(function(){
+    $('#Materia').empty();
+      $.ajax({
+        type: "GET",
+        data: {IdPeriodo: $("#Periodo").val()},
+        url:"/AjaxMateria",success: function(result){
+
+            if(result===false){
+                $('#Materia').empty();//deixara vazio por que escolheu a opçao 'selecione um periodo' em que nao existe id
+              }else{
+
+            $('#Materia').append("<option value=''>"+"Selecione uma materia"+"</option>");
+            for(var i=0;i<result.Materias.length;i++){//
+                $('#Materia').append("<option value="+result.Materias[i].id+">"+result.Materias[i].nome_materia+"</option>");
+            }
+        }
+        }});
+    });
 }
 function AdicionarProfessor(){
     //inserir materias

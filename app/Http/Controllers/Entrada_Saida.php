@@ -9,7 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Response;
 use DB;
-
+use App\Models\Funcionario;
 
 class Entrada_Saida extends BaseController
 {
@@ -24,48 +24,43 @@ class Entrada_Saida extends BaseController
    }
 
     public function Contador(Request $request){//ao clicar no botao da PaginaContador
+    $ID=Funcionario::where('CPF',$request->CPF)->pluck('id')->first();//pelo CPF pegar o ID
+
     $RS=
-      DB::table('funcionarios')
-    ->select('id','trabalhando')
-    ->where('CPF',$request->CPF)->get();
+    Funcionario::find($ID)
+    ->select('id','Trabalhando','nome')
+    ->first();
 
-    foreach($RS as $column){
-    
-    if($column->trabalhando===0){//esta fora e quer entrar
+     if($RS->Trabalhando===1){
 
-      DB::table('Funcionarios')//inverter valor de 'trabalhando'
-      ->update('trabalhando',1)
-      ->where('CPF',$request->CPF)->get();
+     $F=Funcionario::find($ID);
+     $F->Trabalhando=0;
+     $F->save();
 
-      DB::table('GuardadosTemporariamente')//Guardar em tabela e pegar quando for sair
-      ->insert('Funcionario_id',$column->id)
-      ->insert('TempoDeChegada',microtime(true));
+     $TC=TempoChegada::where('id_funcionario',$ID);
+     $TempoFeito=(((microtime(true)-$TC->Chegada)/1000)/60)/60;
+
+     return response()->json(array('RS'=>$RS));
+
+     }
+     if($RS->Trabalhando===0){
+       
+      $F=Funcionario::find($ID);
+      $F->Trabalhando=1;
+      $F->save();
+
+      $TC=new TempoChegada;
+      $TC->id_funcionario=$ID;
+      $TC->Chegada=microtime(true);
 
       return response()->json(array('RS'=>$RS));
-    }  
-    if($column->trabalhando===1){//esta dentro e quer sair
 
-      DB::table('Funcionarios')//inverter valor de 'trabalhando'
-      ->update('trabalhando',0)
-      ->where('CPF',$request->CPF)->get();
+     }else{
+      return response()->json('erro');
+     }
+  
 
-      $Tempo=DB::table('GuardadosTemporariamente')
-      ->select('TempoDeChegada')
-      ->where('Funcionario_id',$column->id)
-      ->get();
-      
-      $TempoFeito=(((microtime(true)-$Tempo)/1000)/60)/60;
-      
-      DB::table('GuardadosTemporariamente')//limpar da tabela
-      ->where('Funcionario_id',$column->id)
-      ->remove();
-
-      
-    }  
-}
-
-
-       return response()->json(array('RS'=>$RS));//respondera um boolean
+       //respondera um boolean
   }
  
   public function IndentificarFuncionarioLiberado(Request $request){

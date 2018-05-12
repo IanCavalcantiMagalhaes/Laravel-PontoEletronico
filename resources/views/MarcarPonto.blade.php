@@ -6,7 +6,7 @@
   <input type="text" name="CPF" id="cpf" class="form-control" 
   placeholder="Digite CPF" style="margin:0 auto;width:25%;">
   <div class="col-sm-12 text-center" style="top:10px;">
-  <button type="button" onclick="AnaliseTest()" class="btn btn-primary center-block" >Marcar Ponto</button>
+  <button type="button" onclick="AnaliseSairOuEntrar()" class="btn btn-primary center-block" >Marcar Ponto</button>
   </div>
  </div>
 

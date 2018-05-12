@@ -11,7 +11,8 @@ use Response;
 use DB;
 use Illuminate\Support\Facades\Input;
 use json;
-
+use App\Models\Funcionario;
+use App\Models\FuncionarioMateria;
 
 class GerenciarProfessor extends BaseController
 {
@@ -46,28 +47,27 @@ public function ListarTodosOsDadosProfessor(Request $request){
     ->get();*/
 
     $DadosFuncionario=
-     DB::table('funcionarios')//Pegar dados de funcionario
-     ->find(1);
+     Funcionario:://Pegar dados de funcionario
+     find(1);//$request->ID
 
      $Dadosid_materia=
-     DB::table('funcionarios_materias')//Pegar materias relacionadas com funcionario
-     ->select('materia_id')
-     ->where('funcionario_id','1')
+     FuncionarioMateria:://Pegar materias relacionadas com funcionario
+     where('funcionario_id',$DadosFuncionario->id)//$request->ID
      ->get();
 
    
 //foreach($Dadosid_materia as $Dadosid_materia){
    for($i=0;$i<sizeOf($Dadosid_materia);$i++){
        
-      $NomeMateria[]=//Lembrete:Json_decode provavelmente
+      $NomeMateria[]=
       
       DB::table('materias')
       ->select('nome_materia')
       ->where('id',$Dadosid_materia[$i]->materia_id)//id(materia)=id_materia(funcionarios_materias)
-      ->pluck('nome_materia')//para pegar nome da materia
-      ;
+      ->pluck('nome_materia');//para pegar nome da materia
+      
 
-      $Periodo_id[$i]=
+      $Periodo_id[]=
       DB::table('materias')
       ->select('periodo_id')
       ->where('id',$Dadosid_materia[$i]->materia_id)//id(materia)=id_materia(funcionarios_materias)
@@ -76,13 +76,13 @@ public function ListarTodosOsDadosProfessor(Request $request){
    }
 
       for($i=0;$i<sizeOf($Periodo_id);$i++){
-          $NomePeriodo[$i]=
+          $NomePeriodo[]=
           DB::table('periodos')
           ->select('nome_periodo')
           ->where('id',$Periodo_id[$i])//id(periodos)=periodo_id(materias)
           ->pluck('nome_periodo');//para pegar nome do periodo
 
-          $Curso_id[$i]=
+          $Curso_id[]=
           DB::table('periodos')
           ->select('curso_id')
           ->where('id',$Periodo_id[$i])//id(periodos)=periodo_id(materias)
