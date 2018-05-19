@@ -27,14 +27,15 @@ function AnaliseSairOuEntrar(){
           url:"/MarcarPonto/Registrando",
           success: function(data){
            alert(data.RS.nome);
+           
         if(data.RS.Trabalhando===1){
            $("#Saida").show();
-           //MostrarNomeDoFuncionario();
+           MostrarNomeDoFuncionario();
         }
         if(data.RS.Trabalhando===0){
           $("#Entrada").show();
-         // MostrarNomeDoFuncionario();
-        }if(data='erro'){
+           MostrarNomeDoFuncionario();
+        }if(data.RS==='erro'){
           $("#Erro").show();
         }
           
@@ -44,6 +45,7 @@ function AnaliseSairOuEntrar(){
 });
 }
 function MostrarNomeDoFuncionario(){
+  $("#Indentificaçao").empty();
   $(document).ready(function(){
   $.ajax({
     type: "GET",
@@ -52,7 +54,7 @@ function MostrarNomeDoFuncionario(){
     success: function(result){
       for(var i=0;i<result.Professor.length;i++){
       
-      $("#Indentificaçao").append(result.Professor[i].nome+" de id "+result.Professor[i].id);
+      $("#Indentificaçao").append("Para "+result.Professor[i].nome+" de id "+result.Professor[i].id);
       }
 }});
 });

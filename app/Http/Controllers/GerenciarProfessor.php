@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Input;
 use json;
 use App\Models\Funcionario;
 use App\Models\FuncionarioMateria;
+use App\Models\Curso;
+use App\Models\Periodo;
+use App\Models\Materia;
 
 class GerenciarProfessor extends BaseController
 {
@@ -26,16 +29,21 @@ $Professor=array([
 }
 
 public function AdicionarMateriaAoProfessor(Request $request){
-    DB::table('funcionarios_materias')
-    ->insert('id_funcionario',$request->id_Funcionario)
-    ->insert('id_materia',$request->id_Materia);
+
+    $FM=new FuncionarioMateria;
+    $FM->funcionario_id=$request->id_Funcionario;
+    $FM->materia_id=$request->id_Materia;
+
+
      return redirect()->route('GerenciarProfessor');
+
 }
 public function RemoverMateriaDoProfessor(Request $request){
     DB::table('funcionarios_materias')
-    ->where('id_funcionario',$request->id_Funcionario)
-    ->where('id_materia',$request->id_Materia)
+    ->where('id_funcionario',$request->funcionario_id)
+    ->where('id_materia',$request->materia_id)
     ->delete();
+
      return redirect()->route('GerenciarProfessor');
 }
 
@@ -107,15 +115,10 @@ return view('GerenciarProfessor')
 
   }
 
-  public function ListarTodosOsDadosProfessorComModel(Request $request){
-
-    /*$DadosFuncionario=
-    DB::table('funcionarios')//Pegar dados de funcionario
-    ->find($request->id)
-    ->get();*/
+  public function ListarTodosOsDadosProfessorComModel(Request $request){//sera utilizado tanto para selecionar resultado de pesquisa e atualizar pagina depois de alteraçao
 
     $DadosFuncionario=
-     Funcionario::find(1);
+     Funcionario::find(1);//$request->ID
 
      $Dadosid_materia=
      DB::table('funcionarios_materias')//Pegar materias relacionadas com funcionario
@@ -128,14 +131,14 @@ return view('GerenciarProfessor')
    for($i=0;$i<sizeOf($Dadosid_materia);$i++){
        
       $NomeMateria[]=
-      Materia::select('nome_materia')
-      ->where('id',$Dadosid_materia[$i]->materia_id)//id(materia)=id_materia(funcionarios_materias)
+      Materia::
+      where('id',$Dadosid_materia[$i]->materia_id)//id(materia)=id_materia(funcionarios_materias)
       ->pluck('nome_materia');//para pegar nome da materia
       
 
-      $Periodo_id[$i]=
-      Materia::select('periodo_id')
-      ->where('id',$Dadosid_materia[$i]->materia_id)//id(materia)=id_materia(funcionarios_materias)
+      $Periodo_id[]=
+      Materia::
+      where('id',$Dadosid_materia[$i]->materia_id)//id(materia)=id_materia(funcionarios_materias)
       ->pluck('periodo_id');//para pegar chave estrageira de materia(para saber em que periodo esta)
       //$NomeMateria[$i]=json_decode($NomeMateria[$i],true);
    }

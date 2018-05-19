@@ -16,6 +16,8 @@ class CreateFuncionarioMateriaTable extends Migration
         Schema::create('funcionarios_materias', function (Blueprint $table) {
             $table->integer('funcionario_id');
             $table->integer('materia_id');
+            $table->rememberToken();
+            $table->timestamps();
         });
         DB::table('funcionarios_materias')
         ->insert(array(

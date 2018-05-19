@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Response;
 use DB;
 use App\Models\Funcionario;
+use App\Models\TempoChegada;
 
 class Entrada_Saida extends BaseController
 {
@@ -26,6 +27,8 @@ class Entrada_Saida extends BaseController
     public function Contador(Request $request){//ao clicar no botao da PaginaContador
     $ID=Funcionario::where('CPF',$request->CPF)->pluck('id')->first();//pelo CPF pegar o ID
 
+     if($ID){
+
     $RS=
     Funcionario::find($ID)
     ->select('id','Trabalhando','nome')
@@ -33,14 +36,27 @@ class Entrada_Saida extends BaseController
 
      if($RS->Trabalhando===1){
 
+    $TC=
+    TempoChegada:://pegar tempo de chegada guardada
+    where('funcionario_id',$ID)
+    ->get()
+    ->first();
+
+      $TempoFeito=microtime(true)-$TC->Chegada;
+     // $TempoFeito=(($TempoFeito/1000)/60);
+
      $F=Funcionario::find($ID);
-     $F->Trabalhando=0;
+     $F->Trabalhando=0;//inverter status
+     $F->CargahorariaAtual=$F->CargahorariaAtual+$TempoFeito;//incrementar tempo feito
      $F->save();
 
-     $TC=TempoChegada::where('id_funcionario',$ID);
-     $TempoFeito=(((microtime(true)-$TC->Chegada)/1000)/60)/60;
-
+      $TC=TempoChegada::
+      where('funcionario_id',$ID);
+      $TC->delete();
+     
      return response()->json(array('RS'=>$RS));
+    
+     //$RP=new RegistroDePonto;$RP->funcionario_id=$ID;$RP->TempoFeito=$TempoFeito;
 
      }
      if($RS->Trabalhando===0){
@@ -50,13 +66,15 @@ class Entrada_Saida extends BaseController
       $F->save();
 
       $TC=new TempoChegada;
-      $TC->id_funcionario=$ID;
+      $TC->funcionario_id=$ID;
       $TC->Chegada=microtime(true);
+      $TC->save();
 
       return response()->json(array('RS'=>$RS));
 
-     }else{
-      return response()->json('erro');
+     }
+    }if(!$ID){
+      return response()->json(array('RS'=>"erro"));
      }
   
 

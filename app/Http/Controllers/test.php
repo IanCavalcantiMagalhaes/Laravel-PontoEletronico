@@ -11,6 +11,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use DB;
 use App\Models\Funcionario;
+use App\Models\Curso;
 class test extends Controller
 {
     public function AjaxTest(Request $request){
@@ -33,7 +34,8 @@ class test extends Controller
          $X=
          Funcionario::where('id',1)
          ->get();
-
+         
+      
               foreach($X as $dados){
                 $Array[]=$dados->Trabalhando;
                 $Array[]=$dados->nome;

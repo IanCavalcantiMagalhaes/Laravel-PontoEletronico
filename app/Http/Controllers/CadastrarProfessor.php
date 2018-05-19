@@ -11,6 +11,7 @@ use Response;
 use DB;
 use Illuminate\Support\Facades\Input;
 use App\Models\Funcionario;
+use App\Models\FuncionarioMateria;
 use App\Models\Curso;
 use App\Models\Periodo;
 use App\Models\Materia;
@@ -24,38 +25,29 @@ class CadastrarProfessor extends BaseController
       'nome'=>'required',
       'cpf'=>'required',
       'cep'=>'required',
-      'curso' => 'required|not_in:1',
-      'periodo' => 'required|not_in:1',
-      'materia' => 'required|not_in:1',
+      'materia' => 'required',
       'image'=> 'image'
     ]);
+    
 $Funcionario= new Funcionario;
 $Funcionario->nome=$request->nome;
 $Funcionario->CPF=$request->cpf;
 $Funcionario->CEP=$request->cep;
 $Funcionario->save();
 
-$AdicionadoAnteriormente=Funcionario::latest()->first();//pegar valor adicionado recentemente na linha 32 ate 36(latest=ultimo)
+$AdicionadoAnteriormente=Funcionario::latest()->first();//pegar valor adicionado recentemente (latest=ultimo)
 
-$Funcionario_Materia= new Funcionario_Materia;
-$Funcionario_Materia->id_funcionario=$AdicionadoAnteriormente->id;
-$Funcionario_Materia->id_materia=$request->materia;//sera pego do select o id de uma materia
-$Funcionario_Materia->save();
+$FuncionarioMateria= new FuncionarioMateria;
+$FuncionarioMateria->funcionario_id=$AdicionadoAnteriormente->id;
+$FuncionarioMateria->materia_id=$request->materia;//sera pego do select o id de uma materia
+$FuncionarioMateria->save();
 
 
-   if($request->file('image')!=null){
+   if($request->file('image')!=null){// https://cursos.alura.com.br/forum/topico-como-exibir-imagem-da-pasta-storage-laravel-50551
 $file = $request->file('image')->store('Img');
    }
     
 
-/*
-    DB::table('Professor')
-    ->insert('Nome',$pedido->Nome)
-    ->insert('CPF',$pedido->CPF)
-    ->insert('CEP',$pedido->CEP)
-    ->insert('Telefone',$pedido->Telefone) 
-    ->insert('ID_Materia',$pedido->input(''));                                                                         
-  */
   return redirect()->route('MarcarPonto');
    }public function AjaxTest(Request $request){
  
@@ -77,6 +69,7 @@ return Response::json(array('Periodos'=>$Periodos));
     }
 
     }public function AjaxMateria(Request $request){//inserir materias
+      
       if(!$request->IdPeriodo){//deixara vazio por que escolheu a opçao 'selecione um periodo' em que nao existe id
         return Response::json(false); 
 

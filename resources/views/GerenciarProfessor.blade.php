@@ -32,13 +32,12 @@
     </div>
   </nav>
         <section class="Sessao">
-            {{-- @foreach($TabelaFuncionario as $TabelaFuncionario) --}}
             <table cellpadding="50" style="">
                     <thead>
                         <tr>
-                            <th><h2>Gerenciar dados de Professor </h2></th>
+                            <th><h2>Gerenciar dados de Professor(ID:<div id="ID">$TabelaFuncionario->id</div>) </h2></th>
                             <th><button type="button" class="glyphicon glyphicon-edit" 
-                              onclick="LiberarEdiçaoOuFecharEdiçao()">Habilitar ediçao</button></th>
+                              onclick="HabilitarEdiçao()"><div id="DivEdiçao"></div></button></th>
                             <th><div id="image-holder"></div></th>
                         </tr>
                     </thead>
@@ -90,6 +89,7 @@
                                     </div>
                                     </tbody>
                                   </table>
+
                                 </div>
                                 </td>
                             
@@ -126,14 +126,14 @@
                         </tr>
                         <tr>
                         <td><p>Adicionar Materia ao professor</p>
-                          <select id="Materia" class="form-control">
+                          <select id="MateriaAdicionar" class="form-control">
                             <option>Selecione uma Materia</option>
                             </select><button type="button" class="btn btn-success" 
                             onclick="AdicionarMateria()">Adicionar materia</button>
                           </td>
                           <td><h1>Remover materia</h1>
                               <p>Remover Materia(s) que professor possui</p>
-                            <select id="Materia" class="form-control">
+                            <select id="MateriaRemover" class="form-control">
                               <option>Selecione uma Materia</option>
                               </select><button type="button" class="btn btn-danger" 
                               onclick="RemoverMateria()">Remover materia</button>
@@ -143,6 +143,7 @@
                        
                     </tbody>
                 </table>
+                <button type="submit" class="btn btn-success" onclick="" id="BotaoAtualizar">Atualizar</button>
              
                 
         </section>
@@ -180,4 +181,6 @@
         $('#campoNome').attr('readonly', true);
         $('#campoCEP').attr('readonly', true);
         $('#campoCPF').attr('readonly', true);
+        $('#DivEdiçao').val("Editar");
+        $('#BotaoAtualizar').show();
         </script>

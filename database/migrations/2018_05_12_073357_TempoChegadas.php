@@ -13,9 +13,8 @@ class TempoChegadas extends Migration
      */
     public function up()
     {
-        Schema::create('materias', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('funcionario_id')->references('id')->on('');
+        Schema::create('TempoChegadas', function (Blueprint $table) {
+            $table->integer('funcionario_id');
             $table->bigInteger('Chegada');
             $table->timestamps();
         });

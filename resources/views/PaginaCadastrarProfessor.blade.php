@@ -34,7 +34,7 @@
                     <td><p>CPF</p><input class="form-control" type="text" name="cpf" value="" id="CPF" style="width:200px;"/></td>
                     <td></br></br>
                         <div class="custom-file small" >
-                            <input type="file" class="custom-file-input" id="customFile"accept="image/png, image/jpeg" name="image">
+                            <input type="file" class="custom-file-input" id="customFile"   accept="image/png, image/jpeg" name="image">
                             <label class="custom-file-label" for="customFile" >Selecione imagem</label>
                           </div></td>
                 </tr>
@@ -53,7 +53,7 @@
                 
                 <tr>
                 <td><p>Cursos</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control" name="curso">
-                    <option value="Selecionar">Selecione um curso</option>
+                    <option value="">Selecione um curso</option>
               
                         @foreach ($Cursos as $Curso){ 
                        <option value={{ $Curso->id }} > {{ $Curso->nome_curso }} </option>
@@ -69,14 +69,10 @@
                 <tr>
                 <td><p>Periodo</p>
                     <select id="Periodo" name="periodo" onchange="AoAlterarPeriodo()" class="form-control">
-                        <option>Selecione um periodo</option>
-                        <option>1º periodo</option>
                     </select></td>
                 </tr>
                 <tr>
                 <td><p>Materia</p><select id="Materia" name="materia" class="form-control">
-                    <option>Selecione uma Materia</option>
-                    <option>Programaçao</option>
                     </select></td> 
                     </tr>
 

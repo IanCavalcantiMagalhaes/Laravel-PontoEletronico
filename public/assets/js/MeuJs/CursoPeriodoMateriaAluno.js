@@ -1,30 +1,34 @@
-function BotaoExecutarClicado(){
-    if($("#Escolhido").val()='Curso'){
+function BotaoExecutarClicado(){alert("Ola");
+    if($("#Escolhido").val()==='Curso'){
         Curso();
     }
-    if($("#Escolhido").val()='Periodo'){
+    if($("#Escolhido").val()==='Periodo'){
         Periodo();
     }
-    if($("#Escolhido").val()='Materia'){
+    if($("#Escolhido").val()==='Materia'){
         Materia();
     }
-    if($("#Escolhido").val()='Aula'){
+    if($("#Escolhido").val()==='Aula'){
         Aula();
     }
 
 }
 
 function Curso(){//Opçoes de adicionar,remover e alterar serao indentificadas no controller
+    alert($(".EscolhidoComando:checked").val());
+    alert($("#Turno").val());
     $(document).ready(function(){//inserir periodos
          $('#Periodo').empty();
          $('#Materia').empty();
            $.ajax({
              type: "GET",
              data: {IdCurso: $("#Curso").val(),
-             EscolhidoComando:$("input[name='EscolhidoComando']:checked".val()),//remover,adicionar ou alterar
+             CampoDeTexto:$("#CampoDeTexto").val(),
+             EscolhidoComando:$(".EscolhidoComando:checked").val(),//remover,adicionar ou alterar
              Turno:$("#Turno").val()},
-             url:"/GerenciarCursos/Curso",success: function(){
-             
+             url:"/GerenciarCursos/Curso",
+             success: function(result){
+                alert("Sucesso");
            }});
    });
 }

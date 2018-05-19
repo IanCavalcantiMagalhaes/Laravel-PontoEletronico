@@ -7,14 +7,39 @@ function TrocarCargo(){
 }
 
 function HabilitarEdiçao(){
+
+if($('#DivEdiçao').val()==="Editar"){//clicou quando valor foi editar
     $('#Nome').attr('readonly', false);
     $('#CEP').attr('readonly', false);
     $('#CPF').attr('readonly', false);
     $('#EdiçaoMateria').show();
-}
-function AdicionarMateria(){//Vai ir e voltar do controller:MostrarDados@AdicionarMateriaAoProfessor
-//comando ajax abaixo:Adicionar id de funcionario e materia em uma table(id_funcionario_materia) e atualizar select
+    $('#BotaoAtualizar').show();
+    $('#DivEdiçao').val("Desabilitar Ediçao");//inverter
+    
 
+}if($('#DivEdiçao').val()==="Desabilitar Ediçao"){
+    $('#Nome').attr('readonly', true);
+    $('#CEP').attr('readonly', true);
+    $('#CPF').attr('readonly', true);
+    $('#EdiçaoMateria').hide();
+    $('#BotaoAtualizar').hide();
+    $('#DivEdiçao').val("Editar");
+}
+}
+function AdicionarMateria(){
+    
+    $(document).ready(function(){
+
+    $('#Materia').empty();
+      $.ajax({
+        type: "GET",
+        data: {id_Materia: $("#MateriaAdicionar").val(),
+               id_Funcionario: $("#ID").val()},//'ID' igual ao form gerado em pesquisar para ter o mesmo nome do request e assim poder utilizar o mesmo controller
+        url:"",success: function($result){
+
+           
+        }});
+    });
 }
 function VerificarDados(){//Proibir acesso por erro de dados OU aceitar e inserir
   //  alert("Professor re-cadastrado com sucesso");
@@ -71,6 +96,20 @@ function AtualizarSelectDeMateriasPossuidas(){
     //comando ajax abaixo:apagar e inserir novamente lista
 
 }
+
+function AtualizarPagina(){
+    $(document).ready(function(){
+
+        $('#Materia').empty();
+          $.ajax({
+            type: "GET",
+            data: {ID: $("#ID").val()},//'ID' igual ao form gerado em pesquisar para ter o mesmo nome do request e assim poder utilizar o mesmo controller
+            url:"",success: function($result){
+
+               
+            }});
+        });
+}
 function VerificarSeValorAdicionadoJaEstavaAdicionado(){
     $(document).ready(function(){
 
@@ -79,16 +118,18 @@ function VerificarSeValorAdicionadoJaEstavaAdicionado(){
             type: "GET",
             data: {idFuncionario: $("#Id").val(),idAdicionado: $("#MateriaAdicionar").val()},
             url:"",success: function($result){
+
                if($result===false){
-                  alert("Este item ja esta adicionado");
+                  alert("Este item ja estava adicionado");
                }else{
-                AdicionarMateria()
+                VerSeProfessorUltrapassouLimiteDe5Materias();
                }
+               
             }});
         });
     /*Este ajax ira executar este controller
     $Tabela=
-    table(id_funcionario_materia)->select('id_materia')
+    FuncionarioMateria::select('id_materia')
     ->where('id_funcionario',$request->idFuncionario)
     ->get();
     PermitirAdiçao=true;
@@ -100,6 +141,70 @@ function VerificarSeValorAdicionadoJaEstavaAdicionado(){
     response::json(PermitirAdiçao);
     
     */ 
-}function VerificarSeAlgumProfessorPossuiEstaMateria(){
+}function VerSeProfessorUltrapassouLimiteDe5Materias(){
+    $(document).ready(function(){
+
+        $('#Materia').empty();
+          $.ajax({
+            type: "GET",
+            data: {idFuncionario: $("#Id").val()},
+            url:"",success: function($result){
+
+               if($result===false){
+                  alert("Limite de 5 materias por professor sera ultrapassado");
+               }else{
+                VerificarSeAlgumProfessorPossuiJaEstaMateria();
+               }
+
+            }});
+        });
+         /*Este ajax ira executar este controller
+    $Tabela=
+    FuncionarioMateria::select('id_materia')
+    ->where('id_funcionario',$request->idFuncionario)
+    ->get();
+    PermitirAdiçao=true;$i=0;
+    foreach($Tabela as $dados){//verificar se ja tem limite de 5
+             $i++;
+             if($i==5){
+                  PermitirAdiçao=false;
+             }
+             
+    }
+    response::json(PermitirAdiçao);
     
+    */ 
+}function VerificarSeAlgumProfessorPossuiJaEstaMateria(){
+    $(document).ready(function(){
+
+        $('#Materia').empty();
+          $.ajax({
+            type: "GET",
+            data: {idFuncionario: $("#Id").val(),idAdicionado: $("#MateriaAdicionar").val()},
+            url:"",success: function($result){
+
+               if($result===false){
+                  alert("Ja existe professor com esta materia");
+               }else{
+                AdicionarMateria();
+               }
+
+            }});
+        });
+        /*Este ajax ira executar este controller
+    $Tabela=
+    FuncionarioMateria::
+    select('id_materia')
+    ->get();
+    PermitirAdiçao=true;
+    foreach($Tabela as $dados){//verificar se id_materia ja esta adicionada para algum outro professor
+             
+             if($dados->id_materia==$request->idAdicionado){
+                  PermitirAdiçao=false;
+             }
+             
+    }
+    response::json(PermitirAdiçao);
+    
+    */ 
 }

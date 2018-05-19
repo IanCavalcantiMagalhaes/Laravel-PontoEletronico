@@ -1,3 +1,5 @@
+//http://clubedosgeeks.com.br/programacao/listando-registro-de-banco-de-dados-mysql-com-ajax-json-e-php
+//https://stackoverflow.com/questions/26922123/load-cities-from-state-laravel
 function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU aceitar e inserir
   // alert("Professor cadastrado com sucesso");
      var alerta;

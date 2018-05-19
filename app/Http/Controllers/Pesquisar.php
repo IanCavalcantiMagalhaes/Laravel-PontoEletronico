@@ -21,10 +21,16 @@ $Result=
      where('id',$request->CampoPesquisa)
      ->get();
 }if($request->PesquisarPor==="Nome"){
-
+  $Result=
+  Funcionario::
+  where('nome',$request->CampoPesquisa)
+  ->get();
 
 }if($request->PesquisarPor==="CPF"){
-
+  $Result=
+  Funcionario::
+  where('CPF',$request->CampoPesquisa)
+  ->get();
 
 }
 
@@ -35,7 +41,18 @@ $Result=
 
   }
   public function Curso(Request $request){
-
+    if($request->PesquisarPor==="Id"){
+      $Result=
+           Curso::
+           where('id',$request->CampoPesquisa)
+           ->get();
+      }if($request->PesquisarPor==="Nome"){
+        $Result=
+        Curso::
+        where('nome',$request->CampoPesquisa)
+        ->get();
+      
+      }
   }
   
   public function ListarTodosOsDadosProfessor(Request $request){

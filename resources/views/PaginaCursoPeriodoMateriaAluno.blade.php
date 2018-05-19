@@ -1,8 +1,5 @@
 @extends('Templates/TemplateNavbar')
 
-@push('DiretoriosJS')
-<script src="{{ asset('assets/js/MeuJs/Pesquisar.js') }}"></script>
-@endpush
 
 @section('conteudo')
 
@@ -10,9 +7,9 @@
                     <div>
                     <p>Escolha a açao que deseja fazer</p> 
                     
-                         <input type="radio" name="EscolhidoComando" value="Editar" onclick="atualizar()"> Editar<br>
-                         <input type="radio" name="EscolhidoComando" value="Adicionar"  onclick="atualizar()"> Adicionar<br>
-                         <input type="radio" name="EscolhidoComando" value="Remover"  onclick="atualizar()"> Remover<br>  
+                         <input type="radio" name="EscolhidoComando" class="EscolhidoComando" value="Editar" onclick="atualizar()"> Editar<br>
+                         <input type="radio" name="EscolhidoComando" class="EscolhidoComando" value="Adicionar"  onclick="atualizar()"> Adicionar<br>
+                         <input type="radio" name="EscolhidoComando" class="EscolhidoComando" value="Remover"  onclick="atualizar()"> Remover<br>  
                     <p>Escolha o tipo de dado</p> 
 
                     <select id="Escolhido" onchange="atualizar()">
@@ -43,19 +40,18 @@
                         </div>
                         </br></br>
                         
-                     <input type="text" value="" id="CampoDeTexto" 
+                     <input type="text" value="" id="CampoDeTexto" name="CampoDeTexto"
                      style="position:absolute;width:400px;left:-100px;"></br></br>
-                     <form action="{{route('GerenciarCursos')}}" method="get">
                       {{ csrf_field() }}
-                     <button type="submit" class="btn btn-success" id="Botao" onclick="BotaoExecutarClicado" value="" style="position:absolute;margin:0 auto;">
+                     <button type="submit" class="btn btn-success" id="Botao" onclick="BotaoExecutarClicado()" value="" style="position:absolute;margin:0 auto;">
                        <div id="TextoBotao"></div>
                      </button>
-                    </form>
+                   
                         
                          
                     <div id="DivTurno" style="position:absolute;margin-left:500px;top:0px;">
                       <p>Escolha um turno</p>
-                        <select name="turno">
+                        <select name="turno" id="Turno">
                         <option value="Matutino">Matutino</option>
                         <option value="Vespertino">Vespertino</option>
                         <option value="Noturno">Noturno</option>
@@ -67,7 +63,7 @@
                         <input type="text" value="" id="CampoHorario">
 
                         <p>Diga o dia da semana</p>
-                        <select name="turno">
+                        <select name="Dia">
                         <option value="Segunda">Segunda</option>
                         <option value="Terça">Terça</option>
                         <option value="Quarta">Quarta</option>

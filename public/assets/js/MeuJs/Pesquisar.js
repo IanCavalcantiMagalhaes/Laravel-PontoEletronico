@@ -108,6 +108,7 @@ function PesquisarProfessor(){
                  PesquisarPor:$('#PesquisarPor').val()},//PesquisarPor(id,nome,cpf)
           url:"/Pesquisar/AjaxPesquisaProfessor",success: function(data){
             alert("Certo");
+
             $('#CabeçalhoDaTable').append(
               '<tr><th>ID</th>'
              +'<th>Nome</th>'
@@ -119,8 +120,8 @@ function PesquisarProfessor(){
              alert(data.Result[i].nome );
             
              $('#CorpoDaTable').append(
-                  '<tr><form action="Mostrar">'
-                + '<td><input type="text" name="IdSelecionado" value="'+data.Result[i].id+'" readonly="readonly"/>'+'</td>' 
+                  '<tr><form action="Mostrar">'//action="route('GerenciarProfessor/Mostrar/{data.Result[i].id}')"
+                + '<td><input type="text" name="ID" value="'+data.Result[i].id+'" readonly="readonly"/>'+'</td>' 
                 + '<td>'+data.Result[i].nome+ '</td>' 
                 + '<td scope="col">111.111.111-11</td>'
                 + '<td scope="col"><button type="submit" class="btn btn-info">Visualizar:'+data.Result[i].nome+'</button></td></form></tr>');

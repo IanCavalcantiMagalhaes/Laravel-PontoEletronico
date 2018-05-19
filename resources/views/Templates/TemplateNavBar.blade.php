@@ -37,7 +37,7 @@
               <a class="nav-link" href="{{ url('CadastrarProfessor/CadastroProfessor') }}">Cadastrar Professor</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
+              <a class="nav-link" href="{{ url('GerenciarCursos/Pagina') }}">Gerenciar Cursos</a>
             </li>
             <li class="nav-item active" >
               <a class="nav-link" href="{{ url('Logout') }}" style="position:absolute;left:90%;">Logout({{ $sessao }})</a>
@@ -66,7 +66,7 @@
                   <a class="nav-link" href="{{ url('CadastrarProfessor/CadastroProfessor') }}">Cadastrar Professor</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
+                  <a class="nav-link" href="{{ url('GerenciarCursos/Pagina') }}">Gerenciar Cursos</a>
                 </li>
                 <li class="nav-item active" >
                   <a class="nav-link" href="{{ url('Logout') }}" style="position:absolute;left:95%;">Logout</a>
@@ -78,6 +78,7 @@
 
 @if($navbar=="Cadastrar Professor")
 <title>Cadastrar Professor</title>
+
 <script src="{{ asset('assets/js/MeuJs/CadastrarProfessor.js') }}"></script>
 
 
@@ -97,7 +98,7 @@
           <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Marcar Ponto</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
+          <a class="nav-link" href="{{ url('GerenciarCursos/Pagina') }}">Gerenciar Cursos</a>
         </li>
         <li class="nav-item active" >
           <a class="nav-link" href="{{ url('/Logout') }}" style="position:absolute;left:95%;">Logout</a>
@@ -113,7 +114,7 @@
 
 <body class="TelaDeFundo" >
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="GerenciarCursos/Curso">Gerenciar Cursos</a>
+  <a class="navbar-brand" href="GerenciarCursos/Pagina">Gerenciar Cursos</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -155,7 +156,7 @@
       <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">Marcar Ponto</a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
+      <a class="nav-link" href="{{ url('GerenciarCursos/Pagina') }}">Gerenciar Cursos</a>
     </li>
     <li class="nav-item active" >
       <a class="nav-link" href="{{ url('/Logout') }}" style="position:absolute;left:95%;">Logout</a>

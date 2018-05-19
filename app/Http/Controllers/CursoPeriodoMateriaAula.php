@@ -32,23 +32,27 @@ return Response::json(array('Cursos'=>$Cursos));
   
    public function Curso(Request $request){
 
-    if($request->EscolhidoComando="Editar"){
+    if($request->EscolhidoComando=='Editar'){
       Curso::
       update('nome_curso',$request->CampoDeTexto)
       ->update('turno',$request->turno)
       ->where('id',$request->IdCurso);
 
-    }if($request->EscolhidoComando="Remover"){
+    }if($request->EscolhidoComando=='Remover'){
       Curso::
       where('id',$request->IdCurso)
       ->remove();
+  
+    }if($request->EscolhidoComando=='Adicionar'){
+      
+      $Curso=new Curso;
+      $Curso->nome_curso=$request->CampoDeTexto;
+      $Curso->turno=$request->Turno;
+      $Curso->save();
+      
+    }else
 
-    }if($request->EscolhidoComando="Adicionar"){
-      Curso::
-      insert('nome_curso',$request->CampoDeTexto)
-      ->insert('turno',$request->Turno);
-    }
-
+     return Response::json(); 
 
    }
 

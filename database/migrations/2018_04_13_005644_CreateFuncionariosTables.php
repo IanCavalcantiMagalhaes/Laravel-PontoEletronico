@@ -19,7 +19,8 @@ class CreateFuncionariosTables extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->boolean('Trabalhando')->default(false);
-            $table->string('CPF')->default("Vazio");//->unique();
+            $table->string('CEP')->default("Vazio");//->unique();
+            $table->string('CPF')->unique();
             $table->string('Endereço')->default("Vazio");
             $table->double('CargahorariaAtual',5,3)->default(0.00);//limie de digitos,Limite de casas decimais
             $table->boolean('Devendo')->default(false);
