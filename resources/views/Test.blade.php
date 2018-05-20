@@ -41,7 +41,7 @@
   </div>
   <div id="image-holder"></div>
   <button type="button" class="btn btn-success">Success</button>
-<button onclick="PegarDados()">Get External Content</button>
+<button onclick="GerarForm()">Get External Content</button>
 
 <input type="text" name="Cam" id="Campo" value=""/>+
 <input type="text" name="Cam2" id="Campo2" value=""/>
@@ -55,6 +55,11 @@
                     <option value="2">Programaçao</option>
                     </select>
   </div>
+  <form action="Mostrar" method="get" enctype="multipart/form-data">
+  <div id="Div3">
+
+  </div>
+</form>
   @if($Arranjo!='vazio')
   @foreach($Arranjo as $Coluna)
 <p>{{ $Coluna }}</p>

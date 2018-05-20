@@ -52,15 +52,17 @@ Route::group(['prefix' => 'MarcarPonto','middleware'=>['login']], function() {
        
        Route::get('/Procurar',function(Request $request){
     //$RS=DB::table('funcionarios')->find($request->id)->get();
-            return view('PaginaPesquisar')->with('navbar','Pesquisar');
+    $Result=null;
+            return view('PaginaPesquisar')->with('navbar','Pesquisar')->with('Result',$Result);
      // ->with('TodosOsDadosProfessor',$RS);
 
 })->middleware('login');
-
+Route::get('GerenciarProfessor/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('Mostrar')->middleware('login');
+  
 });
 Route::group(['prefix' => 'GerenciarProfessor'], function() {
-    Route::get('/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('GerenciarProfessor')->middleware('login');
-    Route::get('/Mostrar/{ID}','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->middleware('login');//Passar valor por rota='/Mostrar/{ID}'
+    Route::get('/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('Mostrar')->middleware('login');
+   // Route::get('/Mostrar/{ID}','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->middleware('login');//Passar valor por rota='/Mostrar/{ID}'
 });
 
 Route::group(['prefix' => 'GerenciarCursos'], function() {

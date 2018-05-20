@@ -50,22 +50,9 @@
                   </div>
                  
                    
-             <div class="table-responsive" style="position:relative;width:60%;margin:0 auto;top:100px;">
-             <table cellpadding="10" border="1" style="position:relative;margin:0 auto;" id="TabelaAjax" class="table table-striped">
-            <thead id="CabeçalhoDaTable">
-                <tr><th>ID</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Selecionar</th>
-                </tr>
-            </thead>
-            <tbody id="CorpoDaTable">
-              {{-- @if($Tabelas!=null) --}}
-              {{-- @foreach($Tabelas as $coluna) --}}
-              
                
-            </tbody>
-        </table>
+             <div id="Resultados" style="position:relative;width:50%;margin:0 auto;top:100px;left:10%;"></div>
+    
                 <p id="P"></p>             
          
                        <!-- https://laravel.com/docs/5.6/blade#if-statements -->

@@ -35,7 +35,7 @@
             <table cellpadding="50" style="">
                     <thead>
                         <tr>
-                            <th><h2>Gerenciar dados de Professor(ID:<div id="ID">$TabelaFuncionario->id</div>) </h2></th>
+                            <th><h2>Gerenciar dados de Professor(ID:<div id="ID">{{ $TabelaFuncionario->id }}</div>) </h2></th>
                             <th><button type="button" class="glyphicon glyphicon-edit" 
                               onclick="HabilitarEdiçao()"><div id="DivEdiçao"></div></button></th>
                             <th><div id="image-holder"></div></th>

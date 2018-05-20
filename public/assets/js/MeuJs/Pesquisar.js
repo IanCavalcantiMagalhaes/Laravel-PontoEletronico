@@ -91,6 +91,8 @@ if($('#PesquisarPor').val()==='Escolha' || $('#TipoDeDado').val()==='Escolha'){
 function PesquisarOQue(){
     if($('#TipoDeDado').val()==='Professor'){
         PesquisarProfessor();
+    }if($('#TipoDeDado').val()==='Curso'){
+        PesquisarCurso();
     }
 }
 
@@ -109,22 +111,13 @@ function PesquisarProfessor(){
           url:"/Pesquisar/AjaxPesquisaProfessor",success: function(data){
             alert("Certo");
 
-            $('#CabeçalhoDaTable').append(
-              '<tr><th>ID</th>'
-             +'<th>Nome</th>'
-             +'<th>CPF</th>'
-             +'<th>Selecionar</th>'
-             +'</tr>');
-             
          for(var i=0;i<data.Result.length;i++){
              alert(data.Result[i].nome );
-            
-             $('#CorpoDaTable').append(
-                  '<tr><form action="Mostrar">'//action="route('GerenciarProfessor/Mostrar/{data.Result[i].id}')"
-                + '<td><input type="text" name="ID" value="'+data.Result[i].id+'" readonly="readonly"/>'+'</td>' 
-                + '<td>'+data.Result[i].nome+ '</td>' 
-                + '<td scope="col">111.111.111-11</td>'
-                + '<td scope="col"><button type="submit" class="btn btn-info">Visualizar:'+data.Result[i].nome+'</button></td></form></tr>');
+             $('#Resultados').append(
+                  '<form action="GerenciarProfessor/Mostrar">'//action="route('GerenciarProfessor/Mostrar/{data.Result[i].id}')"
+                + '<input type="text" name="ID" id="ID" value="'+data.Result[i].id+'"/>  ' 
+                + 'Nome: '+data.Result[i].nome
+                + '  <button type="submit" class="btn btn-info">Visualizar: </button></form>');
 
          
           }
@@ -181,6 +174,9 @@ function PesquisarProfessor(){
         if($("#PesquisarPor").val()='Nome'){
             $("#CampoPesquisa").atrr('placeholder','Inserir nome');
         }
+    }
+    function RedirecionarParaGerenciarProfessor(){
+
     }
 
     

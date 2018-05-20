@@ -30,30 +30,29 @@ class Entrada_Saida extends BaseController
      if($ID){
 
     $RS=
-    Funcionario::where('id',$ID)//find so e utilizado para update e delete
-    ->select('id','Trabalhando','nome')
-    ->get()->first();
+    Funcionario::find($ID);
 
      if($RS->Trabalhando===1){
 
     $TC=
-    TempoChegada:://pegar tempo de chegada guardada
-    where('funcionario_id',$ID)//find so e utilizado para update e delete
-    ->pluck('Chegada');
-       foreach($TC as $TC){
+    TempoChegada::
+    where('funcionario_id',$ID)//Nao tem primary key,entao nao e possivel utilizar find
+    ->pluck('Chegada')->first();
+
+       //Necessario utilizar foreach 
          $TempoFeito=microtime(true)-$TC;// $TempoFeito=(($TempoFeito/1000)/60);
-       }
+       
       
      
-
      $F=Funcionario::find($ID);
      $F->Trabalhando=0;//inverter status
      $F->CargahorariaAtual=$F->CargahorariaAtual+$TempoFeito;//incrementar tempo feito
      $F->save();
 
       $TC=TempoChegada::
-      where('funcionario_id',$ID);
+      where('funcionario_id',$ID);//Nao tem primary key,entao nao e possivel utilizar find
       $TC->delete();
+      
     return response()->json(array('RS'=>$RS)); 
      
     

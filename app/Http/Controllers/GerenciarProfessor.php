@@ -56,7 +56,7 @@ public function ListarTodosOsDadosProfessor(Request $request){
 
     $DadosFuncionario=
      Funcionario:://Pegar dados de funcionario
-     find(1);//$request->ID
+     find($request->ID);//$request->ID
 
      $Dadosid_materia=
      FuncionarioMateria:://Pegar materias relacionadas com funcionario
@@ -118,7 +118,7 @@ return view('GerenciarProfessor')
   public function ListarTodosOsDadosProfessorComModel(Request $request){//sera utilizado tanto para selecionar resultado de pesquisa e atualizar pagina depois de alteraçao
 
     $DadosFuncionario=
-     Funcionario::find(1);//$request->ID
+     Funcionario::find($request->ID);//$request->ID
 
      $Dadosid_materia=
      DB::table('funcionarios_materias')//Pegar materias relacionadas com funcionario
