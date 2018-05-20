@@ -30,20 +30,21 @@ class Entrada_Saida extends BaseController
      if($ID){
 
     $RS=
-    Funcionario::find($ID)
+    Funcionario::where('id',$ID)//find so e utilizado para update e delete
     ->select('id','Trabalhando','nome')
-    ->first();
+    ->get()->first();
 
      if($RS->Trabalhando===1){
 
     $TC=
     TempoChegada:://pegar tempo de chegada guardada
-    where('funcionario_id',$ID)
-    ->get()
-    ->first();
-
-      $TempoFeito=microtime(true)-$TC->Chegada;
-     // $TempoFeito=(($TempoFeito/1000)/60);
+    where('funcionario_id',$ID)//find so e utilizado para update e delete
+    ->pluck('Chegada');
+       foreach($TC as $TC){
+         $TempoFeito=microtime(true)-$TC;// $TempoFeito=(($TempoFeito/1000)/60);
+       }
+      
+     
 
      $F=Funcionario::find($ID);
      $F->Trabalhando=0;//inverter status
@@ -53,8 +54,8 @@ class Entrada_Saida extends BaseController
       $TC=TempoChegada::
       where('funcionario_id',$ID);
       $TC->delete();
+    return response()->json(array('RS'=>$RS)); 
      
-     return response()->json(array('RS'=>$RS));
     
      //$RP=new RegistroDePonto;$RP->funcionario_id=$ID;$RP->TempoFeito=$TempoFeito;
 

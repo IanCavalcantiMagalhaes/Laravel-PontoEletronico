@@ -22,7 +22,7 @@ class CreateFuncionariosTables extends Migration
             $table->string('CEP')->default("Vazio");//->unique();
             $table->string('CPF')->unique();
             $table->string('Endereço')->default("Vazio");
-            $table->double('CargahorariaAtual',5,3)->default(0.00);//limie de digitos,Limite de casas decimais
+            $table->double('CargahorariaAtual',5,2)->default(0.00);//limie de digitos,Limite de casas decimais
             $table->boolean('Devendo')->default(false);
             $table->double('HorasDevendo')->default(0.00);
             $table->boolean('Extra')->default(false);

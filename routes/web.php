@@ -118,16 +118,22 @@ Route::get('/ManipularCurso', function () {
     return view('PaginaCursoPeriodoMateriaAluno');
 });
 Route::get('/Testando',function(){
-    $X= Funcionario::get()->first();//find(1);
+   // $X= Funcionario::get()->first();//find(1);
+    
 
-      
-    foreach($X as $dados){
-      //$Array[]=$dados->id;
-      //$Array[]=$dados->nome;
+   $RS=
+   Funcionario::find(2)
+   ->select('id','Trabalhando','nome')
+   ->pluck('nome');
+   //$RS=Funcionario::find(2)->select('id','Trabalhando','nome')->get();
+
+   //foreach($X as $dados){
+    //  $Array[]=$dados->id;
+     // $Array[]=$dados->nome;
      
-    }
+   // }
      
-    return view('Test')->with('Arranjo',$X);
+    return view('Test')->with('Arranjo',$RS);
 });
 Route::get('/Somar/{V1}/{V2}',function(Request $request){
 

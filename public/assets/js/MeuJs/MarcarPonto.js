@@ -26,7 +26,7 @@ function AnaliseSairOuEntrar(){
           data: {CPF: $("#cpf").val()},
           url:"/MarcarPonto/Registrando",
           success: function(data){
-           alert(data.RS.nome);
+           alert(data.RS.id);
            
         if(data.RS.Trabalhando===1){
            $("#Saida").show();
