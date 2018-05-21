@@ -88,11 +88,16 @@ if($('#PesquisarPor').val()==='Escolha' || $('#TipoDeDado').val()==='Escolha'){
 }
 
 }
-function PesquisarOQue(){
+function PesquisarOQue(){//Sera responsavel por qual controller sera executado
+    $('#Resultados').empty();
     if($('#TipoDeDado').val()==='Professor'){
         PesquisarProfessor();
     }if($('#TipoDeDado').val()==='Curso'){
         PesquisarCurso();
+    }if($('#TipoDeDado').val()==='Periodo'){
+        PesquisarPeriodo();
+    }if($('#TipoDeDado').val()==='Materia'){
+        PesquisarMateria();
     }
 }
 
@@ -117,7 +122,7 @@ function PesquisarProfessor(){
                   '<form action="GerenciarProfessor/Mostrar">'//action="route('GerenciarProfessor/Mostrar/{data.Result[i].id}')"
                 + '<input type="text" name="ID" id="ID" value="'+data.Result[i].id+'"/>  ' 
                 + 'Nome: '+data.Result[i].nome
-                + '  <button type="submit" class="btn btn-info">Visualizar: </button></form>');
+                + '  <button type="submit" class="btn btn-info">Gerenciar professor </button></form></br></br>');
 
          
           }
@@ -167,16 +172,6 @@ function PesquisarProfessor(){
 
     }
 
-    function TrocarPlaceholderDeCampo(){
-        if($("#PesquisarPor").val()='Id'){
-            $("#CampoPesquisa").atrr('placeholder','Inserir ID');
-        }
-        if($("#PesquisarPor").val()='Nome'){
-            $("#CampoPesquisa").atrr('placeholder','Inserir nome');
-        }
-    }
-    function RedirecionarParaGerenciarProfessor(){
 
-    }
 
     

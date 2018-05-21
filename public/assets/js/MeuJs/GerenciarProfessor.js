@@ -1,31 +1,43 @@
 function TrocarCargo(){
-    if($('#Cargo').val()==='Horista'){
+    
+    if($('#Cargo').val()==="Horista"){
         $('#DivLucroHora').show();
     }else{
         $('#DivLucroHora').hide();
     }
 }
 
-function HabilitarEdiçao(){
+function Ediçao(){
 
-if($('#DivEdiçao').val()==="Editar"){//clicou quando valor foi editar
-    $('#Nome').attr('readonly', false);
-    $('#CEP').attr('readonly', false);
-    $('#CPF').attr('readonly', false);
+var ValorAtual=$('#EdiçaoBotao').text();//para quando ocorrer alteraçao nao entre no if errado
+
+if(ValorAtual==="Editar"){//clicou quando valor foi editar
+    
+    $('#campoNome').attr('readonly', false);
+    $('#campoCEP').attr('readonly', false);
+    $('#campoCPF').attr('readonly', false);
+    $('#campoTelefone').attr('readonly', false);
     $('#EdiçaoMateria').show();
     $('#BotaoAtualizar').show();
-    $('#DivEdiçao').val("Desabilitar Ediçao");//inverter
-    
+    $('#BotaoApagar').show();
+    $('#EdiçaoBotao').empty();
+    $('#EdiçaoBotao').append("Desabilitar Ediçao");
 
-}if($('#DivEdiçao').val()==="Desabilitar Ediçao"){
-    $('#Nome').attr('readonly', true);
-    $('#CEP').attr('readonly', true);
-    $('#CPF').attr('readonly', true);
+    
+}if(ValorAtual==="Desabilitar Ediçao"){
+    $('#campoNome').attr('readonly', true);
+    $('#campoCEP').attr('readonly', true);
+    $('#campoCPF').attr('readonly', true);
+    $('#campoTelefone').attr('readonly', true);
     $('#EdiçaoMateria').hide();
     $('#BotaoAtualizar').hide();
-    $('#DivEdiçao').val("Editar");
-}
-}
+    $('#BotaoApagar').hide();
+    $('#EdiçaoBotao').empty();
+    $('#EdiçaoBotao').append('Editar');
+
+    
+   
+}}
 function AdicionarMateria(){
     
     $(document).ready(function(){
@@ -207,4 +219,49 @@ function VerificarSeValorAdicionadoJaEstavaAdicionado(){
     response::json(PermitirAdiçao);
     
     */ 
+}
+
+function AoAlterarCurso(){
+    $('#Periodo').empty();
+    $(document).ready(function(){//inserir periodos em select
+      $('#Periodo').empty();
+      $('#Materia').empty();
+        $.ajax({
+          type: "GET",
+          data: {IdCurso: $("#Curso").val()},
+          url:"/AjaxPeriodo",success: function(data){
+              if(data===false){
+                $('#Periodo').empty();//deixara vazio por que escolheu a opçao 'selecione um curso' em que nao existe id
+              }else{
+
+            $('#Periodo').append("<option value=''>"+"Selecione um periodo"+"</option>");
+          for(var i=0;i<data.Periodos.length;i++){
+              $('#Periodo').append("<option value='"+data.Periodos[i].id+"'>"+data.Periodos[i].nome_periodo+"</option>");
+           }
+       }
+        }});
+});
+      }
+function AoAlterarPeriodo(){//inserir materias
+
+    $('#Materia').empty();
+
+    $(document).ready(function(){
+    $('#Materia').empty();
+      $.ajax({
+        type: "GET",
+        data: {IdPeriodo: $("#Periodo").val()},
+        url:"/AjaxMateria",success: function(result){
+
+            if(result===false){
+               $('#MateriaAdicionar').empty();//deixara vazio por que escolheu a opçao 'selecione um periodo' em que nao existe id
+              }else{
+
+            $('#MateriaAdicionar').append("<option value=''>"+"Selecione uma materia"+"</option>"); 
+            for(var i=0;i<result.Materias.length;i++){//
+                $('#MateriaAdicionar').append("<option value="+result.Materias[i].id+">"+result.Materias[i].nome_materia+"</option>");
+            }
+        }
+        }});
+    });
 }

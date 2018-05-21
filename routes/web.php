@@ -56,9 +56,11 @@ Route::group(['prefix' => 'MarcarPonto','middleware'=>['login']], function() {
             return view('PaginaPesquisar')->with('navbar','Pesquisar')->with('Result',$Result);
      // ->with('TodosOsDadosProfessor',$RS);
 
-})->middleware('login');
-Route::get('GerenciarProfessor/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('Mostrar')->middleware('login');
-  
+})->middleware('login')->name('Pesquisar');
+Route::get('GerenciarProfessor/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('GerenciarProfessor')->middleware('login');
+Route::get('GerenciarProfessor/AtualizarProfessor','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarProfessor');
+Route::get('GerenciarProfessor/AtualizarPagina','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarPagina');
+
 });
 Route::group(['prefix' => 'GerenciarProfessor'], function() {
     Route::get('/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('Mostrar')->middleware('login');

@@ -35,3 +35,7 @@ function PegarDados(){
    }
    );
    }
+   function Alterar(){
+    $("#Botao").empty();
+    $("#Botao").append("A");
+   }

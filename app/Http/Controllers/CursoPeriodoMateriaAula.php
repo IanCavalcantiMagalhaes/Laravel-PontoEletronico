@@ -41,7 +41,7 @@ return Response::json(array('Cursos'=>$Cursos));
     }if($request->EscolhidoComando=='Remover'){
       Curso::
       where('id',$request->IdCurso)
-      ->remove();
+      ->delete();
   
     }if($request->EscolhidoComando=='Adicionar'){
       

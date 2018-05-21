@@ -51,7 +51,7 @@
                  
                    
                
-             <div id="Resultados" style="position:relative;width:50%;margin:0 auto;top:100px;left:10%;"></div>
+             <div id="Resultados" style="position:relative;width:50%;margin:0 auto;left:5%;" ></div>
     
                 <p id="P"></p>             
          

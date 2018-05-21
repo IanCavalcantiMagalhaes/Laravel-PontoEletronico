@@ -1,43 +1,16 @@
+@extends('Templates/TemplateNavBar')
 
-<!DOCTYPE html>
-<html>
-    <head><link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Page</title>
-        
-<script src="{{ asset('assets/js/MeuJs/.js') }}"></script>
 
-  <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
-
-  
-    </head>
-    <body class="TelaDeFundo"><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Cadastrar Professor</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('Pesquisar/Procurar') }}">Pesquisar <span class="sr-only">Pesquisar</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('MarcarPonto/RegistrarEntrada_Saida') }}">MarcarPonto</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url('GerenciarCursos/Curso') }}">Gerenciar Cursos</a>
-        </li>
-       
-      </ul>
-    </div>
-  </nav>
+@section('conteudo')
         <section class="Sessao">
-            <table cellpadding="50" style="">
+            <form action="{{ route('AtualizarProfessor') }}">
+            <table cellpadding="30" >
                     <thead>
                         <tr>
-                            <th><h2>Gerenciar dados de Professor(ID:<div id="ID">{{ $TabelaFuncionario->id }}</div>) </h2></th>
-                            <th><button type="button" class="glyphicon glyphicon-edit" 
-                              onclick="HabilitarEdiçao()"><div id="DivEdiçao"></div></button></th>
+                            <th><h3>Gerenciar dados de Professor(ID:<div id="ID">{{ $TabelaFuncionario->id }}</div>) </h3></th>
+                            <input class="form-control" type="hidden" name="ID"  value={{ $TabelaFuncionario->id }} />
+                            <th><button type="button" class="btn btn-success"
+                              onclick="Ediçao()" id="EdiçaoBotao"></button></th>
                             <th><div id="image-holder"></div></th>
                         </tr>
                     </thead>
@@ -47,8 +20,8 @@
                  
                     <tbody>
                         <tr>
-                            <td> <p>Nome</p><input class="form-control" type="text" name="Nome" value={{ $TabelaFuncionario->nome }} /></td>
-                            <td><p>CPF</p><input class="form-control" type="text" name="CPF" value={{ $TabelaFuncionario->CPF }} id="MascaraCPF" style="width:200px;"/></td>
+                            <td> <p>Nome</p><input class="form-control" type="text" name="Nome" id="campoNome" value={{ $TabelaFuncionario->nome }} /></td>
+                            <td><p>CPF</p><input class="form-control" type="text" name="CPF" id="campoCPF" value={{ $TabelaFuncionario->CPF }}  style="width:200px;"/></td>
                             <td></br></br>
                                 <div class="custom-file small" >
                                     <input type="file" class="custom-file-input" id="customFile" name="Imagem">
@@ -56,8 +29,8 @@
                                   </div></td>
                         </tr>
                         <tr>
-                            <td><p>CEP</p><input class="form-control" type="text" name="CPF" value="" id="MascaraCEP" style="width:200px;"/></td>
-                            <td><p>Telefone</p><input class="form-control" type="text" name="CPF" value="" id="MascaraTelefone" style="width:200px;"/></td>
+                            <td><p>CEP</p><input class="form-control" type="text"  id="campoCEP" style="width:200px;"/></td>
+                            <td><p>Telefone</p><input class="form-control" type="text"  id="campoTelefone" style="width:200px;"/></td>
                             <td><h1>Listar Materias do professor</h1>
                                 <div class="OverFlow">
                                 <table class="table table-striped" style="font-size:25px;margin-right:100px;width: 100%; ">
@@ -73,6 +46,7 @@
                                     </thead>
                                     <tbody>
                                      <div id="ListaDeMaterias">
+                                         @if($TabelaIDMateria->isNotEmpty())
                                          @for($i=0;$i<sizeOf($TabelaIDMateria);$i++)
                                       <tr>
                                            
@@ -85,19 +59,34 @@
                                         
                                       </tr>
                                       @endfor
-                                      
+                                      @endif
                                     </div>
                                     </tbody>
                                   </table>
-
+                                </form>
                                 </div>
                                 </td>
                             
                         
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
+                        <td>
+                                <h3>Modificar cargo(Cargo atual:X)</h3>
+                                <p>Alterar Cargo do professor</p>
+                                <select id="Cargo" class="form-control" onchange="TrocarCargo()">
+                                    <option value="">Selecione algum cargo</option>
+                                    <option value="Horista">Horista</option>
+                                    <option value="Tempo Parcial">Tempo Parcial</option>
+                                    <option value="Tempo Integral">Tempo Integral</option>
+                                    </select></td>
+                            <td><div id="DivLucroHora"><p>Lucro por hora</p>
+                                <input class="form-control" type="text" placeholder="Insira Valor"/>
+                            </div>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td><button type="submit" class="btn btn-success" onclick="" id="BotaoAtualizar">Atualizar</button></td>
+                            <td><button type="submit" class="btn btn-danger" onclick="" id="BotaoApagar">Apagar</button></td>
                             
                         </tr> 
                         
@@ -105,19 +94,13 @@
                         <td>
                             <h1>Adicionar materias</h1>
                             <p>Cursos da materia que deseja adicionar</p><select id="Curso" onchange="AoAlterarCurso()" class="form-control">
-                            <option value="Selecionar">Selecione um curso</option>
-                            {{--  
+                            <option value="">Selecione um curso</option>
+                             
                                 @foreach ($Cursos as $Curso){ 
-                               <option value="{{ $Curso->id }} "> "{{ $Curso->nomeCurso }}" </option>
-                                @endforeach --}}
+                               <option value={{ $Curso->id }} > {{ $Curso->nome_curso }} </option>
+                                @endforeach 
                             </select></td>
-                            <td><h2>Modificar cargo(Cargo atual:X)</h2>
-                                <p>Alterar Cargo do professor</p><select id="Cargo" class="form-control">
-                                    <option>Selecione algum cargo</option>
-                                    <option>Horista</option>
-                                    <option>Tempo Parcial</option>
-                                    <option>Tempo Integral</option>
-                                    </select></td>
+                            
                         </tr> 
 
                         <tr>
@@ -127,14 +110,18 @@
                         <tr>
                         <td><p>Adicionar Materia ao professor</p>
                           <select id="MateriaAdicionar" class="form-control">
-                            <option>Selecione uma Materia</option>
-                            </select><button type="button" class="btn btn-success" 
+                            </select>
+                        </br>
+                            <button type="button" class="btn btn-success" 
                             onclick="AdicionarMateria()">Adicionar materia</button>
                           </td>
-                          <td><h1>Remover materia</h1>
+                          <td>
+                              <h2>Remover materia</h2>
                               <p>Remover Materia(s) que professor possui</p>
                             <select id="MateriaRemover" class="form-control">
-                              <option>Selecione uma Materia</option>
+                            @for($i=0;$i<sizeOf($TabelaIDMateria);$i++)
+                             <option value={{ $TabelaIDMateria[$i]->materia_id }} > {{ $TabelaNomeMateria[$i][0] }} </option>
+                            @endfor
                               </select><button type="button" class="btn btn-danger" 
                               onclick="RemoverMateria()">Remover materia</button>
                             </td>
@@ -143,7 +130,7 @@
                        
                     </tbody>
                 </table>
-                <button type="submit" class="btn btn-success" onclick="" id="BotaoAtualizar">Atualizar</button>
+                
              
                 
         </section>
@@ -181,6 +168,15 @@
         $('#campoNome').attr('readonly', true);
         $('#campoCEP').attr('readonly', true);
         $('#campoCPF').attr('readonly', true);
-        $('#DivEdiçao').val("Editar");
+        $('#campoTelefone').attr('readonly', true);
+        $('#EdiçaoBotao').append("Editar");
         $('#BotaoAtualizar').show();
+        $('#DivLucroHora').hide();
+        $('#BotaoAtualizar').hide();
+        $('#BotaoApagar').hide();
+        $("#campoCEP").mask("99.999-999");
+        $('#campoCPF').mask('000.000.000-00');
+        $('#campoTelefone').mask('(00) 0000-00000');
+        $('#CarteiraDeTrabalho').mask('000.000.000-00');
         </script>
+        @endsection

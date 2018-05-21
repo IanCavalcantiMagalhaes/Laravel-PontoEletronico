@@ -40,7 +40,7 @@
     <label class="custom-file-label" for="customFile" accept="image/png, image/jpeg">Escolha uma imagem</label>
   </div>
   <div id="image-holder"></div>
-  <button type="button" class="btn btn-success">Success</button>
+  <button type="button" class="btn btn-success" id="Botao" onclick="Alterar()">Success</button>
 <button onclick="GerarForm()">Get External Content</button>
 
 <input type="text" name="Cam" id="Campo" value=""/>+
