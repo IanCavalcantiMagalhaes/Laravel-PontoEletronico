@@ -3,7 +3,7 @@
 
 @section('conteudo')
         <section class="Sessao">
-            <form action="{{ route('AtualizarProfessor') }}">
+            <form action="{{ route('AtualizarProfessor') }}" >
             <table cellpadding="30" >
                     <thead>
                         <tr>
@@ -63,7 +63,7 @@
                                     </div>
                                     </tbody>
                                   </table>
-                                </form>
+                                
                                 </div>
                                 </td>
                             
@@ -85,8 +85,12 @@
                             </td>
                         </tr> 
                         <tr>
-                            <td><button type="submit" class="btn btn-success" onclick="" id="BotaoAtualizar">Atualizar</button></td>
-                            <td><button type="submit" class="btn btn-danger" onclick="" id="BotaoApagar">Apagar</button></td>
+                            <td><button type="submit" class="btn btn-success" onclick="" id="BotaoAtualizar">Atualizar</button></td></form>
+                            <td><form action="{{ route('ApagarProfessor') }}" >
+                                <input class="form-control" type="hidden" name="ID"  value={{ $TabelaFuncionario->id }} />
+                                <button type="submit" class="btn btn-danger" onclick="" id="BotaoApagar">Apagar</button>
+                            </form>
+                            </td>
                             
                         </tr> 
                         

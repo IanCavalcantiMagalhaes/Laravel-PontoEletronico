@@ -10,6 +10,7 @@
        <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Page</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
         <link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <style>img{
     width: 150px;

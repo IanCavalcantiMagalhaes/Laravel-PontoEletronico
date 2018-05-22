@@ -59,7 +59,8 @@ Route::group(['prefix' => 'MarcarPonto','middleware'=>['login']], function() {
 })->middleware('login')->name('Pesquisar');
 Route::get('GerenciarProfessor/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('GerenciarProfessor')->middleware('login');
 Route::get('GerenciarProfessor/AtualizarProfessor','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarProfessor');
-Route::get('GerenciarProfessor/AtualizarPagina','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarPagina');
+//Route::get('GerenciarProfessor/AtualizarPagina','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarPagina');
+Route::get('GerenciarProfessor/ApagarProfessor','GerenciarProfessor@ApagarProfessor')->middleware('login')->name('ApagarProfessor');
 
 });
 Route::group(['prefix' => 'GerenciarProfessor'], function() {
