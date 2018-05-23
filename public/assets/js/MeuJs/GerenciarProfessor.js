@@ -247,19 +247,18 @@ function AoAlterarPeriodo(){//inserir materias
     $('#Materia').empty();
 
     $(document).ready(function(){
-    $('#Materia').empty();
       $.ajax({
         type: "GET",
         data: {IdPeriodo: $("#Periodo").val()},
         url:"/AjaxMateria",success: function(result){
 
             if(result===false){
-               $('#MateriaAdicionar').empty();//deixara vazio por que escolheu a opçao 'selecione um periodo' em que nao existe id
+               $('#Materia').empty();//deixara vazio por que escolheu a opçao 'selecione um periodo' em que nao existe id
               }else{
 
-            $('#MateriaAdicionar').append("<option value=''>"+"Selecione uma materia"+"</option>"); 
+            $('#Materia').append("<option value=''>"+"Selecione uma materia"+"</option>"); 
             for(var i=0;i<result.Materias.length;i++){//
-                $('#MateriaAdicionar').append("<option value="+result.Materias[i].id+">"+result.Materias[i].nome_materia+"</option>");
+                $('#Materia').append("<option value="+result.Materias[i].id+">"+result.Materias[i].nome_materia+"</option>");
             }
         }
         }});

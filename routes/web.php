@@ -46,7 +46,7 @@ Route::group(['prefix' => 'MarcarPonto','middleware'=>['login']], function() {
       
     });
 
- Route::group(['prefix' => 'Pesquisar'], function() {
+ Route::group(['prefix' => 'Pesquisar'], function() {//Tera tambem gerenciar professor
        Route::get('/AjaxPesquisaProfessor','Pesquisar@Professor');
        Route::get('/AjaxPesquisaCurso','Pesquisar@Curso');
        
@@ -57,15 +57,19 @@ Route::group(['prefix' => 'MarcarPonto','middleware'=>['login']], function() {
      // ->with('TodosOsDadosProfessor',$RS);
 
 })->middleware('login')->name('Pesquisar');
-Route::get('GerenciarProfessor/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('GerenciarProfessor')->middleware('login');
-Route::get('GerenciarProfessor/AtualizarProfessor','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarProfessor');
-//Route::get('GerenciarProfessor/AtualizarPagina','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarPagina');
-Route::get('GerenciarProfessor/ApagarProfessor','GerenciarProfessor@ApagarProfessor')->middleware('login')->name('ApagarProfessor');
+
+//Route::get('GerenciarProfessor/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('GerenciarProfessor')->middleware('login');
+
 
 });
 Route::group(['prefix' => 'GerenciarProfessor'], function() {
     Route::get('/Mostrar','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->name('Mostrar')->middleware('login');
    // Route::get('/Mostrar/{ID}','GerenciarProfessor@ListarTodosOsDadosProfessorComModel')->middleware('login');//Passar valor por rota='/Mostrar/{ID}'
+    Route::get('/AtualizarProfessor','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarProfessor');
+    Route::get('/AtualizarPagina','GerenciarProfessor@AtualizarProfessor')->middleware('login')->name('AtualizarPagina');
+    Route::get('/ApagarProfessor','GerenciarProfessor@ApagarProfessor')->middleware('login')->name('ApagarProfessor');
+    Route::get('/AdicionarMateria','GerenciarProfessor@AdicionarMateriaAoProfessor')->middleware('login')->name('AdicionarMateria');
+    Route::get('/RemoverMateria','GerenciarProfessor@RemoverMateriaDoProfessor')->middleware('login')->name('RemoverMateria');
 });
 
 Route::group(['prefix' => 'GerenciarCursos'], function() {

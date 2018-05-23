@@ -59,12 +59,15 @@
                        <option value={{ $Curso->id }} > {{ $Curso->nome_curso }} </option>
                         @endforeach 
                     </select></td>
-                    <td><p>Cargos</p><select id="Cargo" class="form-control">
-                            <option>Selecione algum cargo</option>
-                            <option>Horista</option>
-                            <option>Tempo Parcial</option>
-                            <option>Tempo Integral</option>
+                    <td><p>Cargos</p><select id="Cargo" name="Cargo" class="form-control" onchange="TrocarCargo()">
+                        <option value="Tempo Parcial">Tempo Parcial</option>
+                        <option value="Tempo Integral">Tempo Integral</option>
+                        <option value="Horista">Horista</option>
                             </select></td>
+                            <td><div id="DivLucroHora"><p>Valor por hora</p>
+                                <input class="form-control" type="text" placeholder="Insira Valor"/>
+                            </div>
+                            </td>
                 </tr> 
                 <tr>
                 <td><p>Periodo</p>
@@ -124,7 +127,8 @@
         });
         $("#CEP").mask("99.999-999");
         $('#CPF').mask('000.000.000-00');
-        $('#Telefone').mask('(00) 0000-00000');
+        $('#Telefone').mask('(00)0000-00000');
         $('#CarteiraDeTrabalho').mask('000.000.000-00');
+        $('#DivLucroHora').hide();
         </script>
         @endsection

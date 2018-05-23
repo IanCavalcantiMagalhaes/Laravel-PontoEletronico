@@ -33,6 +33,8 @@ $Funcionario= new Funcionario;
 $Funcionario->nome=$request->nome;
 $Funcionario->CPF=$request->cpf;
 $Funcionario->CEP=$request->cep;
+$Funcionario->Telefone=$request->Telefone;
+$Funcionario->Cargo=$request->Cargo;
 $Funcionario->save();
 
 $AdicionadoAnteriormente=Funcionario::latest()->first();//pegar valor adicionado recentemente (latest=ultimo)

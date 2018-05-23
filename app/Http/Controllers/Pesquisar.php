@@ -23,7 +23,7 @@ $Result=
 }if($request->PesquisarPor==="Nome"){
   $Result=
   Funcionario::
-  where('nome',$request->CampoPesquisa)
+  where('nome','LIKE','%'.$request->CampoPesquisa.'%')
   ->get();
 
 }if($request->PesquisarPor==="CPF"){

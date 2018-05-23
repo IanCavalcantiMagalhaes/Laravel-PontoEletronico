@@ -31,8 +31,8 @@ $Professor=array([
 public function AdicionarMateriaAoProfessor(Request $request){
 
     $FM=new FuncionarioMateria;
-    $FM->funcionario_id=$request->id_Funcionario;
-    $FM->materia_id=$request->id_Materia;
+    $FM->funcionario_id=$request->ID;
+    $FM->materia_id=$request->MateriaAdicionar;
     $FM->save();
 
     return redirect()
@@ -40,9 +40,9 @@ public function AdicionarMateriaAoProfessor(Request $request){
 
 }
 public function RemoverMateriaDoProfessor(Request $request){
-    DB::table('funcionarios_materias')
-    ->where('id_funcionario',$request->funcionario_id)
-    ->where('id_materia',$request->materia_id)
+    FuncionarioMateria::
+    where('funcionario_id',$request->ID)
+    ->where('materia_id',$request->MateriaRemover)
     ->delete();
 
     return redirect()
@@ -54,6 +54,8 @@ public function AtualizarProfessor(Request $request){
     $F=Funcionario::find($request->ID);
     $F->nome=$request->Nome;
     $F->CPF=$request->CPF;
+    $F->CEP=$request->CEP;
+    $F->Telefone=$request->Telefone;
     $F->save();
    // return redirect()->route('AtualizarPagina')->with('id',$request->ID);
     return redirect()
@@ -63,6 +65,9 @@ public function ApagarProfessor(Request $request){
 
     $F=Funcionario::find($request->ID);
     $F->delete();
+    $FM=FuncionarioMateria::where('funcionario_id',$request->ID);
+    $FM->delete();
+
     return redirect()->route('Pesquisar');
 }
 

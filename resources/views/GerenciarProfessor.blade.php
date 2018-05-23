@@ -29,8 +29,8 @@
                                   </div></td>
                         </tr>
                         <tr>
-                            <td><p>CEP</p><input class="form-control" type="text"  id="campoCEP" style="width:200px;"/></td>
-                            <td><p>Telefone</p><input class="form-control" type="text"  id="campoTelefone" style="width:200px;"/></td>
+                            <td><p>CEP</p><input class="form-control" type="text" name="CEP"  id="campoCEP" style="width:200px;" value={{ $TabelaFuncionario->CEP }} /></td>
+                            <td><p>Telefone</p><input class="form-control" type="text" name="Telefone"  id="campoTelefone" style="width:200px;" value={{ $TabelaFuncionario->Telefone }}></td>
                             <td><h1>Listar Materias do professor</h1>
                                 <div class="OverFlow">
                                 <table class="table table-striped" style="font-size:25px;margin-right:100px;width: 100%; ">
@@ -71,7 +71,7 @@
                         </tr>
                         <tr>
                         <td>
-                                <h3>Modificar cargo(Cargo atual:X)</h3>
+                                <h5>Modificar cargo(Cargo atual:{{ $TabelaFuncionario->Cargo }} )</h5>
                                 <p>Alterar Cargo do professor</p>
                                 <select id="Cargo" class="form-control" onchange="TrocarCargo()">
                                     <option value="">Selecione algum cargo</option>
@@ -79,7 +79,7 @@
                                     <option value="Tempo Parcial">Tempo Parcial</option>
                                     <option value="Tempo Integral">Tempo Integral</option>
                                     </select></td>
-                            <td><div id="DivLucroHora"><p>Lucro por hora</p>
+                            <td><div id="DivLucroHora"><p>Valor por hora</p>
                                 <input class="form-control" type="text" placeholder="Insira Valor"/>
                             </div>
                             </td>
@@ -87,7 +87,7 @@
                         <tr>
                             <td><button type="submit" class="btn btn-success" onclick="" id="BotaoAtualizar">Atualizar</button></td></form>
                             <td><form action="{{ route('ApagarProfessor') }}" >
-                                <input class="form-control" type="hidden" name="ID"  value={{ $TabelaFuncionario->id }} />
+                                <input class="form-control" type="hidden" name="ID" value={{ $TabelaFuncionario->id }} />
                                 <button type="submit" class="btn btn-danger" onclick="" id="BotaoApagar">Apagar</button>
                             </form>
                             </td>
@@ -112,22 +112,28 @@
                             </select></td>
                         </tr>
                         <tr>
-                        <td><p>Adicionar Materia ao professor</p>
-                          <select id="MateriaAdicionar" class="form-control">
+                        <td><form action="{{ route('AdicionarMateria') }}" >
+                            <input type="hidden" name="ID" value={{ $TabelaFuncionario->id }} />
+                            <p>Adicionar Materia ao professor</p>
+                          <select id="Materia" name="MateriaAdicionar" class="form-control">
                             </select>
                         </br>
-                            <button type="button" class="btn btn-success" 
-                            onclick="AdicionarMateria()">Adicionar materia</button>
+                            <button type="submit" class="btn btn-success" 
+                            >Adicionar materia</button>
+                         </form>
                           </td>
-                          <td>
+                          <td><form action="{{ route('RemoverMateria') }}" >
+                              <input type="hidden" name="ID" value={{ $TabelaFuncionario->id }} />
                               <h2>Remover materia</h2>
                               <p>Remover Materia(s) que professor possui</p>
-                            <select id="MateriaRemover" class="form-control">
+                            <select name="MateriaRemover" class="form-control">
                             @for($i=0;$i<sizeOf($TabelaIDMateria);$i++)
                              <option value={{ $TabelaIDMateria[$i]->materia_id }} > {{ $TabelaNomeMateria[$i][0] }} </option>
                             @endfor
-                              </select><button type="button" class="btn btn-danger" 
-                              onclick="RemoverMateria()">Remover materia</button>
+                              </select>
+                            </br>
+                              <button type="submit" class="btn btn-danger">Remover materia</button>
+                            </form>
                             </td>
                         </tr>
                        
@@ -180,7 +186,7 @@
         $('#BotaoApagar').hide();
         $("#campoCEP").mask("99.999-999");
         $('#campoCPF').mask('000.000.000-00');
-        $('#campoTelefone').mask('(00) 0000-00000');
+        $('#campoTelefone').mask('(00)0000-00000');
         $('#CarteiraDeTrabalho').mask('000.000.000-00');
         </script>
         @endsection

@@ -18,10 +18,11 @@ class CreateFuncionariosTables extends Migration
             
             $table->increments('id');
             $table->string('nome');
+            $table->string('CPF');//->unique();
             $table->boolean('Trabalhando')->default(false);
-            $table->string('CEP')->default("Vazio");//->unique();
-            $table->string('Cargo');
-            $table->string('CPF');
+            $table->string('CEP')->default("Vazio");
+            $table->string('Telefone')->default("Vazio");
+            $table->string('Cargo')->default("Vazio");
             $table->string('Endereço')->default("Vazio");
             $table->double('CargahorariaAtual',5,2)->default(0.00);//limie de digitos,Limite de casas decimais
             $table->boolean('Devendo')->default(false);
@@ -42,7 +43,7 @@ class CreateFuncionariosTables extends Migration
             array(
                 'nome' => 'Jose',
                 'CPF' => '222.222.222-22',
-                'Cargo' => 'Tempo imparcial'
+                'Cargo' => 'Tempo parcial'
             )
         );
     }

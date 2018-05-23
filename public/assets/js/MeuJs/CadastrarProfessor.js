@@ -40,6 +40,15 @@ function VerificarDadosCadastraisAJax(){//Proibir acesso por erro de dados OU ac
     }
     
 }
+function TrocarCargo(){
+    
+    if($('#Cargo').val()==="Horista"){
+        $('#DivLucroHora').show();
+    }else{
+        $('#DivLucroHora').hide();
+    }
+}
+
 function AoAlterarCurso(){
     $('#Periodo').empty();
     $(document).ready(function(){//inserir periodos em select

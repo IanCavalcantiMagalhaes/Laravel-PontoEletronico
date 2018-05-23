@@ -119,7 +119,7 @@ function PesquisarProfessor(){
          for(var i=0;i<data.Result.length;i++){
              alert(data.Result[i].nome );
              $('#Resultados').append(
-                  '<form action="GerenciarProfessor/Mostrar">'//action="route('GerenciarProfessor/Mostrar/{data.Result[i].id}')"
+                  '<form action="/GerenciarProfessor/Mostrar">'// "/GerenciarProfessor/Mostrar" em vez de "GerenciarProfessor/Mostrar" para tirar preefixo "Pesquisar/"
                 + '<input type="text" name="ID" id="ID" value="'+data.Result[i].id+'"/>  ' 
                 + 'Nome: '+data.Result[i].nome
                 + '  <button type="submit" class="btn btn-info">Gerenciar professor </button></form></br></br>');
