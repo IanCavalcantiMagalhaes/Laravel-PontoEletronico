@@ -24,7 +24,8 @@ class CreateFuncionariosTables extends Migration
             $table->string('Telefone')->default("Vazio");
             $table->string('Cargo')->default("Vazio");
             $table->string('Endereço')->default("Vazio");
-            $table->double('CargahorariaAtual',5,2)->default(0.00);//limie de digitos,Limite de casas decimais
+            $table->double('HorarioFeitoNaSemana',5,2)->default(0.00);//limie de digitos,Limite de casas decimais
+            $table->double('HorarioQueDeviaSerFeito',5,2)->default(40.00);
             $table->boolean('Devendo')->default(false);
             $table->double('HorasDevendo')->default(0.00);
             $table->boolean('Extra')->default(false);

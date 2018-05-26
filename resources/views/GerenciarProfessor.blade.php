@@ -73,11 +73,10 @@
                         <td>
                                 <h5>Modificar cargo(Cargo atual:{{ $TabelaFuncionario->Cargo }} )</h5>
                                 <p>Alterar Cargo do professor</p>
-                                <select id="Cargo" class="form-control" onchange="TrocarCargo()">
-                                    <option value="">Selecione algum cargo</option>
-                                    <option value="Horista">Horista</option>
-                                    <option value="Tempo Parcial">Tempo Parcial</option>
+                                <select id="Cargo" class="form-control" onchange="TrocarCargo()" name="Cargo">
                                     <option value="Tempo Integral">Tempo Integral</option>
+                                    <option value="Tempo Parcial">Tempo Parcial</option>
+                                    <option value="Horista">Horista</option>
                                     </select></td>
                             <td><div id="DivLucroHora"><p>Valor por hora</p>
                                 <input class="form-control" type="text" placeholder="Insira Valor"/>

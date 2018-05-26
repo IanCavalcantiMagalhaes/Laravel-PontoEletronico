@@ -60,7 +60,6 @@
         @if(session('ERRO'))
             <div class="alert alert-danger" style="botton:500px;">
               <strong>Erro!</strong> {{session('ERRO')}}
-              {{session('ERRO')}}
               @endif
             </fieldset>
          </body>

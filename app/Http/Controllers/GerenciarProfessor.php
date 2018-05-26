@@ -51,11 +51,18 @@ public function RemoverMateriaDoProfessor(Request $request){
 
 public function AtualizarProfessor(Request $request){
 
+    $this->validate($request,[
+        'Nome'=>'required',
+        'CPF'=>'required',
+        'CEP'=>'required'
+      ]);
+
     $F=Funcionario::find($request->ID);
     $F->nome=$request->Nome;
     $F->CPF=$request->CPF;
     $F->CEP=$request->CEP;
     $F->Telefone=$request->Telefone;
+    $F->Cargo=$request->Cargo;
     $F->save();
    // return redirect()->route('AtualizarPagina')->with('id',$request->ID);
     return redirect()

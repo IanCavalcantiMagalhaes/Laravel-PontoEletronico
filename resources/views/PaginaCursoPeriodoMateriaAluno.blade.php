@@ -38,6 +38,11 @@
                     <select id="Materia" onchange="MostrarEsconderCampoDeTexto()">
                          </select>
                         </div>
+                        <div id="DivAula">
+                          <p id="TextoAula">Escolha uma materia</p> 
+                     <select id="Aula" onchange="MostrarEsconderCampoDeTexto()">
+                          </select>
+                         </div>
                         </br></br>
                         
                      <input type="text" value="" id="CampoDeTexto" name="CampoDeTexto"
@@ -50,7 +55,7 @@
                         
                          
                     <div id="DivTurno" style="position:absolute;margin-left:500px;top:0px;">
-                      <p>Escolha um turno</p>
+                      <p>Escolha um turno <a id="TurnoAtual"></a></p>
                         <select name="turno" id="Turno">
                         <option value="Matutino">Matutino</option>
                         <option value="Vespertino">Vespertino</option>
@@ -62,8 +67,8 @@
                         <p>Diga o horario da aula</p>
                         <input type="text" value="" id="CampoHorario">
 
-                        <p>Diga o dia da semana</p>
-                        <select name="Dia">
+                        <p>Diga o dia da semana(<a id="DivDiaAtual"></a>)</p>
+                        <select name="Dia" id="Dia">
                         <option value="Segunda">Segunda</option>
                         <option value="Terça">Terça</option>
                         <option value="Quarta">Quarta</option>

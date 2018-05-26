@@ -93,6 +93,7 @@ $('#Carregando').show();
 
     $('#DivCurso').hide();
     $('#DivTurno').hide();
+    $('#TurnoAtual').empty();
 
     $('#DivPeriodo').hide();
 
@@ -104,16 +105,14 @@ $('#Carregando').show();
     
     $('#DivAula').hide();
     $('#DivInserirHorario').hide();
-
+    
 if($('#Escolhido').val()==='Curso'){
     $('#DivCurso').show();
     $('#DivTurno').show();
 
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         //ao adicionar nao precisara selecionar curso
-        
-        $('#Curso').hide();
-        $('#TextoCurso').hide();
+        $('#DivCurso').hide();
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
        $('#DivTurno').hide();//nao precisare selecionar turno
@@ -126,12 +125,10 @@ if($('#Escolhido').val()==='Curso'){
     
     if($("input[name='EscolhidoComando']:checked").val()==='Adicionar'){
         //ao adicionar nao precisara selecionar periodo
-        $('#Periodo').hide();
-        $('#TextoPeriodo').hide();
+        $('#DivPeriodo').hide();
         
     }
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
-        
         $('#DivSala').hide();//nao precisara dizer sala
      }
 
@@ -144,7 +141,10 @@ if($('#Escolhido').val()==='Curso'){
         //ao adicionar nao precisara selecionar materia
         $('#DivMateria').hide();
     }
-    
+    if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
+ 
+     }
+
 
 }if($('#Escolhido').val()==='Aula'){
     $('#DivCurso').show();
@@ -200,7 +200,7 @@ function AoAlterarCurso(){
               if(data===false){
                 $('#Periodo').empty();//deixara vazio por que escolheu a opçao 'selecione um curso' em que nao existe id
               }else{
-
+                
             $('#Periodo').append("<option value=''>"+"Selecione um periodo"+"</option>");
           for(var i=0;i<data.Periodos.length;i++){
 
@@ -209,6 +209,17 @@ function AoAlterarCurso(){
        }
         }});
 });
+$(document).ready(function(){//Inserir valor atual de turno
+    $('#TurnoAtual').empty();
+    
+      $.ajax({
+        type: "GET",
+        data: {IdCurso: $("#Curso").val()},
+        url:"/GerenciarCursos/CarregarTurno",success: function(data){
+           $('#TurnoAtual').append("(Atual:"+data.Cursos.turno+")");
+      }});
+});
+
       }
 function AoAlterarPeriodo(){//inserir materias em select e campo de texto sala
 
@@ -232,7 +243,7 @@ function AoAlterarPeriodo(){//inserir materias em select e campo de texto sala
         }
         }});
     });
-    $(document).ready(function(){
+    $(document).ready(function(){//Caso queira alterar ou adicionar
         
            $.ajax({
              type: "GET",
@@ -243,6 +254,57 @@ function AoAlterarPeriodo(){//inserir materias em select e campo de texto sala
                 for(var i=0;i<data.Sala.length;i++){
                 $('#Sala').val(data.Sala[i].sala);
                 }
+               
+           }});
+    });
+}
+function AoAlterarMateria(){
+    $(document).ready(function(){
+        $('#Materia').empty();
+          $.ajax({
+            type: "GET",
+            data: {IdPeriodo: $("#Periodo").val()},
+            url:"/AjaxMateria",success: function(result){
+    
+                if(result===false){
+                    $('#Aula').empty();//deixara vazio por que escolheu a opçao 'selecione um periodo' em que nao existe id
+                  }else{
+    
+                $('#Aula').append("<option value=''>"+"Selecione uma materia"+"</option>");
+                for(var i=0;i<result.Materias.length;i++){//
+                    $('#Aula').append("<option value="+result.Aula[i].id+">"+result.Aula[i].nome_aula+"</option>");
+                }
+            }
+            }});
+        });
+}
+function AoAlterarAula(){//inserir materias em select e campo de texto sala
+
+    $('#CampoHorario').val('');
+
+    $(document).ready(function(){
+    $('#Aula').empty();
+      $.ajax({
+        type: "GET",
+        data: {Id: $("#").val()},
+        url:"CarregarHorario",success: function(result){
+            
+           
+                $('#CampoHorario').val(result.CampoHorario);//ira inserir horario atual
+              
+        
+        }});
+    });
+    $(document).ready(function(){//Caso queira alterar ou adicionar
+        
+           $.ajax({
+             type: "GET",
+             url:"CarregarDiaDaSemana",
+             data: {Id: $("#").val()},
+             success: function(data){
+            
+                $('#DivDiaAtual').append(data.Dia.dia);//dia Atual no banco
+                
                
            }});
     });

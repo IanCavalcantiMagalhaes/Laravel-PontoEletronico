@@ -25,7 +25,7 @@ Route::get('/oi', function () {
   
 Route::group([], function() {
      Route::get('/','LogarUsuario@RetornarView')->name('PaginaLogar');
-     Route::post('/Auntenticar','LogarUsuario@testValidar')->name('Autenticar');
+     Route::post('/Auntenticar','LogarUsuario@Validar')->name('Autenticar');
     });
   
 
@@ -82,6 +82,7 @@ Route::group(['prefix' => 'GerenciarCursos'], function() {
 })->name('GerenciarCursos');
         Route::get('/CarregarCursos','CursoPeriodoMateriaAula@CarregarCursos');
         Route::get('/CarregarSala','CursoPeriodoMateriaAula@CarregarSala');
+        Route::get('/CarregarTurno','CursoPeriodoMateriaAula@CarregarTurno');
 
 });
 //as funçoes abaixo nao tem grupo definido ja que é utilizada em varios conjunto de rotas{

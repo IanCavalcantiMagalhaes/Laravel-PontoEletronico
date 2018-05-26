@@ -103,8 +103,8 @@ function PesquisarOQue(){//Sera responsavel por qual controller sera executado
 
 
 function PesquisarProfessor(){
-  alert($("#CampoPesquisa").val());
-  alert($('#PesquisarPor').val());
+  //alert($("#CampoPesquisa").val());
+  //alert($('#PesquisarPor').val());
  
     $(document).ready(function(){
         $('#CorpoDaTable').empty();
@@ -114,10 +114,10 @@ function PesquisarProfessor(){
           data: {CampoPesquisa: $("#CampoPesquisa").val(),
                  PesquisarPor:$('#PesquisarPor').val()},//PesquisarPor(id,nome,cpf)
           url:"/Pesquisar/AjaxPesquisaProfessor",success: function(data){
-            alert("Certo");
+           // alert("Certo");
 
          for(var i=0;i<data.Result.length;i++){
-             alert(data.Result[i].nome );
+            // alert(data.Result[i].nome );
              $('#Resultados').append(
                   '<form action="/GerenciarProfessor/Mostrar">'// "/GerenciarProfessor/Mostrar" em vez de "GerenciarProfessor/Mostrar" para tirar preefixo "Pesquisar/"
                 + '<input type="text" name="ID" id="ID" value="'+data.Result[i].id+'"/>  ' 
@@ -140,7 +140,7 @@ function PesquisarProfessor(){
               data: {CampoPesquisa: $("#CampoPesquisa").val(),
                      PesquisarPor:$('#PesquisarPor').val()},//PesquisarPor(id,nome,cpf)
               url:"/Pesquisar/AjaxPesquisaCurso",success: function(data){
-                alert("Certo");
+               alert("Certo");
                 $('#CabeçalhoDaTable').append(
                   '<tr><th>ID</th>'
                  +'<th>Nome</th>'
@@ -149,7 +149,7 @@ function PesquisarProfessor(){
                  +'</tr>');
                  
              for(var i=0;i<data.Result.length;i++){
-                 alert(data.Result[i].nome );
+                // alert(data.Result[i].nome );
                 
                  $('#CorpoDaTable').append(
                       '<tr><form action="Mostrar">'

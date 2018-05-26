@@ -22,6 +22,11 @@ class CursoPeriodoMateriaAula extends BaseController
 
 return Response::json(array('Cursos'=>$Cursos)); 
    }
+   function CarregarTurno(Request $request){
+    $Cursos=
+    Curso::find($request->IdCurso);
+     return Response::json(array('Cursos'=>$Cursos)); 
+   }
 
    function CarregarSala(Request $request){
     $Sala= 
