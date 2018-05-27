@@ -19,7 +19,7 @@ $("#Entrada").hide();
 }
 function AnaliseSairOuEntrar(){
   $("#Saida").hide();$("#Entrada").hide();$("#Erro").hide();
-  //alert($("#cpf").val());
+  alert($("#cpf").val());
   $(document).ready(function(){//inserir periodos
         $.ajax({
           type: "GET",

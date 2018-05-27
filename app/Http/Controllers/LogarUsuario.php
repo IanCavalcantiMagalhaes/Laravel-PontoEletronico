@@ -28,7 +28,7 @@ class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
       'nome'=>$request->nome
     ]);
     
-    return redirect()->route('MarcarPonto'); 
+    return redirect()->route('PaginaMarcarPonto'); 
   }else{
 
    return redirect()->route('PaginaLogar')->with('ERRO',"Dados incorretos");

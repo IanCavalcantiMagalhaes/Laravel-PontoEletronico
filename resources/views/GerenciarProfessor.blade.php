@@ -2,12 +2,15 @@
 
 
 @section('conteudo')
-        <section class="Sessao">
+        <section class="Sessao"> 
+            
             <form action="{{ route('AtualizarProfessor') }}" >
+                
             <table cellpadding="30" >
                     <thead>
                         <tr>
-                            <th><h3>Gerenciar dados de Professor(ID:<div id="ID">{{ $TabelaFuncionario->id }}</div>) </h3></th>
+                            <th><h3>Gerenciar dados de Professor(ID:<div id="ID">{{ $TabelaFuncionario->id }}</div>) </h3>
+                            </th>
                             <input class="form-control" type="hidden" name="ID"  value={{ $TabelaFuncionario->id }} />
                             <th><button type="button" class="btn btn-success"
                               onclick="Ediçao()" id="EdiçaoBotao"></button></th>
@@ -139,7 +142,7 @@
                        
                     </tbody>
                 </table>
-                
+               
              
                 
         </section>

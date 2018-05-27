@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Input;
 use App\Models\Curso;
 use App\Models\Periodo;
 
-class CursoPeriodoMateriaAula extends BaseController
+class GerenciarCursos extends BaseController
 {   
     function CarregarCursos(){//inserir no select curso
     $Cursos=

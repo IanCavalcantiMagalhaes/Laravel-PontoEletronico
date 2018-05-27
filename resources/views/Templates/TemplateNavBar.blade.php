@@ -109,7 +109,7 @@
 @endif
 @if($navbar=="Gerenciar Cursos")
 <title>Gerenciar Cursos</title>
-<script src="{{ asset('assets/js/MeuJs/CursoPeriodoMateriaAluno.js') }}"></script>
+<script src="{{ asset('assets/js/MeuJs/GerenciarCursos.js') }}"></script>
 </head>
 
 <body class="TelaDeFundo" >

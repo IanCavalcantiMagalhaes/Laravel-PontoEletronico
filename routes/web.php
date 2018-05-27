@@ -30,10 +30,10 @@ Route::group([], function() {
   
 
 Route::group(['prefix' => 'MarcarPonto','middleware'=>['login']], function() {
-     Route::get('/VisualizarFuncionario','Entrada_Saida@IndentificarFuncionarioLiberado');
-     Route::get('/RegistrandoTest','Entrada_Saida@testContador');
-     Route::get('/Registrando','Entrada_Saida@Contador');
-     Route::get('/RegistrarEntrada_Saida','Entrada_Saida@RetornarView')->name('MarcarPonto')->middleware('login');
+     Route::get('/VisualizarFuncionario','MarcarPonto@IndentificarFuncionarioLiberado');
+     Route::get('/RegistrandoTest','MarcarPonto@testContador');
+     Route::get('/Registrando','MarcarPonto@Contador');
+     Route::get('/RegistrarEntrada_Saida','MarcarPonto@RetornarView')->name('PaginaMarcarPonto')->middleware('login');
 });
 
 
@@ -70,19 +70,20 @@ Route::group(['prefix' => 'GerenciarProfessor'], function() {
     Route::get('/ApagarProfessor','GerenciarProfessor@ApagarProfessor')->middleware('login')->name('ApagarProfessor');
     Route::get('/AdicionarMateria','GerenciarProfessor@AdicionarMateriaAoProfessor')->middleware('login')->name('AdicionarMateria');
     Route::get('/RemoverMateria','GerenciarProfessor@RemoverMateriaDoProfessor')->middleware('login')->name('RemoverMateria');
+    Route::get('/VerificarSeValorAdicionadoJaEstavaAdicionado','GerenciarProfessor@VerificarSeValorAdicionadoJaEstavaAdicionado')->middleware('login');
 });
 
 Route::group(['prefix' => 'GerenciarCursos'], function() {
-        Route::get('/Curso','CursoPeriodoMateriaAula@Curso');
-        Route::get('/Periodo','CursoPeriodoMateriaAula@Periodo');
-        Route::get('/Materia','CursoPeriodoMateriaAula@Materia');
+        Route::get('/Curso','GerenciarCursos@Curso');
+        Route::get('/Periodo','GerenciarCursos@Periodo');
+        Route::get('/Materia','GerenciarCursos@Materia');
         Route::get('/Pagina',function(){
-              return view('PaginaCursoPeriodoMateriaAluno')->with('navbar','Gerenciar Cursos');
+              return view('PaginaGerenciarCursos')->with('navbar','Gerenciar Cursos');
     
 })->name('GerenciarCursos');
-        Route::get('/CarregarCursos','CursoPeriodoMateriaAula@CarregarCursos');
-        Route::get('/CarregarSala','CursoPeriodoMateriaAula@CarregarSala');
-        Route::get('/CarregarTurno','CursoPeriodoMateriaAula@CarregarTurno');
+        Route::get('/CarregarCursos','GerenciarCursos@CarregarCursos');
+        Route::get('/CarregarSala','GerenciarCursos@CarregarSala');
+        Route::get('/CarregarTurno','GerenciarCursos@CarregarTurno');
 
 });
 //as funçoes abaixo nao tem grupo definido ja que é utilizada em varios conjunto de rotas{

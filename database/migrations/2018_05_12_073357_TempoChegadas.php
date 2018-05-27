@@ -15,7 +15,7 @@ class TempoChegadas extends Migration
     {
         Schema::create('TempoChegadas', function (Blueprint $table) {
             $table->integer('funcionario_id');
-            $table->bigInteger('Chegada');
+            $table->biginteger('Chegada');
             $table->timestamps();
         });
     }

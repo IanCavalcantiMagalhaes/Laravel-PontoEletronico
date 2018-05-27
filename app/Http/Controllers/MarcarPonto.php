@@ -12,7 +12,7 @@ use DB;
 use App\Models\Funcionario;
 use App\Models\TempoChegada;
 
-class Entrada_Saida extends BaseController
+class MarcarPonto extends BaseController
 {
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
    public function RetornarView(Request $request){
@@ -40,7 +40,8 @@ class Entrada_Saida extends BaseController
     ->pluck('Chegada')->first();
 
        //Necessario utilizar foreach 
-         $TempoFeito=microtime(true)-$TC;// $TempoFeito=(($TempoFeito/1000)/60);
+         $TempoFeito=microtime(true)-$TC;
+         $TempoFeito=$TempoFeito/60;//segundos para minutos
        
       
      
@@ -67,7 +68,7 @@ class Entrada_Saida extends BaseController
 
       $TC=new TempoChegada;//impossivel guardar em array porque sera apagado quando controller ser finalizado
       $TC->funcionario_id=$ID;
-      $TC->Chegada=microtime(true);
+      $TC->Chegada=microtime(true);//microtime sao segundos atuais
       $TC->save();
 
       return response()->json(array('RS'=>$RS));

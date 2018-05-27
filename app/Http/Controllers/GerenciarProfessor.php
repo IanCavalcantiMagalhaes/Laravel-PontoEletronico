@@ -16,27 +16,41 @@ use App\Models\FuncionarioMateria;
 use App\Models\Curso;
 use App\Models\Periodo;
 use App\Models\Materia;
+use validate;
 
 class GerenciarProfessor extends BaseController
 {
-public function Test(){
-
-$Professor=array([
-    'nome'=>"Ian",
-    'CPF'=>"12345"
-]
-);
-}
+    
 
 public function AdicionarMateriaAoProfessor(Request $request){
 
-    $FM=new FuncionarioMateria;
+    $Tabela=
+        FuncionarioMateria::
+        where('funcionario_id',$request->ID)
+        ->get();
+        $Contar=0;
+        $PermitirAdiçao=true;
+        foreach($Tabela as $dados){//ira verificar se id de funcionario e materia ja estao relacionados,se tiver nao ira permitir adiçao
+                 if($dados->materia_id==$request->MateriaAdicionar){
+                    $PermitirAdiçao=false;
+                    }
+                $Contar++;
+                 if($Contar===5){//se professor ultrapassou o limite de 5 materias
+                    $PermitirAdiçao=false;
+                 }
+        }
+  
+if($PermitirAdiçao===true){
+     $FM=new FuncionarioMateria;
     $FM->funcionario_id=$request->ID;
     $FM->materia_id=$request->MateriaAdicionar;
     $FM->save();
+}
+   
 
     return redirect()
-    ->action('GerenciarProfessor@ListarTodosOsDadosProfessorComModel',['ID'=>$request->ID]);//ira atualizar pagina
+    ->action('GerenciarProfessor@ListarTodosOsDadosProfessorComModel',
+    ['ID'=>$request->ID]);//ira atualizar pagina
 
 }
 public function RemoverMateriaDoProfessor(Request $request){
@@ -51,11 +65,6 @@ public function RemoverMateriaDoProfessor(Request $request){
 
 public function AtualizarProfessor(Request $request){
 
-    $this->validate($request,[
-        'Nome'=>'required',
-        'CPF'=>'required',
-        'CEP'=>'required'
-      ]);
 
     $F=Funcionario::find($request->ID);
     $F->nome=$request->Nome;
@@ -146,5 +155,7 @@ return view('GerenciarProfessor')
   
 
   }
-  
+
+
+ 
 }

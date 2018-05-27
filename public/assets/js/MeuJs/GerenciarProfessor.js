@@ -41,15 +41,14 @@ if(ValorAtual==="Editar"){//clicou quando valor foi editar
 function AdicionarMateria(){
     
     $(document).ready(function(){
-
+        
     $('#Materia').empty();
       $.ajax({
         type: "GET",
         data: {id_Materia: $("#MateriaAdicionar").val(),
                id_Funcionario: $("#ID").val()},//'ID' igual ao form gerado em pesquisar para ter o mesmo nome do request e assim poder utilizar o mesmo controller
-        url:"",success: function($result){
-
-           
+        url:"/GerenciarProfessor/AdicionarMateria",success: function($result){
+           alert("Adicionar");
         }});
     });
 }
@@ -109,32 +108,22 @@ function AtualizarSelectDeMateriasPossuidas(){
 
 }
 
-function AtualizarPagina(){
-    $(document).ready(function(){
 
-        $('#Materia').empty();
-          $.ajax({
-            type: "GET",
-            data: {ID: $("#ID").val()},//'ID' igual ao form gerado em pesquisar para ter o mesmo nome do request e assim poder utilizar o mesmo controller
-            url:"",success: function($result){
-
-               
-            }});
-        });
-}
 function VerificarSeValorAdicionadoJaEstavaAdicionado(){
     $(document).ready(function(){
-
+        
         $('#Materia').empty();
           $.ajax({
             type: "GET",
-            data: {idFuncionario: $("#Id").val(),idAdicionado: $("#MateriaAdicionar").val()},
-            url:"",success: function($result){
-
-               if($result===false){
+            data: {idFuncionario: $("#ID").val(),idAdicionado: $("#Materia").val()},
+            url:"/GerenciarProfessor/VerificarSeValorAdicionadoJaEstavaAdicionado",
+            success: function(result){
+                alert(result);
+               if(result===false){
                   alert("Este item ja estava adicionado");
-               }else{
-                VerSeProfessorUltrapassouLimiteDe5Materias();
+               }if(result===true){
+                //VerSeProfessorUltrapassouLimiteDe5Materias();
+                AdicionarMateria();
                }
                
             }});
@@ -144,10 +133,10 @@ function VerificarSeValorAdicionadoJaEstavaAdicionado(){
     FuncionarioMateria::select('id_materia')
     ->where('id_funcionario',$request->idFuncionario)
     ->get();
-    PermitirAdiçao=true;
+    $PermitirAdiçao=true;
     foreach($Tabela as $dados){//ira verificar se id de funcionario e materia estao relacionados se tiver nao ira permitir adiçao
              if($dados->id_materia==$request->idAdicionado){
-                  PermitirAdiçao=false;
+                  $PermitirAdiçao=false;
              }
     }
     response::json(PermitirAdiçao);
@@ -165,7 +154,7 @@ function VerificarSeValorAdicionadoJaEstavaAdicionado(){
                if($result===false){
                   alert("Limite de 5 materias por professor sera ultrapassado");
                }else{
-                VerificarSeAlgumProfessorPossuiJaEstaMateria();
+              //  VerificarSeAlgumProfessorPossuiJaEstaMateria();
                }
 
             }});
