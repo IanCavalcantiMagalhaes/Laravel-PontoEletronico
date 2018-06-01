@@ -109,7 +109,7 @@
                 
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $("<img />", {
+                    $("<img/>", {
                         "src": e.target.result,
                         "class": "thumb-image"
                         

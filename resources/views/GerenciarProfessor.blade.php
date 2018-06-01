@@ -3,24 +3,55 @@
 
 @section('conteudo')
         <section class="Sessao"> 
-            
+            @if ($errors->any())
+                        </br>
+                    <div class="alert alert-danger">
+                    <ul>
+                @foreach ($errors->all() as $error)
+                 <li>{{ $error }}</li>
+                @endforeach
+                  </ul>
+                 </div>
+                @endif
             <form action="{{ route('AtualizarProfessor') }}" >
                 
+
+                @if(session('AlertaDeAtualizaçao'))
+                <div class="alert alert-success" role="alert">
+                <strong>Concluido - </strong>{{ session('AlertaDeAtualizaçao') }}
+                </div>
+                @endif
+                @if(session('AlertaDeRemoçao'))
+                <div class="alert alert-success" role="alert">
+                <strong>Concluido - </strong>{{ session('AlertaDeRemoçao') }}
+                </div>
+                @endif
+                @if(session('AlertaDeAdiçao'))
+                  @if( session('AlertaDeAdiçao') === "Adicionado Com Sucesso")
+                    <div class="alert alert-success" role="alert">
+                    <strong>Concluido - </strong>{{ session('AlertaDeAdiçao') }}
+                    </div>
+                  
+                  @else
+                  <div class="alert alert-warning" role="alert">
+                        <strong>Ateção - </strong>{{ session('AlertaDeAdiçao') }}
+                      </div>
+                  @endif
+                @endif
             <table cellpadding="30" >
                     <thead>
                         <tr>
-                            <th><h3>Gerenciar dados de Professor(ID:<div id="ID">{{ $TabelaFuncionario->id }}</div>) </h3>
+                            <th><h3>Gerenciar dados de Professor(ID:<span id="ID">{{ $TabelaFuncionario->id }}</span>) </h3>
                             </th>
                             <input class="form-control" type="hidden" name="ID"  value={{ $TabelaFuncionario->id }} />
                             <th><button type="button" class="btn btn-success"
                               onclick="Ediçao()" id="EdiçaoBotao"></button></th>
-                            <th><div id="image-holder"></div></th>
+                            <th><div id="image-holder"style="border-style: groove;width: 250px;
+                                height: 250px; "></div></th>
                         </tr>
                     </thead>
                     
                     
-                    
-                 
                     <tbody>
                         <tr>
                             <td> <p>Nome</p><input class="form-control" type="text" name="Nome" id="campoNome" value={{ $TabelaFuncionario->nome }} /></td>
@@ -77,6 +108,7 @@
                                 <h5>Modificar cargo(Cargo atual:{{ $TabelaFuncionario->Cargo }} )</h5>
                                 <p>Alterar Cargo do professor</p>
                                 <select id="Cargo" class="form-control" onchange="TrocarCargo()" name="Cargo">
+                                        <option value="">Selecione cargo</option>
                                     <option value="Tempo Integral">Tempo Integral</option>
                                     <option value="Tempo Parcial">Tempo Parcial</option>
                                     <option value="Horista">Horista</option>

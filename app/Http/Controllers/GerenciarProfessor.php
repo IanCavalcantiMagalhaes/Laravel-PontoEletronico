@@ -10,18 +10,20 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Response;
 use DB;
 use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use json;
 use App\Models\Funcionario;
 use App\Models\FuncionarioMateria;
 use App\Models\Curso;
 use App\Models\Periodo;
 use App\Models\Materia;
-use validate;
 
 class GerenciarProfessor extends BaseController
 {
     
-
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
 public function AdicionarMateriaAoProfessor(Request $request){
 
     $Tabela=
@@ -45,12 +47,16 @@ if($PermitirAdiçao===true){
     $FM->funcionario_id=$request->ID;
     $FM->materia_id=$request->MateriaAdicionar;
     $FM->save();
+    $Resultado="Adicionado Com Sucesso";
+
+}else{
+    $Resultado="Falha na adiçao - Possivelmente foi adicionada materia ja adicionada ao professor ou professor pode ter atingido limite maximo de 5 materias";
 }
    
 
     return redirect()
     ->action('GerenciarProfessor@ListarTodosOsDadosProfessorComModel',
-    ['ID'=>$request->ID]);//ira atualizar pagina
+    ['ID'=>$request->ID])->with('AlertaDeAdiçao',$Resultado);//ira atualizar pagina
 
 }
 public function RemoverMateriaDoProfessor(Request $request){
@@ -60,22 +66,31 @@ public function RemoverMateriaDoProfessor(Request $request){
     ->delete();
 
     return redirect()
-    ->action('GerenciarProfessor@ListarTodosOsDadosProfessorComModel',['ID'=>$request->ID]);//ira atualizar pagina
+    ->action('GerenciarProfessor@ListarTodosOsDadosProfessorComModel',
+    ['ID'=>$request->ID])->with('AlertaDeRemoçao',"Materia removida com sucesso");//ira atualizar pagina
 }
 
 public function AtualizarProfessor(Request $request){
 
+    $this->validate($request,[
+        'Nome'=>'required',
+        'CPF'=>'required',
+        'CEP'=>'required'
+      ]);
 
     $F=Funcionario::find($request->ID);
     $F->nome=$request->Nome;
     $F->CPF=$request->CPF;
     $F->CEP=$request->CEP;
     $F->Telefone=$request->Telefone;
-    $F->Cargo=$request->Cargo;
+    if($request->Cargo){
+       $F->Cargo=$request->Cargo; 
+    }
     $F->save();
    // return redirect()->route('AtualizarPagina')->with('id',$request->ID);
     return redirect()
-    ->action('GerenciarProfessor@ListarTodosOsDadosProfessorComModel',['ID'=>$request->ID]);//ira atualizar pagina(Levando request necessario para controller)
+    ->action('GerenciarProfessor@ListarTodosOsDadosProfessorComModel',
+    ['ID'=>$request->ID])->with('AlertaDeAtualizaçao',"Dados atualizados com sucesso");//ira atualizar pagina(Levando request necessario para controller)
 }
 public function ApagarProfessor(Request $request){
 
@@ -84,7 +99,7 @@ public function ApagarProfessor(Request $request){
     $FM=FuncionarioMateria::where('funcionario_id',$request->ID);
     $FM->delete();
 
-    return redirect()->route('Pesquisar');
+    return redirect()->route('PaginaMarcarPonto')->with('AlertaDeRemoçao',"Professor apagado com sucesso");
 }
 
 

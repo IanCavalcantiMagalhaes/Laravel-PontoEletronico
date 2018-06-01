@@ -15,6 +15,8 @@ use App\Models\Periodo;
 
 class GerenciarCursos extends BaseController
 {   
+    
+
     function CarregarCursos(){//inserir no select curso
     $Cursos=
     Curso::get();

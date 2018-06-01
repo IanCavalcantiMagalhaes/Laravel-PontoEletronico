@@ -81,6 +81,9 @@ $('#Carregando').show();
     if($("input[name='EscolhidoComando']:checked").val()==='Remover'){
         $('#CampoDeTexto').hide(); //nao é necessario adicionar nada no campo de texto
         $("#TextoBotao").append('Remover');
+    }else{
+        $('#CampoDeTexto').attr('readonly',true);
+        $('#Botao').hide();
     }
 
 
@@ -106,6 +109,7 @@ $('#Carregando').show();
     $('#DivAula').hide();
     $('#DivInserirHorario').hide();
     
+
 if($('#Escolhido').val()==='Curso'){
     $('#DivCurso').show();
     $('#DivTurno').show();
@@ -177,9 +181,13 @@ $('#Carregando').hide();
 }
 
 function HabilitarEdiçoes(){
-if($('#Escolhido').val()==='Selecione'){
+
+if($('#Escolhido').val()==='Selecione' ||
+   $("input[name='EscolhidoComando']:checked").is(":checked")===false){
+
     $('#CampoDeTexto').attr('readonly',true);
     $('#Botao').hide();
+    
     }else{
         $('#CampoDeTexto').attr('readonly',false);
         $('#Botao').show();

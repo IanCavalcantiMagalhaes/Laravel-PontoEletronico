@@ -54,7 +54,7 @@ class MarcarPonto extends BaseController
       where('funcionario_id',$ID);//Nao tem primary key,entao nao e possivel utilizar find
       $TC->delete();
       
-    return response()->json(array('RS'=>$RS)); 
+    return response()->json(array('RS'=>$RS,'TempoFeito'=>round($TempoFeito,2))); 
      
     
      //$RP=new RegistroDePonto;$RP->funcionario_id=$ID;$RP->TempoFeito=$TempoFeito;
@@ -85,7 +85,7 @@ class MarcarPonto extends BaseController
   public function IndentificarFuncionarioLiberado(Request $request){
           $RS=
           DB::table('Funcionarios')
-          ->select('id','nome')
+          ->select('id','nome','HorarioFeitoNaSemana')
           ->where('CPF',$request->CPF)->get();
 
           return response()->json(array('Professor'=>$RS));

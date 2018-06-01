@@ -129,8 +129,16 @@ Route::get('/ManipularCurso', function () {
     return view('PaginaCursoPeriodoMateriaAluno');
 });
 Route::get('/Testando',function(){
-   // $X= Funcionario::get()->first();//find(1);
+   
+    $minutos=0;
+    $segundos=0;
     
+    $tempo=5.5;
+    $minutos==$tempo/1;
+    $segundos==$tempo%1;
+
+    $Array[]=$minutos;
+    $Array[]=$segundos;
 
    $RS=
    Funcionario::find(2)
@@ -144,8 +152,10 @@ Route::get('/Testando',function(){
      
    // }
      
-    return view('Test')->with('Arranjo',$RS);
+    return view('Test')->with('Arranjo',$Array);
 });
+
+Route::get('/TestAjax','test@AjaxSoma');
 Route::get('/Somar/{V1}/{V2}',function(Request $request){
 
 echo $request->V1+$request->V2;
@@ -157,7 +167,7 @@ Route::get('/Soma',function(){
     return redirect()->route('Somar/'+4+'/'+2+'');
 
 });
-    
+
 
 
 
