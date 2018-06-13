@@ -2,18 +2,9 @@
 
 
 @section('conteudo')
-<div id="Alertas">
-          @if(session('AlertaDeCadastro'))
-          <div class="alert alert-success" role="alert">
-            <strong>Concluido - </strong>{{ session('AlertaDeCadastro') }}
-          </div>
-            @endif
-            @if(session('AlertaDeRemoçao'))
-          <div class="alert alert-success" role="alert">
-            <strong>Concluido - </strong>{{ session('AlertaDeRemoçao') }}
-          </div>
-            @endif
-        </div>
+
+@include('Mensagens.MarcarPonto')
+
  <div class="AjustarCampoEBotao">
   <input type="text" name="CPF" id="cpf" class="form-control" 
   placeholder="Digite CPF" style="margin:0 auto;width:25%;">

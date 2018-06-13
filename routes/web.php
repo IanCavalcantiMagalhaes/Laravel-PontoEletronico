@@ -2,6 +2,8 @@
 //http://clubedosgeeks.com.br/programacao/listando-registro-de-banco-de-dados-mysql-com-ajax-json-e-php
 //https://stackoverflow.com/questions/26922123/load-cities-from-state-laravel
 //http://matheuspiscioneri.com.br/blog/preview-de-imagem-antes-do-upload-filereader/
+// https://select2.org/getting-started/basic-usage
+//https://select2.org/troubleshooting/common-problems
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +17,10 @@
 use Illuminate\Support\Facades\Input;
 use App\Models\Funcionario;
 use App\Models\Curso;
+use App\Models\Materia;
+use App\Models\FuncionarioMateria;
 use App\Models\TempoChegada;
+
 use Illuminate\Http\Request;
 Route::get('/oi', function () {
     return view('welcome');
@@ -80,7 +85,7 @@ Route::group(['prefix' => 'GerenciarCursos'], function() {
         Route::get('/Pagina',function(){
               return view('PaginaGerenciarCursos')->with('navbar','Gerenciar Cursos');
     
-})->name('GerenciarCursos');
+})->name('GerenciarCursos')->middleware('login');
         Route::get('/CarregarCursos','GerenciarCursos@CarregarCursos');
         Route::get('/CarregarSala','GerenciarCursos@CarregarSala');
         Route::get('/CarregarTurno','GerenciarCursos@CarregarTurno');
@@ -130,29 +135,9 @@ Route::get('/ManipularCurso', function () {
 });
 Route::get('/Testando',function(){
    
-    $minutos=0;
-    $segundos=0;
-    
-    $tempo=5.5;
-    $minutos==$tempo/1;
-    $segundos==$tempo%1;
-
-    $Array[]=$minutos;
-    $Array[]=$segundos;
-
-   $RS=
-   Funcionario::find(2)
-   ->select('id','Trabalhando','nome')
-   ->pluck('nome');
-   //$RS=Funcionario::find(2)->select('id','Trabalhando','nome')->get();
-
-   //foreach($X as $dados){
-    //  $Array[]=$dados->id;
-     // $Array[]=$dados->nome;
+ $R=Funcionario::find(1);
      
-   // }
-     
-    return view('Test')->with('Arranjo',$Array);
+    return view('Test')->with('S',$R->nome);
 });
 
 Route::get('/TestAjax','test@AjaxSoma');
@@ -172,5 +157,7 @@ Route::get('/Soma',function(){
 
 
 
+Route::get('/aulairregular','AulaIrregular@RetornarView');
+Route::get('/aulairregularprocura','AulaIrregular@ProcurarProfessor');
 
 Route::get('/AjaxTestando','test@AjaxTest');

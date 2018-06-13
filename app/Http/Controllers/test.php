@@ -25,8 +25,8 @@ class test extends Controller
         /* Funcionario::find(1)
          ->select('Trabalhando')
          ->get();*/
-         $X=
-         Funcionario::where('id',1)
+        // $X=
+        return Funcionario::where('id',1)
          ->get();
          
       
@@ -34,9 +34,9 @@ class test extends Controller
                 $Array[]=$dados->Trabalhando;
                 $Array[]=$dados->nome;
               }
-              $Me="BOM";
-            return response()->json(array(
-                'Um'=>$Array,'Dois'=>$Me));
+              
+            //return response()->sucess(array(
+                //'band'=>$Array));
        }
       
 }

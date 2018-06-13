@@ -81,7 +81,7 @@
 
                     <tr>
                             <td></td>         
-               <td><button type="submit" class="btn btn-success" onclick="VerificarDadosCadastraisAJax()">Cadastrar</button></td>  
+               <td><button type="submit" class="btn btn-success">Cadastrar</button></td>  
                 <td></td>  
                </tr>
             </tbody>

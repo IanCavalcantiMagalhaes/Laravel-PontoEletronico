@@ -171,6 +171,29 @@ return view('GerenciarProfessor')
 
   }
 
+  public function ListarTodosOsDadosProfessor(Request $request){//sera utilizado tanto para selecionar resultado de pesquisa e atualizar pagina depois de alteraçao
 
+    $DadosFuncionario=
+     Funcionario::find(1);//$request->ID
+
+     $id_materia=
+     FuncionarioMateria:://Pegar materias relacionadas com funcionario
+     select('materia_id')
+     ->where('funcionario_id',$request->ID)
+     ->pluck('materia_id');
+
+       foreach($id_materia as $id_materia){
+          $ResultadosDeRelacionamento[]=//se acumulara neste array
+     Materia::
+       where('materias.id',$id_materia)//juntar materia com seus respectivos periodos e cursos
+     ->join('periodos','materias.periodo_id','=','periodos.id')
+     ->join('cursos','periodos.curso_id','=','cursos.id')
+     
+     ->get(); 
+       }
+     
+  
+
+  }
  
 }

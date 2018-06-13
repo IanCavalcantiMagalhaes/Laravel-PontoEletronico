@@ -20,6 +20,7 @@ if(ValorAtual==="Editar"){//clicou quando valor foi editar
     $('#EdiçaoMateria').show();
     $('#BotaoAtualizar').show();
     $('#BotaoApagar').show();
+    $('#BotaoAulaIrregular').show();
     $('#EdiçaoBotao').empty();
     $('#EdiçaoBotao').append("Desabilitar Ediçao");
 
@@ -32,6 +33,7 @@ if(ValorAtual==="Editar"){//clicou quando valor foi editar
     $('#EdiçaoMateria').hide();
     $('#BotaoAtualizar').hide();
     $('#BotaoApagar').hide();
+    $('#BotaoAulaIrregular').hide();
     $('#EdiçaoBotao').empty();
     $('#EdiçaoBotao').append('Editar');
 

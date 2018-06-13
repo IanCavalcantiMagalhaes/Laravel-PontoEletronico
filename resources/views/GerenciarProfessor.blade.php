@@ -125,7 +125,11 @@
                                 <button type="submit" class="btn btn-danger" onclick="" id="BotaoApagar">Apagar</button>
                             </form>
                             </td>
-                            
+                            <td><form action="" >
+                                <input class="form-control" type="hidden" name="ID" value={{ $TabelaFuncionario->id }} />
+                                <button type="submit" class="btn btn-primary center-block" id="BotaoAulaIrregular" onclick="" id="BotaoApagar">Inserir aula irregular></button>
+                            </form>
+                            </td>
                         </tr> 
                         
                         <tr>
@@ -218,6 +222,7 @@
         $('#DivLucroHora').hide();
         $('#BotaoAtualizar').hide();
         $('#BotaoApagar').hide();
+        $('#BotaoAulaIrregular').hide();
         $("#campoCEP").mask("99.999-999");
         $('#campoCPF').mask('000.000.000-00');
         $('#campoTelefone').mask('(00)0000-00000');
