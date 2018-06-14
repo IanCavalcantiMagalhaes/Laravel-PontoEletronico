@@ -2,6 +2,8 @@
 //http://clubedosgeeks.com.br/programacao/listando-registro-de-banco-de-dados-mysql-com-ajax-json-e-php
 //https://stackoverflow.com/questions/26922123/load-cities-from-state-laravel
 //http://matheuspiscioneri.com.br/blog/preview-de-imagem-antes-do-upload-filereader/
+// https://select2.org/getting-started/basic-usage
+//https://select2.org/troubleshooting/common-problems
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +17,10 @@
 use Illuminate\Support\Facades\Input;
 use App\Models\Funcionario;
 use App\Models\Curso;
+use App\Models\Materia;
+use App\Models\FuncionarioMateria;
 use App\Models\TempoChegada;
+
 use Illuminate\Http\Request;
 Route::get('/oi', function () {
     return view('welcome');
@@ -123,23 +128,13 @@ Route::get('/ManipularCurso', function () {
     return view('PaginaCursoPeriodoMateriaAluno');
 });
 Route::get('/Testando',function(){
-   // $X= Funcionario::get()->first();//find(1);
-    
-
-   $RS=
-   Funcionario::find(2)
-   ->select('id','Trabalhando','nome')
-   ->pluck('nome');
-   //$RS=Funcionario::find(2)->select('id','Trabalhando','nome')->get();
-
-   //foreach($X as $dados){
-    //  $Array[]=$dados->id;
-     // $Array[]=$dados->nome;
+   
+ $R=Funcionario::find(1);
      
-   // }
-     
-    return view('Test')->with('Arranjo',$RS);
+    return view('Test')->with('S',$R->nome);
 });
+
+Route::get('/TestAjax','test@AjaxSoma');
 Route::get('/Somar/{V1}/{V2}',function(Request $request){
 
 echo $request->V1+$request->V2;
@@ -151,10 +146,12 @@ Route::get('/Soma',function(){
     return redirect()->route('Somar/'+4+'/'+2+'');
 
 });
-    
 
 
 
 
+
+Route::get('/aulairregular','AulaIrregular@RetornarView');
+Route::get('/aulairregularprocura','AulaIrregular@ProcurarProfessor');
 
 Route::get('/AjaxTestando','test@AjaxTest');
