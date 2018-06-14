@@ -20,8 +20,7 @@ use Illuminate\Http\Request;
 Route::get('/oi', function () {
     return view('welcome');
 });
-
-  Route::get('/Logout','LogarUsuario@Logout')->name('Logout');
+Route::get('/Logout','LogarUsuario@Logout')->name('Logout');
   
 Route::group([], function() {
      Route::get('/','LogarUsuario@RetornarView')->name('PaginaLogar');
@@ -42,7 +41,7 @@ Route::group(['prefix' => 'MarcarPonto','middleware'=>['login']], function() {
       Route::post('/AjaxInserirProfessor','CadastrarProfessor@InserirProfessor')->name('InserirProfessor');
       Route::get('/AjaxPeriodo','CadastrarProfessor@AjaxPeriodo'); 
       Route::get('/AjaxMateria','CadastrarProfessor@AjaxMateria');
-      Route::get('/CadastroProfessor', 'CadastrarProfessor@InicializarView')->middleware('login');//->middleware(LoginBlock::class);
+      Route::get('/CadastroProfessor', 'CadastrarProfessor@InicializarView')->name('PaginaDeCadastroDeProfessor')->middleware('login');//->middleware(LoginBlock::class);
       
     });
 
@@ -80,7 +79,7 @@ Route::group(['prefix' => 'GerenciarCursos'], function() {
         Route::get('/Pagina',function(){
               return view('PaginaGerenciarCursos')->with('navbar','Gerenciar Cursos');
     
-})->name('GerenciarCursos');
+})->name('GerenciarCursos')->middleware('login');
         Route::get('/CarregarCursos','GerenciarCursos@CarregarCursos');
         Route::get('/CarregarSala','GerenciarCursos@CarregarSala');
         Route::get('/CarregarTurno','GerenciarCursos@CarregarTurno');
@@ -90,11 +89,6 @@ Route::group(['prefix' => 'GerenciarCursos'], function() {
 Route::get('/AjaxPeriodo','CadastrarProfessor@AjaxPeriodo');
 Route::get('/AjaxMateria','CadastrarProfessor@AjaxMateria');
 //}
-
-
-
-
-
 
 
 

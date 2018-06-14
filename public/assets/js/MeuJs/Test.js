@@ -4,38 +4,44 @@ function PegarDados(){
              type: "GET",
              data: {Campo: $("#Campo").val(),
                     Campo2: $("#Campo2").val()},
-             url:"/Somar",
+             url:"/TestAjax",
              success:function(result){
-              $("#Div3").append('<form action="{{ route(PaginaLogar) }}">'
-              +'<button type="submit">Clicar</button>'
-              +'</form>');
+              $("#Div3").append(
+                result.Um.nome+" / "+result.Dois
+              );
            }
           });
    }
    );
    }
-   function GerarForm(){
-    $("#Div3").append('<tr>'//action="route('GerenciarProfessor/Mostrar/{data.Result[i].id}')"
-    + '<td><input type="text" name="id" id="ID" value="" />'+'</td>' 
-    + '<td></td>' 
-    + '<td scope="col">111.111.111-11</td>'
-    + '<td scope="col"><button type="submit" class="btn btn-info">Visualizar: </button></td></tr>');
-   }
-   function Alert(){
-    alert($("#Materia").val());
-    $(document).ready(function(){//Recber dados de tabela
-           $.ajax({
-             type: "GET",
-             url:"/Somar",
-             success:function(result){
-              //alert(result);
-               
-           }
-          });
-   }
-   );
-   }
-   function Alterar(){
-    $("#Botao").empty();
-    $("#Botao").append("A");
-   }
+
+
+
+http://clubedosgeeks.com.br/programacao/php/laravel-angularjs-sua-primeira-aplicacao
+https://www.w3schools.com/angular/angular_modules.asp
+https://stackoverflow.com/questions/22651378/angular-js-ajax-call-with-parameters
+http://newaeonweb.com.br/angularjs/2015/02/17/Ajax-request-com-angularjs/
+
+
+'use strict';
+var app = angular.module('cdg',[]);
+ 
+// Service
+app.factory('pessoaService',function($http) {
+	return {
+		AjaxSoma: function(){
+			return $http.get('/TestAjax');
+		}
+	}
+});
+ 
+
+app.controller('test', function($scope, pessoaService) {
+	$scope.AjaxSoma = function(){
+		pessoaService.AjaxSoma().success(function(data){
+			$scope.pessoas = data;
+		});
+	}
+ 
+
+});

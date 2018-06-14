@@ -2,6 +2,7 @@
 
 
 @section('conteudo')
+
         <form action="{{route('InserirProfessor')}}" method="post" enctype="multipart/form-data" >
             {{ csrf_field() }}
                   @if ($errors->any())
@@ -80,7 +81,7 @@
 
                     <tr>
                             <td></td>         
-               <td><button type="submit" class="btn btn-success">Cadastrar</button></td>  
+               <td><button type="submit" class="btn btn-success" onclick="VerificarDadosCadastraisAJax()">Cadastrar</button></td>  
                 <td></td>  
                </tr>
             </tbody>
@@ -108,7 +109,7 @@
                 
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $("<img/>", {
+                    $("<img />", {
                         "src": e.target.result,
                         "class": "thumb-image"
                         

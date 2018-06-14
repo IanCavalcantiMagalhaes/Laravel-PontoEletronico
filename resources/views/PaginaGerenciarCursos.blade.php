@@ -6,7 +6,7 @@
 
                     <div>
                     <p>Escolha a açao que deseja fazer</p> 
-                    
+                          
                          <input type="radio" name="EscolhidoComando" class="EscolhidoComando" value="Editar" onclick="atualizar()"> Editar<br>
                          <input type="radio" name="EscolhidoComando" class="EscolhidoComando" value="Adicionar"  onclick="atualizar()"> Adicionar<br>
                          <input type="radio" name="EscolhidoComando" class="EscolhidoComando" value="Remover"  onclick="atualizar()"> Remover<br>  

@@ -21,18 +21,12 @@ class test extends Controller
     
        }
     public function AjaxSoma(Request $request){
-        $A=$request->Campo;
-        $B=$request->Campo2;
        
-         $F=Funcionario::find(1);
-         $F->Trabalhando=0;
-         $F->save();
-         $X=
         /* Funcionario::find(1)
          ->select('Trabalhando')
          ->get();*/
-         $X=
-         Funcionario::where('id',1)
+        // $X=
+        return Funcionario::where('id',1)
          ->get();
          
       
@@ -40,8 +34,9 @@ class test extends Controller
                 $Array[]=$dados->Trabalhando;
                 $Array[]=$dados->nome;
               }
-             // return response()->json(json_encode(array('Array'=>$Array)));
-              return response()->json($Array);
+              
+            //return response()->sucess(array(
+                //'band'=>$Array));
        }
       
 }

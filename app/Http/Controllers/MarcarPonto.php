@@ -15,13 +15,15 @@ use App\Models\TempoChegada;
 class MarcarPonto extends BaseController
 {
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-   public function RetornarView(Request $request){
-     
-     $sessao = $request->session()->get('nome');
+   public function RetornarView(Request $request){"OLA";$R[]="OI";
+     //$R=null;
+     $Logado=$request->session()->get('nome');
      return view('MarcarPonto')
-     ->with('Resposta',$request->Resposta)
+     ->with('RespostaDePonto',$request->Resposta)
      ->with('navbar','Marcar Ponto')
-     ->with('sessao',$sessao);
+     ->with('sessao',$Logado)//nome de usuario logado
+     ->with('ErroDePonto',$request->ErroDePonto)
+     ->with('M',$R);
    }
 
     public function Contador(Request $request){//ao clicar no botao da PaginaContador
@@ -54,7 +56,7 @@ class MarcarPonto extends BaseController
       where('funcionario_id',$ID);//Nao tem primary key,entao nao e possivel utilizar find
       $TC->delete();
       
-    return response()->json(array('RS'=>$RS)); 
+    return response()->json(array('RS'=>$RS,'TempoFeito'=>round($TempoFeito,2))); 
      
     
      //$RP=new RegistroDePonto;$RP->funcionario_id=$ID;$RP->TempoFeito=$TempoFeito;
@@ -85,30 +87,12 @@ class MarcarPonto extends BaseController
   public function IndentificarFuncionarioLiberado(Request $request){
           $RS=
           DB::table('Funcionarios')
-          ->select('id','nome')
+          ->select('id','nome','HorarioFeitoNaSemana')
           ->where('CPF',$request->CPF)->get();
 
           return response()->json(array('Professor'=>$RS));
   }
-  public function testContador(Request $request){
-  /*$request->validate([
-      'CPF' => 'required|min:14'
-  ]);
-       if($errors->any()){
-         $Resposta=false;
-         }
-           */
-      if($request->CPF=='111.111.111-11'){
-      
-        
-        $Resposta=true;
-        
-      }else{
-        
-        $Resposta=false;
-      }
-      return response()->json($Resposta);
-    }
+
   
   public function LevatamentoDaSemana(Request $request){   
       $Dados=DB::table('funcionarios')->get() ;
@@ -181,5 +165,72 @@ class MarcarPonto extends BaseController
       }
 
 }
+  }
+
+  public function ContadorSemAjax(Request $request){//ao clicar no botao da PaginaContador
+    $ID=Funcionario::where('CPF',$request->CPF)->pluck('id')->first();//pelo CPF pegar o ID
+
+     if($ID){
+
+    $RS=
+    Funcionario::find($ID);
+
+     if($RS->Trabalhando===1){
+
+    $TC=
+    TempoChegada::
+    where('funcionario_id',$ID)//Nao tem primary key,entao nao e possivel utilizar find
+    ->pluck('Chegada')->first();
+
+       //Necessario utilizar foreach 
+         $TempoFeito=microtime(true)-$TC;
+         $TempoFeito=$TempoFeito/60;//segundos para minutos
+       
+      
+     
+     $F=Funcionario::find($ID);
+     $F->Trabalhando=0;//inverter status
+     $F->HorarioFeitoNaSemana=$F->HorarioFeitoNaSemana+$TempoFeito;//incrementar tempo feito
+     $F->save();
+
+      $TC=TempoChegada:://impossivel guardar em array porque sera apagado quando controller ser finalizado
+      where('funcionario_id',$ID);//Nao tem primary key,entao nao e possivel utilizar find
+      $TC->delete();
+      
+      $F=Funcionario::find($ID)->select('HorarioFeitoNaSemana','id','nome');
+      $RS[]="Saida liberada(Tempo feito: ".$TempoFeito." Minutos)";
+      $RS[]="Para ".$F->nome." de ID ".$F->id;
+      $RS[]="Total de minutos feitos na semana: ".$F->HorarioFeitoNaSemana;
+
+    return redirect()->route('PaginaMarcarPonto')->with('RespostaDePonto',$RS); 
+     
+    
+     //$RP=new RegistroDePonto;$RP->funcionario_id=$ID;$RP->TempoFeito=$TempoFeito;
+
+     }
+     if($RS->Trabalhando===0){
+       
+      $F=Funcionario::find($ID);
+      $F->Trabalhando=1;
+      $F->save();
+
+      $TC=new TempoChegada;//impossivel guardar em array porque sera apagado quando controller ser finalizado
+      $TC->funcionario_id=$ID;
+      $TC->Chegada=microtime(true);//microtime sao segundos atuais
+      $TC->save();
+
+      $F=Funcionario::find($ID)->select('HorarioFeitoNaSemana','id','nome');
+      $RS[]="Entrada liberada";
+      $RS[]="Para ".$F->nome." de ID ".$F->id;
+      $RS[]="Total de minutos feitos na semana: ".$F->HorarioFeitoNaSemana;
+      return redirect()->route('PaginaMarcarPonto')->with('RespostaDePonto',$RS); 
+
+     }
+    }if(!$ID){
+      return redirect()->route('PaginaMarcarPonto')->with('ErroDePonto',$RS); 
+     }
+  
+
+       //respondera um boolean
   }
 }

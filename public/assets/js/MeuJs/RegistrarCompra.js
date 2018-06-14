@@ -20,7 +20,6 @@ if(ValorAtual==="Editar"){//clicou quando valor foi editar
     $('#EdiçaoMateria').show();
     $('#BotaoAtualizar').show();
     $('#BotaoApagar').show();
-    $('#BotaoAulaIrregular').show();
     $('#EdiçaoBotao').empty();
     $('#EdiçaoBotao').append("Desabilitar Ediçao");
 
@@ -33,14 +32,13 @@ if(ValorAtual==="Editar"){//clicou quando valor foi editar
     $('#EdiçaoMateria').hide();
     $('#BotaoAtualizar').hide();
     $('#BotaoApagar').hide();
-    $('#BotaoAulaIrregular').hide();
     $('#EdiçaoBotao').empty();
     $('#EdiçaoBotao').append('Editar');
 
     
    
 }}
-function AdicionarMateria(){
+function AdicionarProduto(){
     
     $(document).ready(function(){
         
@@ -95,9 +93,18 @@ function VerificarDados(){//Proibir acesso por erro de dados OU aceitar e inseri
      */
  }
 
-function RemoverMateria(){
-//comando ajax abaixo:Remover id de funcionario e materia em uma table(id_funcionario_materia) e atualizar select
-
+function RemoverProduto(){
+    $(document).ready(function(){
+        
+        $('#Materia').empty();
+          $.ajax({
+            type: "GET",
+            data: {id_Materia: $("#MateriaAdicionar").val(),
+                   id_Funcionario: $("#ID").val()},//'ID' igual ao form gerado em pesquisar para ter o mesmo nome do request e assim poder utilizar o mesmo controller
+            url:"/GerenciarProfessor/AdicionarMateria",success: function($result){
+                
+            }});
+        });
 }
 function AtualizarListaDeMateriasPossuidas(){
         $("#ListaDeMaterias").empty();

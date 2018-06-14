@@ -46,11 +46,12 @@ $FuncionarioMateria->save();
 
 
    if($request->file('image')!=null){// https://cursos.alura.com.br/forum/topico-como-exibir-imagem-da-pasta-storage-laravel-50551
-$file = $request->file('image')->store('Img');
+
+    $file = $request->file('image')->store("public/Img/ProfessorID$AdicionadoAnteriormente->id");
    }
     
 
-  return redirect()->route('MarcarPonto');
+  return redirect()->route('PaginaMarcarPonto')->with('AlertaDeCadastro',"Professor cadastrado com sucesso");
    }public function AjaxTest(Request $request){
  
     return Response::json(json_encode($request->Campo)); 

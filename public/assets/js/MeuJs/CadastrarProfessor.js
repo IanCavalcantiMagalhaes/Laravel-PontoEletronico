@@ -107,3 +107,19 @@ function AdicionarProfessor(){
             }});
         });
 }
+
+function API_CEP(){//https://viacep.com.br/
+     $("#CEP").unmask();
+    var URL="viacep.com.br/ws/"+$("#CEP").val()+"/json/";
+    $("#CEP").mask("99.999-999");
+
+    $(document).ready(function(){
+    $.ajax({
+      type: "GET",
+      url:URL,
+      success: function(result){
+       $("#Endereço").val(result.logradouro);
+
+  }});
+  });
+  }

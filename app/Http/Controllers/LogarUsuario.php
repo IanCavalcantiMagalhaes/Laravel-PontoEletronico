@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use validate;
 use App\Models\Usuario;
 class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
 {

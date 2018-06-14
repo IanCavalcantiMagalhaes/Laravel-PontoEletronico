@@ -19,17 +19,17 @@ $("#Entrada").hide();
 }
 function AnaliseSairOuEntrar(){
   $("#Saida").hide();$("#Entrada").hide();$("#Erro").hide();
-  alert($("#cpf").val());
+  $("#TempoFeito").empty();
   $(document).ready(function(){//inserir periodos
         $.ajax({
           type: "GET",
           data: {CPF: $("#cpf").val()},
           url:"/MarcarPonto/Registrando",
           success: function(data){
-           alert(data.RS.id);
            
         if(data.RS.Trabalhando===1){
            $("#Saida").show();
+           $("#TempoFeito").append(data.TempoFeito);
            MostrarNomeDoFuncionario();
         }
         if(data.RS.Trabalhando===0){
@@ -45,17 +45,19 @@ function AnaliseSairOuEntrar(){
 });
 }
 function MostrarNomeDoFuncionario(){
-  $("#Indentificaçao").empty();
+  $("#Indentificaçao").empty();$(".HorarioTotal").empty();
   $(document).ready(function(){
   $.ajax({
     type: "GET",
     data: {CPF: $("#cpf").val()},
     url:"/MarcarPonto/VisualizarFuncionario",
     success: function(result){
+
       for(var i=0;i<result.Professor.length;i++){
       
-      $("#Indentificaçao").append("Para "+result.Professor[i].nome+" de id "+result.Professor[i].id);
-      }
+      $("#Indentificaçao").append(result.Professor[i].nome+" de id "+result.Professor[i].id);
+      $(".HorarioTotal").append("Foi feito nesta semana:"+result.Professor[i].HorarioFeitoNaSemana+" minuto(s)");
+    }
 }});
 });
 }
