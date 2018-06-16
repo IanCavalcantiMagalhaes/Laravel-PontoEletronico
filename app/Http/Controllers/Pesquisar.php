@@ -41,6 +41,39 @@ $Result=
 
 
   }
+  public function ProfessorTest(Request $request){//https://stackoverflow.com/questions/29548073/laravel-advanced-wheres-how-to-pass-variable-into-function
+    $CampoPesquisa=$request->CampoPesquisa;
+    $PesquisarPor=$request->PesquisarPor;
+
+    Funcionario::where(function ($Result) use ($CampoPesquisa,$PesquisarPor) {
+          if($PesquisarPor==="Id"){
+            $Result->
+            where('id',$CampoPesquisa)
+            ->get();
+
+          }if($PesquisarPor==="Nome"){
+            $Result->
+            where('nome','LIKE','%'.$CampoPesquisa.'%')
+            ->get();
+
+          }if($PesquisarPor==="CPF"){
+            $Result->
+            where('CPF',$CampoPesquisa)
+            ->get();
+
+          }if($request->Cargo){//se possui request cargo
+            $Result->
+            where('Cargo',$request->Cargo)
+            ->get();
+
+          }
+  })->get();
+     
+     return Response::json(array('Result'=>$Result)); 
+
+
+  }
+
   public function Curso(Request $request){
     if($request->PesquisarPor==="Id"){
       $Result=

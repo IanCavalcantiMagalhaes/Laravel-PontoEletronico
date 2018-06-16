@@ -6,13 +6,36 @@ function TrocarCargo(){
         $('#DivLucroHora').hide();
     }
 }
+function VerificarPermissao(){//esta funçao ficara dentro do if 'editar' da funçao 'ediçao'
+//fara ajax e retornara boolean
+$(document).ready(function(){//ajax ira para 'PermitirEdiçao'
+      $("#divDePermissao").empty();
+        $.ajax({
+          type: "GET",
+          data: {idAdmin: $("#idAdmin").val()},//id do administrador que quer acessar
+          url:"/GerenciarProfessor/PermitirEdiçao",
+          success: function(data){
+               if(data.Liberar===false){
+                   $("#divDePermissao").append(
+                        +"<div class='alert alert-warning' role='alert'>"
+                        +"<strong>Atenção - </strong>voçe nao tem permissao para isso(Deve ser nivel 2)"
+                        +"</div>");
+               }if(data.Liberar===true){
+                Ediçao();
+               }
+                
 
+        }});
+});
+}
 function Ediçao(){
 
 var ValorAtual=$('#EdiçaoBotao').text();//para quando ocorrer alteraçao nao entre no if errado
 
+
 if(ValorAtual==="Editar"){//clicou quando valor foi editar
     
+
     $('#campoNome').attr('readonly', false);
     $('#campoCEP').attr('readonly', false);
     $('#campoCPF').attr('readonly', false);
@@ -24,7 +47,7 @@ if(ValorAtual==="Editar"){//clicou quando valor foi editar
     $('#EdiçaoBotao').empty();
     $('#EdiçaoBotao').append("Desabilitar Ediçao");
 
-    
+   
 }if(ValorAtual==="Desabilitar Ediçao"){
     $('#campoNome').attr('readonly', true);
     $('#campoCEP').attr('readonly', true);

@@ -15,14 +15,16 @@ class Usuarios extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
+            $table->string('nome');//->unique()
+            $table->string('nivel');
             $table->string('senha');
             $table->timestamps();
         });
         DB::table('usuarios')->insert(
             array(
                 'nome' => 'Ian',
-                'senha' => '123456'
+                'senha' => '123456',
+                'nivel' => '2'
             )
         );
     }

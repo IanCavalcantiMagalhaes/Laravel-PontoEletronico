@@ -17,10 +17,10 @@ class LogarUsuario extends Controller// Sao dados sensiveis entao utiliza POST
 
    $RS=
    Usuario::
-      where('nome',$request->nome)
+        where('nome',$request->nome)
       ->where('senha',$request->senha)
       ->get();
-
+       
   if($RS->isNotEmpty()){
 
     session([

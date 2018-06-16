@@ -45,7 +45,8 @@
                             </th>
                             <input class="form-control" type="hidden" name="ID"  value={{ $TabelaFuncionario->id }} />
                             <th><button type="button" class="btn btn-success"
-                              onclick="Ediçao()" id="EdiçaoBotao"></button></th>
+                              onclick="VerificarPermissao()" id="EdiçaoBotao"></button></th>
+                              <input type="hidden" name="idAdmin" value="{{ session()->get('nome') }}" />
                             <th><div id="image-holder"style="border-style: groove;width: 250px;
                                 height: 250px; "></div></th>
                         </tr>

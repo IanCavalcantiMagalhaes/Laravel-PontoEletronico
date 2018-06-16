@@ -14,8 +14,39 @@ function PegarDados(){
    }
    );
    }
+   var app = angular.module('Modulo',[]);
 
+   app.controller ('AjaxCtrl', ['$scope', function ($scope) {
 
+      // Plain Old JavaScript Object
+      var band = {
+          name: " ",
+          country: " "
+      }
+
+      // Atribui $scope ao objeto JavaScript
+      $scope.band = band;
+
+      //Realiza a chamada, utilizando $http
+      $scope.myFunc = function() {//um evento vai ativar myFunc()
+        $window.alert("greeting");
+            $http ({
+                method: 'GET',
+                url: '/te',
+                params: {
+                  sampletext : "sample"
+              }
+            })
+                .sucess (function (data, status, headers, config) {
+                    // Atribui o retorno ao $scope
+                    $scope.band.name = data.band.name;
+                })
+                .error (function (data, status, headers, config) {
+                    // Se tiver error
+                    console.log(status);
+                });
+        };
+    }]);
 
 http://clubedosgeeks.com.br/programacao/php/laravel-angularjs-sua-primeira-aplicacao
 https://www.w3schools.com/angular/angular_modules.asp
@@ -24,24 +55,24 @@ http://newaeonweb.com.br/angularjs/2015/02/17/Ajax-request-com-angularjs/
 
 
 'use strict';
-var app = angular.module('cdg',[]);
- 
-// Service
-app.factory('pessoaService',function($http) {
-	return {
-		AjaxSoma: function(){
-			return $http.get('/TestAjax');
-		}
-	}
-});
- 
 
-app.controller('test', function($scope, pessoaService) {
-	$scope.AjaxSoma = function(){
-		pessoaService.AjaxSoma().success(function(data){
-			$scope.pessoas = data;
-		});
-	}
  
+    // Service
+    app.factory('pessoaService',function($http) {
+      return {
+        AjaxSoma: function(){
+          return $http.get('/TestAjax');
+        }
+      }
+    });
+    
+
+    app.controller('test', function($scope, pessoaService) {
+      $scope.AjaxSoma = function(){
+        pessoaService.AjaxSoma().success(function(data){
+          $scope.pessoas = data;
+        });
+      }
+    
 
 });

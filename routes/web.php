@@ -75,6 +75,7 @@ Route::group(['prefix' => 'GerenciarProfessor'], function() {
     Route::get('/AdicionarMateria','GerenciarProfessor@AdicionarMateriaAoProfessor')->middleware('login')->name('AdicionarMateria');
     Route::get('/RemoverMateria','GerenciarProfessor@RemoverMateriaDoProfessor')->middleware('login')->name('RemoverMateria');
     Route::get('/VerificarSeValorAdicionadoJaEstavaAdicionado','GerenciarProfessor@VerificarSeValorAdicionadoJaEstavaAdicionado')->middleware('login');
+    Route::get('/PermitirEdiçao','GerenciarProfessor@PermitirEdiçao')->middleware('login');
 });
 
 Route::group(['prefix' => 'GerenciarCursos'], function() {
@@ -147,6 +148,10 @@ Route::get('/Soma',function(){
 
 });
 
+Route::get('/te',function(){
+    $F=Funcionario::all();
+    return Funcionario::all();;
+});
 
 
 

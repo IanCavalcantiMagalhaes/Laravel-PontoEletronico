@@ -195,5 +195,14 @@ return view('GerenciarProfessor')
   
 
   }
- 
+  public function PermitirEdiçao(Request $request){
+    $Admin=Usuario::find($request->idAdmin);
+
+    if($Admin->nivel=="2"){
+       return response()->json(array("Liberar"=>true));
+    }if($Admin->nivel=="1"){
+       return response()->json(array("Liberar"=>false));
+    }
+    return response()->json(array("Liberar"=>true));
+        }
 }

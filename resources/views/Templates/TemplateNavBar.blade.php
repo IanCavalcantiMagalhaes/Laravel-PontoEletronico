@@ -40,7 +40,7 @@
               <a class="nav-link" href="{{ url('GerenciarCursos/Pagina') }}">Gerenciar Cursos</a>
             </li>
             <li class="nav-item active" >
-              <a class="nav-link" href="{{ url('Logout') }}" style="position:absolute;left:90%;">Logout({{ $sessao }})</a>
+              <a class="nav-link" href="{{ url('Logout') }}" style="position:absolute;left:90%;">Logout({{ session()->get('nome') }})</a>
             </li>
           </ul>
         </div>

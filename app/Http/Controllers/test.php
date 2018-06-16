@@ -38,5 +38,10 @@ class test extends Controller
             //return response()->sucess(array(
                 //'band'=>$Array));
        }
-      
+       public function Test(Request $request){
+ 
+        return Response::json(json_encode("OLA")); 
+     
+    
+       }
 }
