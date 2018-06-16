@@ -18,6 +18,7 @@ use App\Models\FuncionarioMateria;
 use App\Models\Curso;
 use App\Models\Periodo;
 use App\Models\Materia;
+use App\Models\Usuario;
 
 class GerenciarProfessor extends BaseController
 {
@@ -196,13 +197,13 @@ return view('GerenciarProfessor')
 
   }
   public function PermitirEdiçao(Request $request){
-    $Admin=Usuario::find($request->idAdmin);
+    $Admin=Usuario::where('nome',$request->nomeAdmin)->first();
 
-    if($Admin->nivel=="2"){
+    if($Admin->nivel==="2"){
        return response()->json(array("Liberar"=>true));
-    }if($Admin->nivel=="1"){
+    }if($Admin->nivel==="1"){
        return response()->json(array("Liberar"=>false));
     }
-    return response()->json(array("Liberar"=>true));
+    //return response()->json(array("Liberar"=>true));
         }
 }

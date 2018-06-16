@@ -9,19 +9,19 @@ function TrocarCargo(){
 function VerificarPermissao(){//esta funçao ficara dentro do if 'editar' da funçao 'ediçao'
 //fara ajax e retornara boolean
 $(document).ready(function(){//ajax ira para 'PermitirEdiçao'
-      $("#divDePermissao").empty();
+      $("#divDePermissao").empty();//$("#divDePermissao").hide();
         $.ajax({
           type: "GET",
-          data: {idAdmin: $("#idAdmin").val()},//id do administrador que quer acessar
+          data: {nomeAdmin: $("#nomeAdmin").val()},//id do administrador que quer acessar
           url:"/GerenciarProfessor/PermitirEdiçao",
           success: function(data){
                if(data.Liberar===false){
-                   $("#divDePermissao").append(
-                        +"<div class='alert alert-warning' role='alert'>"
-                        +"<strong>Atenção - </strong>voçe nao tem permissao para isso(Deve ser nivel 2)"
-                        +"</div>");
+                   $("#divDePermissao").show();
+                   $("#divDePermissao").append("<strong>Ateção - </strong><a>Este administrador nao tem permissao</a>");
+
                }if(data.Liberar===true){
                 Ediçao();
+                
                }
                 
 

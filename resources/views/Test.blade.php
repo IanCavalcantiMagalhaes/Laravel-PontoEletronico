@@ -41,12 +41,7 @@
             </li>
          </ol>
       </div>
-    <script>
-            var app = angular.module('myApp', []);
-            app.controller('myCtrl', function($scope) {
-                $scope.count = 0;
-            });
-            </script> 
+    
 
       <div ng-app="myApp" ng-controller="myCtrl">
 
@@ -59,3 +54,9 @@
             
    </body>
 </html>
+<script>
+            var app = angular.module('myApp', []);
+            app.controller('myCtrl', function($scope) {
+                $scope.count = 0;
+            });
+            </script> 

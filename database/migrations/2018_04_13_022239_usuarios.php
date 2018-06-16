@@ -27,6 +27,13 @@ class Usuarios extends Migration
                 'nivel' => '2'
             )
         );
+        DB::table('usuarios')->insert(
+            array(
+                'nome' => 'Fulano',
+                'senha' => '123456',
+                'nivel' => '1'
+            )
+        );
     }
 
     /**

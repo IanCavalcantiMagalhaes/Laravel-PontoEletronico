@@ -38,6 +38,13 @@
                       </div>
                   @endif
                 @endif
+              <div class="alert alert-warning" role="alert" id="divDePermissao">
+                        
+                    </div>
+                   
+
+
+                </br>
             <table cellpadding="30" >
                     <thead>
                         <tr>
@@ -46,7 +53,7 @@
                             <input class="form-control" type="hidden" name="ID"  value={{ $TabelaFuncionario->id }} />
                             <th><button type="button" class="btn btn-success"
                               onclick="VerificarPermissao()" id="EdiçaoBotao"></button></th>
-                              <input type="hidden" name="idAdmin" value="{{ session()->get('nome') }}" />
+                              <input type="hidden" name="nomeAdmin" id="nomeAdmin" value={{ session()->get('nome') }} />
                             <th><div id="image-holder"style="border-style: groove;width: 250px;
                                 height: 250px; "></div></th>
                         </tr>
@@ -180,7 +187,8 @@
                     </tbody>
                 </table>
                
-             
+                   
+                
                 
         </section>
     </body>
@@ -223,6 +231,7 @@
         $('#DivLucroHora').hide();
         $('#BotaoAtualizar').hide();
         $('#BotaoApagar').hide();
+        $('#divDePermissao').hide();
         $('#BotaoAulaIrregular').hide();
         $("#campoCEP").mask("99.999-999");
         $('#campoCPF').mask('000.000.000-00');
