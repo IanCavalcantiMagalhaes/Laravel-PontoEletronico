@@ -40,14 +40,14 @@
             </select>
           </div>
             <div id="Cargo">
-            <p>Filtre o cargo</p>
-                   <select name="Cargos" id="SeletorDeCargo">
-                       <option>Escolha</option>
+               <p>Filtre o cargo</p>
+                   <select name="Cargos" id="Cargos">
+                       <option>Todos</option>
                        <option>Professor em tempo integral</option>
                        <option>Professor em tempo parcial</option>
                        <option>Horista</option>
                    </select>
-                  </div>
+            </div>
                  
                    
                

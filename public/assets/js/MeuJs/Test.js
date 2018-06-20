@@ -29,6 +29,7 @@ function PegarDados(){
 
       //Realiza a chamada, utilizando $http
       $scope.myFunc = function() {//um evento vai ativar myFunc()
+        alert();
         $window.alert("greeting");
             $http ({
                 method: 'GET',
@@ -39,6 +40,7 @@ function PegarDados(){
             })
                 .sucess (function (data, status, headers, config) {
                     // Atribui o retorno ao $scope
+                    $scope.dados=data;
                     $scope.band.name = data.band.name;
                 })
                 .error (function (data, status, headers, config) {

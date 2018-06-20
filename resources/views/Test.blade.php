@@ -7,7 +7,7 @@
     <head> <link href="css/MeuCss.css" rel="stylesheet">
        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
        <meta name="csrf-token" content="{{ csrf_token() }}">
-       <script src="{{ asset('assets/js/MeuJs/app.js') }}"></script>
+       <script src="{{ asset('assets/js/MeuJs/Test.js') }}"></script>
        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
        <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
        <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
@@ -45,13 +45,13 @@
 
       <div ng-app="myApp" ng-controller="myCtrl">
 
-            <h1 ng-mousemove="count = count + 1">Mouse Over Me!</h1>
+            <h1 ng-mousemove=" count = count + 1 ">Mouse Over Me!</h1>
             
             <h2>@{{ count }}</h2>
             
             </div>
-            
-            
+            <div>@{{ band }}</div>
+            <button ng-onclick="myFunc()">Clicar</button>
    </body>
 </html>
 <script>

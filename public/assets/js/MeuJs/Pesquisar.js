@@ -112,7 +112,8 @@ function PesquisarProfessor(){
         $.ajax({
           type: "GET",
           data: {CampoPesquisa: $("#CampoPesquisa").val(),
-                 PesquisarPor:$('#PesquisarPor').val()},//PesquisarPor(id,nome,cpf)
+                 PesquisarPor:$('#PesquisarPor').val(),//PesquisarPor(id,nome,cpf)
+                 Cargo:$('#Cargo').val()},
           url:"/Pesquisar/AjaxPesquisaProfessor",success: function(data){
            // alert("Certo");
 
