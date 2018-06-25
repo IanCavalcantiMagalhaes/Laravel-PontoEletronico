@@ -22,9 +22,9 @@
                 </div>
                 @endif
                 @if(session('AlertaDeRemoçao'))
-                <div class="alert alert-success" role="alert">
-                <strong>Concluido - </strong>{{ session('AlertaDeRemoçao') }}
-                </div>
+                    <div class="alert alert-success" role="alert">
+                    <strong>Concluido - </strong>{{ session('AlertaDeRemoçao') }}
+                    </div>
                 @endif
                 @if(session('AlertaDeAdiçao'))
                   @if( session('AlertaDeAdiçao') === "Adicionado Com Sucesso")
@@ -33,10 +33,15 @@
                     </div>
                   
                   @else
-                  <div class="alert alert-warning" role="alert">
-                        <strong>Ateção - </strong>{{ session('AlertaDeAdiçao') }}
-                      </div>
+                    <div class="alert alert-warning" role="alert">
+                    <strong>Atenção - </strong>{{ session('AlertaDeAdiçao') }}
+                    </div>
                   @endif
+                @endif
+                @if(session('AlertaAulaIrregular'))
+                    <div class="alert alert-warning" role="alert">
+                    <strong>Atenção - </strong>{{ session('AlertaAulaIrregular') }}
+                    </div>
                 @endif
               <div class="alert alert-warning" role="alert" id="divDePermissao">
                         

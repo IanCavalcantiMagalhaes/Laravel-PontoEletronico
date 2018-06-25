@@ -130,9 +130,9 @@ Route::get('/ManipularCurso', function () {
 });
 Route::get('/Testando',function(){
    
- $R=Funcionario::find(1);
+ $R=Funcionario::find(1)->pluck('nome');
      
-    return view('Test')->with('S',$R->nome);
+    return view('Test')->with('S',$R);
 });
 
 Route::get('/TestAjax','test@AjaxSoma');

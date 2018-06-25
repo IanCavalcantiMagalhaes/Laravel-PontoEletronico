@@ -26,7 +26,7 @@ class CreateFuncionariosTables extends Migration
             $table->string('Endereço')->default("Vazio");
             //$table->binary('Imagem');
             $table->double('HorarioFeitoNaSemana',5,2)->default(0.00);//Em minutos
-            $table->double('HorarioQueDeviaSerFeito',5,2)->default(40.00);
+            $table->double('HorarioQueDeviaSerFeito',5,2)->default(40.00);//Em horas
             $table->boolean('Devendo')->default(false);
             $table->double('HorasDevendo')->default(0.00);
             $table->boolean('Extra')->default(false);

@@ -6,7 +6,7 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     <script type="text/javascript" src="{{ URL::to('js/MeuJs.js') }}"></script>
-    
+
     <script src="js/CadastrarProfessor.js"></script>
 
 

@@ -15,7 +15,7 @@ use App\Models\TempoChegada;
 class MarcarPonto extends BaseController
 {
    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-   public function RetornarView(Request $request){"OLA";$R[]="OI";
+   public function RetornarView(Request $request){
      //$R=null;
      $Logado=$request->session()->get('nome');
      return view('MarcarPonto')
@@ -187,7 +187,7 @@ class MarcarPonto extends BaseController
 
 }return \PDF::loadView('PDF_Arquivo.Levantamento', compact('Professor','Status'))
               // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-              ->download('Relatorio_LevantamentoDaSemana(Data:'.date('d/m/y').').pdf');
+              ->download('Relatorio_LevantamentoDaSemana(Data:'.date('d/m/y').').pdf');https://pt.stackoverflow.com/questions/188222/gerador-de-pdf-com-framework-laravel
 }
 
 
