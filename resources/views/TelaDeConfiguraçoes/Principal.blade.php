@@ -7,16 +7,9 @@
 <p>Voçe nao tem permissao</p>
 @endif
 
-@if($Usuarios)
-include('TelaDeConfiguraçoes/EditarERemoverUsuario');
-@endif
 
-@if(session('Cadastrar'))
-include('TelaDeConfiguraçoes/AdicionarUsuario');
-@endif
-@else
-<a href="{{ route('VerificarPermissividade',['Escolha'=>"Adicionar"]) }}">Adicionar usuario</a>
-<a href="{{ route('VerificarPermissividade',['Escolha'=>"Alterar"]) }}">Alterar ou remover usuario</a>
+<a href="{{ route('RealizarAçao',['Escolha'=>"Adicionar",'Nome'=> session()->get('nome') ]) }}">Adicionar usuario</a>
+<a href="{{ route('RealizarAçao',['Escolha'=>"Alterar",'Nome'=> session()->get('nome')]) }}">Alterar ou remover usuario</a>
 
 
 </section>

@@ -20,30 +20,33 @@ class Configuraçoes extends BaseController//tera conjuntos de views em que depe
 {
     public function RetornarView(){
 
-        return view('Principal',['Usuarios' => $request->Usuarios]);
+        return view('Principal',
+        ['Usuarios' => $request->Usuarios]);
     }
-    public function VerificarPermissividade(){
-          $User=Usuario::find($request->id);
-          if($User->nivel=="2"){
+    public function RealizarAçao(){
+          $User=Usuario::where('Nome',$request->Nome)->first();
+
+          if($User->nivel=="2"){//Verificar permissividade
+
               if($request->Escolha=="Alterar"){
-                return redirect()->action('Configuraçoes@EditarRemoverUsuario'); 
+                return redirect()->action('Configuraçoes@ViewEditarRemoverUsuario'); 
 
               }if($request->Escolha=="Adicionar"){
-                 return redirect()->action('Configuraçoes@EditarRemoverUsuario'); 
+                 return redirect()->action('Configuraçoes@ViewAdicionarUsuario'); 
 
              }
           }else{
             return redirect()->action('Configuraçoes@RetornarView')->with('NegarAcesso',"Negar Acesso"); 
          }
     }
-    public function EditarRemoverUsuario(){
-                 $Usuarios=Usuario::all();
-            return redirect()->action('Configuraçoes@RetornarView', ['Usuarios' => $Usuarios]);//Com request que abrirá form de editar e remover
+    public function ViewEditarRemoverUsuario(){
+            $Usuarios=Usuario::all();
+            return view('EditarRemoverUsuario', ['Usuarios' => $Usuarios]);
             
         
     }
-    public function AdicionarUsuario(){
-   return redirect()->action('Configuraçoes@RetornarView')->with('Cadastrar',"Opçao de cadastrar");//Com request que abrirá form de editar e remover
+    public function ViewAdicionarUsuario(){
+            return view('AdicionarUsuario');
    
 
 }
