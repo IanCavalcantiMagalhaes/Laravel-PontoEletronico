@@ -11,6 +11,12 @@
         </div>
     @endif
 
+    @if(session('AlertaAulaIrregular')){{-- Adicionado com sucesso --}}
+        <div class="alert alert-success" role="alert">
+        <strong>Concluido - </strong>{{ session('AlertaAulaIrregular') }}
+        </div>
+    @endif
+
     {{--@if($M)
         <div class="alert alert-success" role="alert">
         <strong>Concluido - </strong>{{ $M[0] }}

@@ -20,8 +20,7 @@ class Configuraçoes extends BaseController//tera conjuntos de views em que depe
 {
     public function RetornarView(){
 
-        return view('Principal',
-        ['Usuarios' => $request->Usuarios]);
+        return view('Principal');
     }
     public function RealizarAçao(){
           $User=Usuario::where('Nome',$request->Nome)->first();

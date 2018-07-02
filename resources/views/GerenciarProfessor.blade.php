@@ -38,9 +38,14 @@
                     </div>
                   @endif
                 @endif
-                @if(session('AlertaAulaIrregular'))
+                @if(session('AlertaAulaIrregularNegado')){{-- Acesso negado --}}
                     <div class="alert alert-warning" role="alert">
-                    <strong>Atenção - </strong>{{ session('AlertaAulaIrregular') }}
+                    <strong>Atenção - </strong>{{ session('AlertaAulaIrregularNegado') }}
+                    </div>
+                @endif
+                @if(session('AlertaAulaIrregularAdicionada')){{-- Aula irregular adicionada --}}
+                    <div class="alert alert-sucess" role="alert">
+                    <strong>Atenção - </strong>{{ session('AlertaAulaIrregularAdicionada') }}
                     </div>
                 @endif
               <div class="alert alert-warning" role="alert" id="divDePermissao">
@@ -138,7 +143,7 @@
                                 <button type="submit" class="btn btn-danger" onclick="" id="BotaoApagar">Apagar</button>
                             </form>
                             </td>
-                            <td><form action="" >
+                            <td><form action="VerificarPermissaoDefazerAulaIrregular" >
                                 <input class="form-control" type="hidden" name="ID" value={{ $TabelaFuncionario->id }} />
                                 <button type="submit" class="btn btn-primary center-block" id="BotaoAulaIrregular" onclick="" id="BotaoApagar">Inserir aula irregular></button>
                             </form>
