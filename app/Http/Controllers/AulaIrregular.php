@@ -9,7 +9,7 @@ class AulaIrregular extends Controller
 {
         public function RetornarView(Request $request){//PaginaAulaIrregular
              
-            return view('AulaIrregular',['IdProfessor'=>$request->id]);
+            return view('AulaIrregular',['IdProfessor'=>$request->id])->with('navbar',"Gerenciar Professor");
 
         }
        public function VerificarPermissaoDefazerAulaIrregular(Request $request){
@@ -29,14 +29,14 @@ class AulaIrregular extends Controller
                             if($diferença>=7){//se foi a sete dias atras ou mais
                             //Liberar inserçao de aula irregular
 
-                            return view('AulaIrregular',['IdProfessor'=>$request->ID]);//liberar acesso de pagina de aula irregular
+                            return redirect()->action('AulaIrregular@RetornarView',['id'=>$request->ID]);//liberar acesso de pagina de aula irregular
                                                         
                             }else{
                                 return redirect()->route('Mostrar',
                                 ['ID'=>$request->ID])->with('AlertaAulaIrregularNegado',"Professor ja fez aula irregular a menos de 7 dias atras");
                             }
                         }else{
-                            return view('AulaIrregular',['IdProfessor'=>$request->ID])->with('navbar',"Configuraçoes");//liberar acesso de pagina de aula irregular
+                            return redirect()->action('AulaIrregular@RetornarView',['id'=>$request->ID]);//liberar acesso de pagina de aula irregular
                                                         
 
                         }
