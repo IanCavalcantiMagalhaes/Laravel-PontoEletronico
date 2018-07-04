@@ -29,7 +29,7 @@
             position: relative;
             background-color: white;
             opacity: 0.9;
-            height:2500px;width: 1500px;
+            height:160%;width: 1500px;/*height:2500px;*/
             margin: 0 auto;
         }select{
             position:relative;width: 200px;

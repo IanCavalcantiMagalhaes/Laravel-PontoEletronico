@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Aula_Irregular;
 use Illuminate\Http\Request;
+
 
 class AulaIrregular extends Controller
 {
@@ -17,9 +18,10 @@ class AulaIrregular extends Controller
             
                 $dataAtual=date('y/m/d');
             
-                $DataDoBanco=Aula_irregular::where('funcionario_id',$request->ID)->latest()->first();//pegar ultima aula irregular feita por um professor especifico
+                $DataDoBanco=Aula_Irregular::
+                  where('funcionario_id',$request->ID)->latest()->first();//pegar ultima aula irregular feita por um professor especifico
                 
-                    if($DataDoBanco->isNotEmpty()){//se registro anterior for existente
+                    if($DataDoBanco){//se registro anterior for existente
             
                         
                         $diferença=$dataAtual->diffInDays($DataDoBanco->data);
@@ -27,19 +29,23 @@ class AulaIrregular extends Controller
                             if($diferença>=7){//se foi a sete dias atras ou mais
                             //Liberar inserçao de aula irregular
 
-                                return redirect()->route('PaginaAulaIrregular',//liberar acesso de pagina de aula irregular
-                                                        ['ID'=>$request->ID]);
+                            return view('AulaIrregular',['IdProfessor'=>$request->ID]);//liberar acesso de pagina de aula irregular
+                                                        
                             }else{
                                 return redirect()->route('Mostrar',
                                 ['ID'=>$request->ID])->with('AlertaAulaIrregularNegado',"Professor ja fez aula irregular a menos de 7 dias atras");
                             }
+                        }else{
+                            return view('AulaIrregular',['IdProfessor'=>$request->ID])->with('navbar',"Configuraçoes");//liberar acesso de pagina de aula irregular
+                                                        
+
                         }
             
                 
                             
                         
         }
-       public function AdicionarAulaIrregular(Request $request){
+       public function AdicionarAulaIrregular(Request $request){http://php.net/manual/pt_BR/function.split.php http://php.net/manual/pt_BR/function.intval.php
             //Liberar inserçao de aula irregular
 
             /*$Horas=$request->HoraASerAdicionada/1;

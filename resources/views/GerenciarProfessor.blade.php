@@ -143,7 +143,7 @@
                                 <button type="submit" class="btn btn-danger" onclick="" id="BotaoApagar">Apagar</button>
                             </form>
                             </td>
-                            <td><form action="VerificarPermissaoDefazerAulaIrregular" >
+                            <td><form action="{{ route('Permissao') }}" >
                                 <input class="form-control" type="hidden" name="ID" value={{ $TabelaFuncionario->id }} />
                                 <button type="submit" class="btn btn-primary center-block" id="BotaoAulaIrregular" onclick="" id="BotaoApagar">Inserir aula irregular></button>
                             </form>

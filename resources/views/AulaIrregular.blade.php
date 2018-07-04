@@ -9,21 +9,19 @@
                   <strong>Atenção - </strong>{{ session('AlertaAulaIrregularInvalido') }}
                   </div>
                @endif
-
                 <h1>Inserir aula irregular(Para ID: {{ $IdProfessor }})</h1>
                 <form action="">
                   <input type="hidden" name="ID" val={{ $IdProfessor }}>
-                  <p>Digite horas abaixo(Limite de 4 horas)</p>
-                  <input type="text" name="Horas" id="Horas" placeholder="Horas Feitas">
-              {{--<select name="" id="">
-                    <option value="1">1 hora</option>
-                    <option value="2">2 horas</option>
-                    <option value="3">3 horas</option>
-                    <option value="4">4 horas</option>
-                  </select>--}}
-                  <textarea rows="4" cols="50">
-                  </textarea>
-                    <button type="submit"></button>
+                  <spam style="position:absolute;right:60%;">
+                    <p>Digite horas abaixo(Limite de 4 horas)</p>
+                    <input type="text" name="Horas" id="Horas" placeholder="Horas Feitas">
+                  </spam>
+                  <spam style="position:absolute;left:60%;">
+                    <p>Digite o motivo da aula irregular</p>
+                    <textarea rows="4" cols="30" >
+                    </textarea>
+                  </spam>
+                    <button type="submit" style="position:absolute;left:40%;bottom:80%;">Inserir</button>
                 </form>
                 
 

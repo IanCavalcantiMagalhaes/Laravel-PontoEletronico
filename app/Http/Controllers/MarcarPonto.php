@@ -22,8 +22,7 @@ class MarcarPonto extends BaseController
      ->with('RespostaDePonto',$request->Resposta)
      ->with('navbar','Marcar Ponto')
      ->with('sessao',$Logado)//nome de usuario logado
-     ->with('ErroDePonto',$request->ErroDePonto)
-     ->with('M',$R);
+     ->with('ErroDePonto',$request->ErroDePonto);
    }
 
     public function Contador(Request $request){//ao clicar no botao da PaginaContador

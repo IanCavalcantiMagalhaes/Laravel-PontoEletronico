@@ -20,7 +20,7 @@ class Configuraçoes extends BaseController//tera conjuntos de views em que depe
 {
     public function RetornarView(){
 
-        return view('Principal');
+        return view('Principal')->with('navbar',"Configuraçoes");
     }
     public function RealizarAçao(){
           $User=Usuario::where('Nome',$request->Nome)->first();
@@ -49,6 +49,31 @@ class Configuraçoes extends BaseController//tera conjuntos de views em que depe
    
 
 }
-     
+     public function AlterarUsuario(){
 
+    
+$Liberar=true;
+
+$User=usuario::where('nome','!=',$request->NomeAntigo);//O '!=' servira para guando ele nao querer alterar nome (NomeAntigo=NovoNome)
+
+foreach($User as $U){
+     if($U->nome==$request->NovoNome){
+          $Liberar=false;
+     }
+}
+ if($Liberar===false){
+    return redirect()->route('EditarERemover')->with('Alerta',"Outro usuario tem esse nome,escolha outro nome");
+ }else{
+
+    usuario::where('nome',$request->NomeAntigo)  
+    ->update([									
+                'nome'=>$request->NovoNome,
+                'senha'=>$request->senha
+            ]);
+    /*$User=usuario::where('nome',$request->NomeAntigo)->firts();
+    $User->nome=$request->NovoNome;
+    $User->senha=$request->senha;*/
+
+}
+ }
 }

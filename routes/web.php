@@ -19,7 +19,7 @@ use App\Models\Funcionario;
 use App\Models\Curso;
 use App\Models\Materia;
 use App\Models\FuncionarioMateria;
-use App\Models\TempoChegada;
+use App\Models\Usuario;
 
 use Illuminate\Http\Request;
 Route::get('/oi', function () {
@@ -76,6 +76,10 @@ Route::group(['prefix' => 'GerenciarProfessor'], function() {
     Route::get('/RemoverMateria','GerenciarProfessor@RemoverMateriaDoProfessor')->middleware('login')->name('RemoverMateria');
     Route::get('/VerificarSeValorAdicionadoJaEstavaAdicionado','GerenciarProfessor@VerificarSeValorAdicionadoJaEstavaAdicionado')->middleware('login');
     Route::get('/PermitirEdiçao','GerenciarProfessor@PermitirEdiçao')->middleware('login');
+
+
+    Route::get('/PaginaAulaIrregular','AulaIrregular@VerificarPermissaoDefazerAulaIrregular')->middleware('login')->name('Permissao');
+    
 });
 
 Route::group(['prefix' => 'GerenciarCursos'], function() {
@@ -90,6 +94,10 @@ Route::group(['prefix' => 'GerenciarCursos'], function() {
         Route::get('/CarregarSala','GerenciarCursos@CarregarSala');
         Route::get('/CarregarTurno','GerenciarCursos@CarregarTurno');
 
+});
+Route::group(['prefix' => 'Configuraçoes'], function() {
+    Route::get('/Principal','Configuraçoes@RetornarView');
+    Route::get('/Alterar','Configuraçoes@AlterarUsuario')->name('AtualizarUsuario');
 });
 //as funçoes abaixo nao tem grupo definido ja que é utilizada em varios conjunto de rotas{
 Route::get('/AjaxPeriodo','CadastrarProfessor@AjaxPeriodo');
@@ -149,8 +157,9 @@ Route::get('/Soma',function(){
 });
 
 Route::get('/te',function(){
-    $F=Funcionario::all();
-    return Funcionario::all();;
+    $User=Usuario::where('nome',"ZZZ")->first();
+   $User->nome="Fulano";
+   $User->save();
 });
 
 

@@ -7,7 +7,7 @@
     <head> <link href="css/MeuCss.css" rel="stylesheet">
        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
        <meta name="csrf-token" content="{{ csrf_token() }}">
-       <script src="{{ asset('assets/js/MeuJs/Test.js') }}"></script>
+       <script src="{{ asset('assets/js/MeuJs/Test.js') }}"></script> 
        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
        <link rel="stylesheet" href="{{ asset('assets/img/MeuCss.css') }}">
        <link rel="stylesheet" href="{{ asset('assets/css/MeuCss.css') }}">
@@ -18,6 +18,7 @@
     width: 150px;
     height: 200px;  
 }</style>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </head>
@@ -52,15 +53,19 @@
             
             </div>
             <div>@{{ band }}</div>
-            <button ng-onclick="myFunc()">Clicar</button>
-            <select class="js-example-basic-single" name="state">
-                <option value="AL">Alabama</option>
-                <option value="WY">Wyoming</option>
+          
+              <select class="js-example-basic-single" name="Usuario" id="UsuarioSelecionado" onchange="Alert()">//funçao do onchange pegar dados de usuario selecionado e listar em um form
+                <option value="">Ian</option>
+                <option value="">Fulano</option>
               </select>
-            
+            <button onclick="Alert()"></button>
    </body>
 </html>
 <script>
 $(document).ready(function() {
     $('.js-example-basic-single').select2();
-});</script>
+});
+function Alert(){
+    alert("OOOO");
+}
+</script>

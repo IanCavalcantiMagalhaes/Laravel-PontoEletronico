@@ -78,3 +78,6 @@ http://newaeonweb.com.br/angularjs/2015/02/17/Ajax-request-com-angularjs/
     
 
 });
+function Alert(){
+  alert("OOOO");
+}
