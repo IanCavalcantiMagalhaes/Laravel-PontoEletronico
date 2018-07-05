@@ -4,6 +4,7 @@
 //http://matheuspiscioneri.com.br/blog/preview-de-imagem-antes-do-upload-filereader/
 // https://select2.org/getting-started/basic-usage
 //https://select2.org/troubleshooting/common-problems
+//https://stackoverflow.com/questions/45858410/laravel-carbon-date-diffindays-on-string-error
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,7 @@ use App\Models\Curso;
 use App\Models\Materia;
 use App\Models\FuncionarioMateria;
 use App\Models\Usuario;
+use Carbon\Carbon;use App\Models\Aula_Irregular;
 
 use Illuminate\Http\Request;
 Route::get('/oi', function () {
@@ -137,10 +139,15 @@ Route::get('/ManipularCurso', function () {
     return view('PaginaCursoPeriodoMateriaAluno');
 });
 Route::get('/Testando',function(){
-   
- $R=Funcionario::find(1)->pluck('nome');
-     
-    return view('Test')->with('S',$R);
+    $DataDoBanco=Aula_Irregular::
+    where('funcionario_id',2)->latest()->first();
+
+    $formatted_dt1=Carbon::parse($DataDoBanco->data);
+
+    $formatted_dt2=Carbon::parse(date('Y/m/d'));
+    
+    $date_diff=$formatted_dt1->diffInDays($formatted_dt2);
+    return view('Test')->with('S',$date_diff);
 });
 
 Route::get('/TestAjax','test@AjaxSoma');

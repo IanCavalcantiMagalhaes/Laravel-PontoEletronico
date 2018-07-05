@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Aula_Irregular;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 
 class AulaIrregular extends Controller
 {
@@ -12,31 +12,35 @@ class AulaIrregular extends Controller
             return view('AulaIrregular',['IdProfessor'=>$request->id])->with('navbar',"Gerenciar Professor");
 
         }
-       public function VerificarPermissaoDefazerAulaIrregular(Request $request){
+       public function VerificarPermissaoDefazerAulaIrregular(Request $request){ https://stackoverflow.com/questions/45858410/laravel-carbon-date-diffindays-on-string-error
         
         
             
-                $dataAtual=date('y/m/d');
+                $dataAtual=date('Y/m/d');
             
                 $DataDoBanco=Aula_Irregular::
                   where('funcionario_id',$request->ID)->latest()->first();//pegar ultima aula irregular feita por um professor especifico
                 
                     if($DataDoBanco){//se registro anterior for existente
-            
+                        $DataDoBanco=Carbon::parse($DataDoBanco->data);
+
+                        $dataAtual=Carbon::parse($dataAtual);
                         
-                        $diferença=$dataAtual->diffInDays($DataDoBanco->data);
+                        $diferença=$dataAtual->diffInDays($DataDoBanco);
             
                             if($diferença>=7){//se foi a sete dias atras ou mais
                             //Liberar inserçao de aula irregular
 
-                            return redirect()->action('AulaIrregular@RetornarView',['id'=>$request->ID]);//liberar acesso de pagina de aula irregular
+                            return view('AulaIrregular',['IdProfessor'=>$request->ID])//Lembrete:nao criar rota ou action ou assim a pessoa tera acesso a url
+                            ->with('navbar',"Gerenciar Professor");//liberar acesso de pagina de aula irregular
                                                         
                             }else{
                                 return redirect()->route('Mostrar',
                                 ['ID'=>$request->ID])->with('AlertaAulaIrregularNegado',"Professor ja fez aula irregular a menos de 7 dias atras");
                             }
                         }else{
-                            return redirect()->action('AulaIrregular@RetornarView',['id'=>$request->ID]);//liberar acesso de pagina de aula irregular
+                            return view('AulaIrregular',['IdProfessor'=>$request->ID])
+                            ->with('navbar',"Gerenciar Professor");//liberar acesso de pagina de aula irregular
                                                         
 
                         }
