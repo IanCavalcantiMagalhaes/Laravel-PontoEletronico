@@ -255,4 +255,91 @@ class MarcarPonto extends BaseController
      }
   
   }
+
+  function MarcarPontoAlternativo(){//Usuario podera marcar ponto pelo própio celular,quando estiver conectado no wifi da instituiçao academica(Recurso so funcionara com acesso ao wifi da instituiçao)
+    //professor tera que marcar ponto para toda aula que tiver no dia
+    $HorasAtuais=(microtime(true)/60)/60;
+
+   // $request->ID;//ID do funcionario
+    
+    $Aula=Aula::where('ID_Funcionario',$request->ID)->where('DiaDaSemana',date("l"));//Procura pelo id da pessoa e dia da semana para que nao repita horario e HoraDeChegada para saber se atrasou;
+    
+  
+    foreach($Aula as $Aula){//Listar aulas deste dia da semana que professor tera//Verificar se aula esta mais proxima do que as anteriores
+      
+      if($Aula->HoraDeChegada < $HorasAtuais && $Aula->HoraDeSaida > $horasAtuais){//Professor perdeu hora de chegada.Entre hora de saida e entrada
+        
+        $Guardado="Professor se atrasou para trabalho(Aula de ID:".$Aula->id.") em ".(($HorasAtuais-$Aula->HoraDeChegada)*60)." minutos (e, vez de chegar ".$Aula->HoraDeChegada." chegou ".$HorasAtuais.")";
+  
+      }
+
+       if($HorasAtuais<$Aula->HoraDeChegada  && $Guardado>$Aula->HoraDeChegada){//se coluna atual for maior que horas atuais//e se valor do banco pego anteriormente($Guardado) acontecer depois da coluna atual
+       //Exemplo: 7             8                   10               8            Esta aula esta mais proxima de acontecer,assim sera o novo valor de $Guardado
+
+            if(($Aula->HoraDeChegada-$HorasAtuais)<=1){//se esta proximo de 1 hora ou menos de começar aula
+               $Guardado="Ponto marcado para professor de ID ".$request->ID."Para aula de ID ".$Aula->id;//se achar uma aula mais proxima 
+               $ID=$Aula->id;
+            }else{
+               $Guardado="Não pode marcar ponto porque falta mais de uma hora para começar a aula";
+               $ID=$Aula->id;
+            }
+      }
+
+}
+  }
+  /*
+  Marcar ponto (alternativo)
+
+-Aulas:
+id
+ID_funcionario
+DiaDaSemana
+HoraDeChegada
+HoraDeSaida
+Data
+
+controller verificar se chegou no horario de aula(Para compensar horario que ira dever sera utilizado recurso 'AulaIrregular')
+//Para ser funcional o professor tera que marcar e desmarcar ponto em inicio de cada aula,nao sera necessario marcar ponto de saida
+
+$HorasAtuais=(microtime(true)/60)/60;
+
+$request->ID//ID do funcionario
+
+$Aula=Aula::where('ID_Funcionario',$request->ID)->where('DiaDaSemana',date("l"));//Procura pelo id da pessoa e dia da semana para que nao repita horario e HoraDeChegada para saber se atrasou;
+
+foreach($Aula as $Aula){//Listar aulas deste dia da semana que professor tera
+
+	if($Aula->HoraDeChegada < $HorasAtuais && $Aula->HoraDeSaida > $horasAtuais){//Professor perdeu hora de chegada(fez parte da aula)
+	  
+
+	    $Status+="Professor se atrasou para trabalho(Aula de ID:".$Aula->id.") em ".($HorasAtuais-$Aula->HoraDeChegada)*60." minutos (e, vez de chegar ".$Aula->HoraDeChegada." chegou ".$HorasAtuais.")";
+
+	  
+	}
+
+}
+//
+
+controller marcar ponto(mostrara a aula mais proxima de acontecer na hora dele marcar ponto):
+$Guardado=null;
+$HorasAtuais=(microtime(true)/60)/60;
+$Aula=Aula::where('ID_Funcionario',$request->ID)->where('DiaDaSemana',date("l"));
+
+foreach($Aula as $Aula){//Listar aulas deste dia da semana que professor tera//Verificar se aula esta mais proxima do que as anteriores
+
+      if($HorasAtuais<$Aula->HoraDeChegada && $Guardado>$Aula->HoraDeChegada){//se coluna atual for maior que horas atuais e se valor $Guardado acontecer depois da coluna atual
+//Exemplo: 7             8                   10               8            Esta aula esta mais proxima de acontecer,assim sera o novo valor de Guardado
+
+            if(($Aula->HoraDeChegada-$HorasAtuais)=<1){//se esta proximo de 1 hora ou menos de começar aula
+           $Guardado=$Aula->HoraDeChegada;//se achar uma aula mais proxima 
+            $ID=$Aula->id;
+            }else{
+              $Guardado="Não pode marcar ponto porque falta mais de uma hora para começar a aula";
+              $ID=$Aula->id;
+            }
+      }
+
+}
+Caso de uso:Indentificar se professor chegou atrasado
+*/
 }

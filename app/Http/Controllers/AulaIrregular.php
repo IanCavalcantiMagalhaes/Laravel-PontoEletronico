@@ -31,7 +31,7 @@ class AulaIrregular extends Controller
                             if($diferença>=7){//se foi a sete dias atras ou mais
                             //Liberar inserçao de aula irregular
 
-                            return view('AulaIrregular',['IdProfessor'=>$request->ID])//Lembrete:nao criar rota ou action ou assim a pessoa tera acesso a url
+                            return view('AulaIrregular',['IdProfessor'=>$request->ID])//LEMBRETE:nao criar rota ou action ou assim a pessoa tera acesso pela url
                             ->with('navbar',"Gerenciar Professor");//liberar acesso de pagina de aula irregular
                                                         
                             }else{
@@ -39,8 +39,8 @@ class AulaIrregular extends Controller
                                 ['ID'=>$request->ID])->with('AlertaAulaIrregularNegado',"Professor ja fez aula irregular a menos de 7 dias atras");
                             }
                         }else{
-                            return view('AulaIrregular',['IdProfessor'=>$request->ID])
-                            ->with('navbar',"Gerenciar Professor");//liberar acesso de pagina de aula irregular
+                           return view('AulaIrregular',['IdProfessor'=>$request->ID])//LEMBRETE:nao criar rota ou action ou assim a pessoa tera acesso pela url
+                           ->with('navbar',"Gerenciar Professor");//liberar acesso de pagina de aula irregular
                                                         
 
                         }
